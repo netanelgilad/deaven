@@ -1,0 +1,39 @@
+{
+  "name": "superset-vscode",
+  "displayName": "superset",
+  "description": "Superset support for vscode",
+  "version": "1.0.2",
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./extension",
+  "publisher": "netanelgilad",
+  "engines": {
+    "vscode": "^1.27.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "grammars": [
+      {
+        "language": "javascript",
+        "scopeName": "source.superset",
+        "path": "./syntaxes/superset.tmLanguage.json",
+        "embeddedLanguages": {
+          "meta.embedded.block.typescript": "typescript"
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "vscode": "^1.1.21"
+  },
+  "dependencies": {
+    "estraverse": "^4.2.0",
+    "lodash": "^4.17.11"
+  }
+}
