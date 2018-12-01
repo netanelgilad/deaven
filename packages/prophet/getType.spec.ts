@@ -2,6 +2,12 @@ import { getType } from "./getType";
 import { parseExpression } from "@babel/parser";
 import { NotANumber, Number } from "./types";
 
+test("should throw on unknown ast type", () => {
+  expect(() => getType({ type: "unknown" })).toThrowErrorMatchingInlineSnapshot(
+    `"Failed to getType of ast unknown"`
+  );
+});
+
 describe("Math.round", () => {
   test("()", () => {
     expect(getType(parseExpression("Math.round()"))).toBe(NotANumber);
