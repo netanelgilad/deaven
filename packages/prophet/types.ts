@@ -21,16 +21,8 @@ export type StringLiteral = {
   string: string;
 };
 
-export type Concatenation = {
-  parts: any[];
-};
-
 export type GreaterThanEquals = {
   gte: number;
-};
-
-export type Split = {
-  split: any;
 };
 
 export type Function = {
@@ -60,8 +52,6 @@ export type Type =
   | typeof Number
   | NumberLiteral
   | StringLiteral
-  | Concatenation
   | GreaterThanEquals
-  | Split
   | Function
   | FunctionBinding;
