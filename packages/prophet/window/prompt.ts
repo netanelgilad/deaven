@@ -1,5 +1,5 @@
-import { String } from "../types";
+import { String } from "../string/String";
 
 export function prompt() {
-  return String;
+  return String();
 }

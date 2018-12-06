@@ -1,27 +1,36 @@
-import { Concatenation, Type, isStringLiteral, StringLiteral } from "../types";
-import { last } from "lodash";
+import { Type, isArray } from "../types";
+import { isUndefined } from "lodash";
+import { TArray } from "./Array";
+import { TString, String } from "../string/String";
 
-export function join(
-  self: Concatenation,
-  args: [StringLiteral, ...Array<Type>]
-) {
-  const reduceConcatenation = (arg: Concatenation) => {
-    return arg.parts.reduce((result, part) => {
-      if (!result) {
-        return {
-          parts: [part]
-        };
+export function join(self: TArray<any>, args: [TString, ...Array<Type>]) {
+  const reduceArray = (arg: TArray<any>): TString => {
+    if (!arg.value) {
+      return String();
+    }
+    return (arg.value as Array<TArray<any>>).reduce((result, part) => {
+      let stringOfCurrentPart;
+      if (isArray(part)) {
+        stringOfCurrentPart = reduceArray(part);
       } else {
-        const lastPart = last(result.parts);
-        if (isStringLiteral(lastPart) && isStringLiteral(part)) {
-          lastPart.string = lastPart.string + args[0].string + part.string;
-          return result;
-        } else {
-          return reduceConcatenation(lastPart as Concatenation);
-        }
+        stringOfCurrentPart = part;
       }
-    }, undefined);
+
+      let stringToConcatTo = result;
+      if (
+        !isUndefined(stringToConcatTo.value) &&
+        !isUndefined(stringOfCurrentPart.value)
+      ) {
+        stringToConcatTo.value =
+          (stringToConcatTo.value as string) +
+          args[0].value +
+          stringOfCurrentPart.value;
+        return result;
+      } else {
+        return String([result, stringOfCurrentPart as TString]);
+      }
+    }, String(""));
   };
 
-  return reduceConcatenation(self);
+  return reduceArray(self);
 }

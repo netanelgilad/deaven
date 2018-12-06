@@ -1,9 +1,8 @@
 import { Type, GreaterThanEquals, NumberLiteral } from "./types";
+import { String, TString } from "./string/String";
 
 export function plus(left: Type, right: Type) {
-  return {
-    parts: [left, right]
-  };
+  return String([left as TString, right as TString]);
 }
 
 export function greaterThanEquals(

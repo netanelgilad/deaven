@@ -1,6 +1,8 @@
 {
-    "compilerOptions": {
-        "sourceMap": true,
-        "inlineSourceMap": true
-    }
+  "compilerOptions": {
+    "inlineSourceMap": true,
+    "target": "es2017",
+    "strict": true,
+    "moduleResolution": "node"
+  }
 }

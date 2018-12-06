@@ -1,16 +1,14 @@
-import { Concatenation, isConcatenation } from "../types";
+import { isArray } from "../types";
+import { TArray, Array } from "./Array";
 
-export function reverse(self: Concatenation) {
-  return {
-    parts: self.parts.reverse().map(part => {
-      if (isConcatenation(part)) {
-        return {
-          parts: part.parts.reverse()
-        };
+export function reverse(self: TArray<any>) {
+  return Array(
+    (self.value as Array<TArray<any>>).reverse().map(part => {
+      if (isArray(part) && part.value) {
+        return Array(part.value.reverse(), part.concrete);
       }
-      return {
-        reverse: part
-      };
-    })
-  };
+      return part;
+    }),
+    self.concrete
+  );
 }

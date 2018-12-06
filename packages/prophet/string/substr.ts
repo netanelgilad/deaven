@@ -1,11 +1,15 @@
-import { Concatenation, NumberLiteral, Type } from "../types";
+import { NumberLiteral, Type } from "../types";
 import { first } from "lodash";
+import { TString, String } from "./String";
 
 export function substr(
-  self: Concatenation,
+  self: TString,
   args: [NumberLiteral, NumberLiteral, ...Array<Type>]
 ) {
-  return {
-    string: first(self.parts).string.substr(args[0].number, args[1].number)
-  };
+  return String(
+    ((first(self.value as Array<TString>) as TString).value as string).substr(
+      args[0].number,
+      args[1].number
+    )
+  );
 }

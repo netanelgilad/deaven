@@ -1,21 +1,19 @@
-import { Type, isStringLiteral, Concatenation, StringLiteral } from "../types";
+import { Type } from "../types";
+import { TString, String } from "./String";
+import { Array } from "../array/Array";
 
-export function split(
-  self: Concatenation,
-  args: [StringLiteral, ...Array<Type>]
-) {
-  return {
-    parts: self.parts.map(part => {
-      if (isStringLiteral(part)) {
-        return {
-          parts: part.string.split(args[0].string).map(string => ({
-            string
-          }))
-        };
+export function split(self: TString, args: [TString, ...Array<Type>]) {
+  return Array(
+    (self.value as Array<TString>).map(part => {
+      if (part.value) {
+        return Array(
+          (part.value as string)
+            .split(args[0].value as string)
+            .map(string => String(string)),
+          true
+        );
       }
-      return {
-        split: part
-      };
+      return Array();
     })
-  };
+  );
 }
