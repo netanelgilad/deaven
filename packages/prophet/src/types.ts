@@ -17,10 +17,6 @@ export type NumberLiteral = {
   number: number;
 };
 
-export type StringLiteral = {
-  string: string;
-};
-
 export type GreaterThanEquals = {
   gte: number;
 };
@@ -51,7 +47,6 @@ export type Type =
   | TString
   | typeof Number
   | NumberLiteral
-  | StringLiteral
   | GreaterThanEquals
   | Function
   | FunctionBinding;

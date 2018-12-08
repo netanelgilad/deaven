@@ -1,0 +1,7 @@
+{
+  "name": "@deaven/tsconfig",
+  "version": "0.1.0",
+  "description": "Collection of tsconfig.json",
+  "license": "MIT",
+  "tsconfig": "node.tsconfig.json"
+}

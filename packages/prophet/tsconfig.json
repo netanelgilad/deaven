@@ -1,8 +1,9 @@
 {
+  "extends": "@deaven/tsconfig/node/tsconfig.json",
   "compilerOptions": {
-    "inlineSourceMap": true,
-    "target": "es2017",
-    "strict": true,
-    "moduleResolution": "node"
-  }
+    "composite": true,
+    "outDir": "lib",
+    "rootDir": "src"
+  },
+  "include": ["src"]
 }

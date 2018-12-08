@@ -1,0 +1,34 @@
+{
+  "name": "prophet-tests",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc -build",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/parser": "^7.2.0",
+    "@deaven/prophet": "^0.1.0",
+    "@types/globby": "^8.0.0",
+    "@types/node": "^10.12.12",
+    "globby": "^8.0.1",
+    "jest": "^23.6.0",
+    "test262": "https://github.com/tc39/test262",
+    "test262-harness": "^5.0.0",
+    "ts-node": "^7.0.1"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+}

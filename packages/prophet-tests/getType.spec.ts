@@ -1,12 +1,6 @@
-import { getType } from "./getType";
+import { getType, NotANumber } from "@deaven/prophet";
 import { parseExpression } from "@babel/parser";
-import { NotANumber, Number } from "./types";
-
-test("should throw on unknown ast type", () => {
-  expect(() => getType({ type: "unknown" })).toThrowErrorMatchingInlineSnapshot(
-    `"Failed to getType of ast unknown"`
-  );
-});
+import { dirname } from "path";
 
 describe("Math.round", () => {
   test("()", () => {
