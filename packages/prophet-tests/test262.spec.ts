@@ -29,7 +29,7 @@ for (const testFile of testFiles) {
 
 function runTest262(testFile: string) {
   const test262HarnessBin = require.resolve("test262-harness/bin/run");
-  const tsNodePath = require.resolve("ts-node/dist/bin");
+  const tsNodePath = require.resolve("ts-node/register");
   const hostPath = require.resolve("./test262/host");
 
   const result = spawnSync("node", [
@@ -37,10 +37,16 @@ function runTest262(testFile: string) {
     "--hostType",
     "node",
     "--hostPath",
-    tsNodePath,
+    process.execPath,
+    "--hostArgs=--inspect",
+    "--hostArgs=-r",
+    `--hostArgs=${tsNodePath}`,
     "--hostArgs",
     hostPath,
+    "--timeout",
+    "99999999",
     testFile
   ]);
+  expect(result.stderr.toString()).toEqual("");
   expect(result.stdout.toString()).not.toContain("FAIL");
 }

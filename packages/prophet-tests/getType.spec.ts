@@ -1,6 +1,5 @@
 import { getType, NotANumber } from "@deaven/prophet";
 import { parseExpression } from "@babel/parser";
-import { dirname } from "path";
 
 describe("Math.round", () => {
   test("()", () => {

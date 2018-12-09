@@ -4,6 +4,7 @@ import { TString } from "./string/String";
 export const NotANumber = {};
 export const Number = {};
 export const TODOTYPE = {};
+export const Undefined = {};
 
 export function isString(arg: any) {
   return arg.type === "string";
@@ -46,6 +47,7 @@ export type Type =
   | typeof NotANumber
   | TString
   | typeof Number
+  | typeof Undefined
   | NumberLiteral
   | GreaterThanEquals
   | Function

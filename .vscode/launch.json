@@ -6,6 +6,16 @@
   "configurations": [
     {
       "type": "node",
+      "request": "launch",
+      "name": "prophet-tests",
+      "program": "${workspaceFolder}/node_modules/jest-cli/bin/jest.js",
+      "args": ["--runInBand", "--watch"],
+      "cwd": "${workspaceFolder}/packages/prophet-tests",
+      "console": "integratedTerminal",
+      "autoAttachChildProcesses": true
+    },
+    {
+      "type": "node",
       "name": "vscode-jest-tests",
       "request": "launch",
       "args": ["--runInBand"],

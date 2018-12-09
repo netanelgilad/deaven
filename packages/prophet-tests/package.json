@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "tsc -build",
-    "test": "jest"
+    "dev": "jest --watch --coverage"
   },
   "devDependencies": {
     "@babel/parser": "^7.2.0",
@@ -16,19 +16,5 @@
     "test262": "https://github.com/tc39/test262",
     "test262-harness": "^5.0.0",
     "ts-node": "^7.0.1"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
   }
 }

@@ -7,8 +7,15 @@ import {
   NumericLiteralResolver,
   MemberExpressionResolver,
   CallExpressionResolver,
-  BinaryExpressionResolver
+  BinaryExpressionResolver,
+  FileResolver,
+  ProgramResolver
 } from "./ASTResolvers";
+import * as assert from "assert";
+import {
+  TExecutionContext,
+  ExecutionContext
+} from "./execution-context/ExecutionContext";
 
 const ASTResolvers = new Map<string, ASTResolver<any, any>>([
   ["StringLiteral", StringLiteralResolver],
@@ -16,10 +23,16 @@ const ASTResolvers = new Map<string, ASTResolver<any, any>>([
   ["Identifier", IdentifierResolver],
   ["MemberExpression", MemberExpressionResolver],
   ["CallExpression", CallExpressionResolver],
-  ["BinaryExpression", BinaryExpressionResolver]
+  ["BinaryExpression", BinaryExpressionResolver],
+  ["File", FileResolver],
+  ["Program", ProgramResolver]
 ]);
 
-export function getType(ast: Node): Type {
+export function getType(
+  ast: Node,
+  prevContext?: TExecutionContext
+): Type | [Type, TExecutionContext] {
   const resolver = ASTResolvers.get(ast.type);
-  return resolver!(ast);
+  assert(resolver, `Can't resolve type of ast type ${ast.type}`);
+  return resolver!(ast, prevContext || ExecutionContext({}));
 }
