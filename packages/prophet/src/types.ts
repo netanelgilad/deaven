@@ -1,5 +1,6 @@
 import { isObject, keys } from "lodash";
 import { TString } from "./string/String";
+import { TExecutionContext } from "./execution-context/ExecutionContext";
 
 export const NotANumber = {};
 export const Number = {};
@@ -23,7 +24,11 @@ export type GreaterThanEquals = {
 };
 
 export type Function = {
-  implementation: (self: Type, args: Array<Type>) => Type;
+  implementation: (
+    self: Type,
+    args: Array<Type>,
+    execContext?: TExecutionContext
+  ) => Type;
 };
 
 export function isFunction(arg: any): arg is Function {

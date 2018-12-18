@@ -1,7 +1,6 @@
 import { ExpressionStatement, Statement } from "@babel/types";
-import { TExecutionContext, ExecutionContext } from "./ExecutionContext";
-import { getType } from "../getType";
-import { isArray } from "lodash";
+import { TExecutionContext } from "./ExecutionContext";
+import { evaluate } from "../evaluate";
 
 export type StatementResolver<TStatement extends Statement> = (
   prevContext: TExecutionContext,
@@ -11,10 +10,6 @@ export type StatementResolver<TStatement extends Statement> = (
 export const ExpressionStatementResolver: StatementResolver<
   ExpressionStatement
 > = (prevContext, statement) => {
-  const result = getType(statement.expression, prevContext);
-  if (!isArray(result)) {
-    return prevContext;
-  }
-
+  const result = evaluate(statement.expression, prevContext);
   return result[1];
 };

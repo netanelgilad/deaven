@@ -1,7 +1,13 @@
 import { readFileSync } from "fs";
 import { parse } from "@babel/parser";
-import { getType, typeToConcrete } from "@deaven/prophet";
+import {
+  evaluate,
+  typeToConcrete,
+  nodeInitialExecutionContext
+} from "@deaven/prophet";
 
-const testFileCode = readFileSync(process.argv[2], "utf8");
-const type = getType(parse(testFileCode));
-console.log(typeToConcrete(type));
+setTimeout(() => {
+  const testFileCode = readFileSync(process.argv[2], "utf8");
+  const type = evaluate(parse(testFileCode), nodeInitialExecutionContext);
+  console.log(typeToConcrete(type));
+}, 1000);

@@ -9,13 +9,18 @@ import {
   CallExpressionResolver,
   BinaryExpressionResolver,
   FileResolver,
-  ProgramResolver
+  ProgramResolver,
+  AssignmentExpressionResolver,
+  BlockStatementResolver,
+  ReturnStatementResolver,
+  ThisExpressionResolver
 } from "./ASTResolvers";
 import * as assert from "assert";
 import {
   TExecutionContext,
   ExecutionContext
 } from "./execution-context/ExecutionContext";
+import { parseExpression } from "@babel/parser";
 
 const ASTResolvers = new Map<string, ASTResolver<any, any>>([
   ["StringLiteral", StringLiteralResolver],
@@ -25,14 +30,22 @@ const ASTResolvers = new Map<string, ASTResolver<any, any>>([
   ["CallExpression", CallExpressionResolver],
   ["BinaryExpression", BinaryExpressionResolver],
   ["File", FileResolver],
-  ["Program", ProgramResolver]
+  ["Program", ProgramResolver],
+  ["AssignmentExpression", AssignmentExpressionResolver],
+  ["BlockStatement", BlockStatementResolver],
+  ["ReturnStatement", ReturnStatementResolver],
+  ["ThisExpression", ThisExpressionResolver]
 ]);
 
-export function getType(
+export function evaluate(
   ast: Node,
-  prevContext?: TExecutionContext
-): Type | [Type, TExecutionContext] {
+  execContext: TExecutionContext
+): [Type, TExecutionContext] {
   const resolver = ASTResolvers.get(ast.type);
   assert(resolver, `Can't resolve type of ast type ${ast.type}`);
-  return resolver!(ast, prevContext || ExecutionContext({}));
+  return resolver!(ast, execContext || ExecutionContext({}));
+}
+
+export function evaluateCode(code: string, execContext: TExecutionContext) {
+  return evaluate(parseExpression(code), execContext);
 }

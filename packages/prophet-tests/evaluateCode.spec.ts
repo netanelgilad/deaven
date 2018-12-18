@@ -1,25 +1,38 @@
-import { getType, NotANumber } from "@deaven/prophet";
-import { parseExpression } from "@babel/parser";
+import {
+  evaluateCode,
+  NotANumber,
+  nodeInitialExecutionContext
+} from "@deaven/prophet";
 
 describe("Math.round", () => {
   test("()", () => {
-    expect(getType(parseExpression("Math.round()"))).toBe(NotANumber);
+    expect(evaluateCode("Math.round()", nodeInitialExecutionContext)[0]).toBe(
+      NotANumber
+    );
   });
 
   test("(string)", () => {
-    expect(getType(parseExpression('Math.round("asd")'))).toBe(NotANumber);
+    expect(
+      evaluateCode('Math.round("asd")', nodeInitialExecutionContext)[0]
+    ).toBe(NotANumber);
   });
 
   test("(number)", () => {
-    expect(getType(parseExpression("Math.round(3.5)"))).toEqual({
+    expect(
+      evaluateCode("Math.round(3.5)", nodeInitialExecutionContext)[0]
+    ).toEqual({
       number: 4
     });
   });
 });
 
 test("4", () => {
-  expect(getType(parseExpression(`(prompt() + "World").split("")`)))
-    .toMatchInlineSnapshot(`
+  expect(
+    evaluateCode(
+      `(prompt() + "World").split("")`,
+      nodeInitialExecutionContext
+    )[0]
+  ).toMatchInlineSnapshot(`
 Object {
   "concrete": undefined,
   "properties": Object {
@@ -147,8 +160,12 @@ Object {
 });
 
 test("5", () => {
-  expect(getType(parseExpression(`(prompt() + "World").split("").reverse()`)))
-    .toMatchInlineSnapshot(`
+  expect(
+    evaluateCode(
+      `(prompt() + "World").split("").reverse()`,
+      nodeInitialExecutionContext
+    )[0]
+  ).toMatchInlineSnapshot(`
 Object {
   "concrete": undefined,
   "properties": Object {
@@ -277,9 +294,10 @@ Object {
 
 test("6", () => {
   expect(
-    getType(
-      parseExpression(`(prompt() + "World").split("").reverse().join("")`)
-    )
+    evaluateCode(
+      `(prompt() + "World").split("").reverse().join("")`,
+      nodeInitialExecutionContext
+    )[0]
   ).toMatchInlineSnapshot(`
 Object {
   "properties": Object {
@@ -328,11 +346,10 @@ Object {
 
 test("3", () => {
   expect(
-    getType(
-      parseExpression(
-        `(prompt() + "World").split("").reverse().join("").substr(0,2)`
-      )
-    )
+    evaluateCode(
+      `(prompt() + "World").split("").reverse().join("").substr(0,2)`,
+      nodeInitialExecutionContext
+    )[0]
   ).toMatchInlineSnapshot(`
 Object {
   "properties": Object {
@@ -355,7 +372,10 @@ Object {
 describe(".length", () => {
   test(`(prompt() + "World").split("")`, () => {
     expect(
-      getType(parseExpression(`(prompt() + "World").split("").length`))
+      evaluateCode(
+        `(prompt() + "World").split("").length`,
+        nodeInitialExecutionContext
+      )[0]
     ).toEqual({
       gte: 5
     });
@@ -365,7 +385,10 @@ describe(".length", () => {
 describe(">", () => {
   test("(greaterThanEquals, number)", () => {
     expect(
-      getType(parseExpression(`(prompt() + "World").split("").length > 4`))
+      evaluateCode(
+        `(prompt() + "World").split("").length > 4`,
+        nodeInitialExecutionContext
+      )[0]
     ).toEqual(true);
   });
 });
