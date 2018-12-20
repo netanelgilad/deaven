@@ -43,14 +43,17 @@ export type ASTResolver<TAST extends Node, T extends Type> = (
 ) => [T, TExecutionContext];
 
 export const noExecutionContextResolver = <TAST extends Node, T extends Type>(
-  fn: (ast: TAST) => T
+  fn: (ast: TAST, execContext: TExecutionContext) => T
 ) => (ast: TAST, execContext: TExecutionContext) =>
-  [fn(ast), execContext] as [T, TExecutionContext];
+  [fn(ast, execContext), execContext] as [T, TExecutionContext];
 
 export const IdentifierResolver: ASTResolver<
   Identifier,
   Type
-> = noExecutionContextResolver(ast => {
+> = noExecutionContextResolver((ast, execContext) => {
+  const resolvedFromScope = execContext.value.scope[ast.name];
+  return resolvedFromScope || execContext.value.global.properties[ast.name];
+
   if (ast.name === "prompt") {
     return {
       self: TODOTYPE,
@@ -120,14 +123,11 @@ export const CallExpressionResolver: ASTResolver<CallExpression, Type> = (
     unsafeGet(calleeType, "self") || afterArgsExecContext.value.global
   );
 
-  return [
-    unsafeGet(calleeType, "function").implementation(
-      unsafeGet(calleeType, "self"),
-      argsTypes,
-      afterArgsExecContext
-    ),
+  return unsafeGet(calleeType, "function").implementation(
+    unsafeGet(calleeType, "self"),
+    argsTypes,
     afterArgsExecContext
-  ];
+  );
 };
 
 export const BinaryExpressionResolver: ASTResolver<
@@ -169,8 +169,8 @@ export const BlockStatementResolver: ASTResolver<BlockStatement, Type> = (
 ) => {
   return ast.body.reduce(
     ([, execContext], statement) => {
-      const [, newExecContext] = evaluate(statement, execContext);
-      return [Undefined, newExecContext] as [Type, TExecutionContext];
+      const [statementType, newExecContext] = evaluate(statement, execContext);
+      return [statementType, newExecContext] as [Type, TExecutionContext];
     },
     [Undefined, execContext] as [Type, TExecutionContext]
   );
@@ -180,8 +180,18 @@ export const AssignmentExpressionResolver: ASTResolver<
   AssignmentExpression,
   Type
 > = (ast, execContext) => {
-  resolveReference(ast.left as MemberExpression, execContext);
-  return [Undefined, execContext];
+  const [objectType, afterLeftExecContext] = evaluate(
+    unsafeCast<MemberExpression>(ast.left).object,
+    execContext
+  );
+  const [rightType, afterRightExecContext] = evaluate(
+    ast.right,
+    afterLeftExecContext
+  );
+  unsafeCast<WithProperties>(objectType).properties[
+    unsafeCast<MemberExpression>(ast.left).property.name
+  ] = rightType;
+  return [rightType, afterRightExecContext];
 };
 
 export const ReturnStatementResolver: ASTResolver<ReturnStatement, Type> = (
@@ -198,5 +208,5 @@ export const ThisExpressionResolver: ASTResolver<ThisExpression, Type> = (
   _ast,
   execContext
 ) => {
-  return execContext.value.thisValue;
+  return [execContext.value.thisValue, execContext];
 };

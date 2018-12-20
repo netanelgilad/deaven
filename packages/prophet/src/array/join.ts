@@ -2,8 +2,13 @@ import { Type, isArray } from "../types";
 import { isUndefined } from "lodash";
 import { TArray } from "./Array";
 import { TString, String } from "../string/String";
+import { TExecutionContext } from "../execution-context/ExecutionContext";
 
-export function join(self: TArray<any>, args: [TString, ...Array<Type>]) {
+export function join(
+  self: TArray<any>,
+  args: [TString, ...Array<Type>],
+  execContext: TExecutionContext
+) {
   const reduceArray = (arg: TArray<any>): TString => {
     if (!arg.value) {
       return String();
@@ -32,5 +37,5 @@ export function join(self: TArray<any>, args: [TString, ...Array<Type>]) {
     }, String(""));
   };
 
-  return reduceArray(self);
+  return [reduceArray(self), execContext];
 }

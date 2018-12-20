@@ -13,21 +13,28 @@ import { evaluate } from "../evaluate";
 
 export const FunctionConstructor = {
   function: {
-    implementation(_self: void, args: [TString]) {
+    implementation(
+      _self: void,
+      args: [TString],
+      execContext: TExecutionContext
+    ) {
       const blockStatement = ((parse(`() => {${args[0].value as string}}`)
         .program.body[0] as ExpressionStatement)
         .expression as ArrowFunctionExpression).body;
-      return {
-        function: {
-          implementation(
-            _self: void,
-            args: Array<Type>,
-            execContext: TExecutionContext
-          ) {
-            return evaluate(blockStatement, execContext);
+      return [
+        {
+          function: {
+            implementation(
+              _self: void,
+              args: Array<Type>,
+              execContext: TExecutionContext
+            ) {
+              return evaluate(blockStatement, execContext);
+            }
           }
-        }
-      };
+        },
+        execContext
+      ];
     }
   }
 };
