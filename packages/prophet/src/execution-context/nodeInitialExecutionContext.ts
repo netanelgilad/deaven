@@ -9,7 +9,12 @@ export const nodeInitialExecutionContext = ExecutionContext({
     properties: {
       Math,
       Function: FunctionConstructor,
-      prompt
+      prompt: {
+        parameters: [],
+        function: {
+          implementation: prompt
+        }
+      }
     }
   },
   scope: {
