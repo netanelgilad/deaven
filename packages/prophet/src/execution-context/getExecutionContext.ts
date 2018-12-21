@@ -2,12 +2,14 @@ import { Statement } from "@babel/types";
 import { TExecutionContext } from "./ExecutionContext";
 import {
   StatementResolver,
-  ExpressionStatementResolver
+  ExpressionStatementResolver,
+  VariableDeclarationResolver
 } from "./StatementResolvers";
 import assert = require("assert");
 
 const StatementResolvers = new Map<string, StatementResolver<any>>([
-  ["ExpressionStatement", ExpressionStatementResolver]
+  ["ExpressionStatement", ExpressionStatementResolver],
+  ["VariableDeclaration", VariableDeclarationResolver]
 ]);
 
 export function getExecutionContext(

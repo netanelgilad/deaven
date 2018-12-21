@@ -11,31 +11,33 @@ import {
   AssignmentExpression,
   BlockStatement,
   ReturnStatement,
-  ThisExpression
+  ThisExpression,
+  ObjectExpression,
+  ObjectMember,
+  FunctionExpression
 } from "@babel/types";
 import { String, TString } from "./string/String";
 import {
-  TODOTYPE,
   WithProperties,
   isFunction,
   Type,
   Undefined,
   GreaterThanEquals,
-  NumberLiteral
+  NumberLiteral,
+  FunctionBinding
 } from "./types";
-import { prompt } from "./window/prompt";
-import { Math } from "./math/Math";
 import { evaluate } from "./evaluate";
 import { greaterThanEquals, plus } from "./operators";
 import { getExecutionContext } from "./execution-context/getExecutionContext";
 import {
   TExecutionContext,
-  setCurrentThisValue
+  setCurrentThisValue,
+  setVariableInScope
 } from "./execution-context/ExecutionContext";
-import { resolveReference } from "./reference/resolveReference";
-import { FunctionConstructor } from "./Function/Function";
+import { createFunction } from "./Function/Function";
 import { isNull } from "util";
-import { unsafeGet, unsafeCast } from "./unsafeGet";
+import { unsafeCast } from "./unsafeGet";
+import { TESObject, ESObject } from "./Object";
 
 export type ASTResolver<TAST extends Node, T extends Type> = (
   ast: TAST,
@@ -52,20 +54,11 @@ export const IdentifierResolver: ASTResolver<
   Type
 > = noExecutionContextResolver((ast, execContext) => {
   const resolvedFromScope = execContext.value.scope[ast.name];
-  return resolvedFromScope || execContext.value.global.properties[ast.name];
-
-  if (ast.name === "prompt") {
-    return {
-      self: TODOTYPE,
-      function: {
-        implementation: prompt
-      }
-    };
-  } else if (ast.name === "Math") {
-    return Math;
-  } else {
-    return FunctionConstructor;
-  }
+  return (
+    resolvedFromScope ||
+    execContext.value.global.properties[ast.name] ||
+    Undefined
+  );
 });
 
 export const StringLiteralResolver: ASTResolver<
@@ -91,6 +84,7 @@ export const MemberExpressionResolver: ASTResolver<MemberExpression, Type> = (
   if (isFunction(propertyType)) {
     return [
       {
+        parameters: [],
         self: objectType,
         function: propertyType
       },
@@ -120,13 +114,23 @@ export const CallExpressionResolver: ASTResolver<CallExpression, Type> = (
 
   afterArgsExecContext = setCurrentThisValue(
     afterArgsExecContext,
-    unsafeGet(calleeType, "self") || afterArgsExecContext.value.global
+    unsafeCast<FunctionBinding>(calleeType).self ||
+      afterArgsExecContext.value.global
   );
 
-  return unsafeGet(calleeType, "function").implementation(
-    unsafeGet(calleeType, "self"),
-    argsTypes,
+  const atferParametersInScopeExecContext = unsafeCast<FunctionBinding>(
+    calleeType
+  ).parameters.reduce(
+    (prevContext, parameter, index) =>
+      setVariableInScope(prevContext, parameter, argsTypes[index]),
     afterArgsExecContext
+  );
+
+  return unsafeCast<FunctionBinding>(calleeType).function.implementation(
+    unsafeCast<FunctionBinding>(calleeType).self ||
+      atferParametersInScopeExecContext.value.global,
+    argsTypes,
+    atferParametersInScopeExecContext
   );
 };
 
@@ -209,4 +213,34 @@ export const ThisExpressionResolver: ASTResolver<ThisExpression, Type> = (
   execContext
 ) => {
   return [execContext.value.thisValue, execContext];
+};
+
+export const ObjectExpressionResolver: ASTResolver<
+  ObjectExpression,
+  TESObject
+> = (ast, execContext) => {
+  const [objValue, afterPropertiesExecContext] = ast.properties.reduce(
+    ([obj, execContext], property) => {
+      const [propValueType, afterPropExecContext] = evaluate(
+        unsafeCast<ObjectMember>(property).key,
+        execContext
+      );
+      return [
+        {
+          ...obj,
+          [unsafeCast<ObjectMember>(property).key.name]: propValueType
+        },
+        afterPropExecContext
+      ] as [Object, TExecutionContext];
+    },
+    [{}, execContext] as [Object, TExecutionContext]
+  );
+  return [ESObject(objValue), afterPropertiesExecContext];
+};
+
+export const FunctionExpressionResolver: ASTResolver<
+  FunctionExpression,
+  FunctionBinding
+> = (ast, execContext) => {
+  return [createFunction(ast.body, ast.params), execContext];
 };

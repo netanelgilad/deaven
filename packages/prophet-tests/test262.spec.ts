@@ -54,5 +54,10 @@ function runTest262(testFile: string) {
     }
   );
   expect(result.stderr.toString()).toEqual("");
-  expect(result.stdout.toString()).not.toContain("FAIL");
+  expect(
+    result.stdout
+      .toString()
+      .split("       ")
+      .join("\n")
+  ).not.toContain("FAIL");
 }

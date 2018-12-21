@@ -1,6 +1,5 @@
 import { reverse } from "./reverse";
 import { join } from "./join";
-import { isArray } from "lodash";
 import { Number, NumberLiteral, GreaterThanEquals } from "../types";
 
 export type TArray<T> = {

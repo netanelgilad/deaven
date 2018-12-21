@@ -1,17 +1,16 @@
 import { readFileSync } from "fs";
-import { parse } from "@babel/parser";
 import {
-  evaluate,
   typeToConcrete,
-  nodeInitialExecutionContext
+  nodeInitialExecutionContext,
+  evaluateCode
 } from "@deaven/prophet";
 
 setTimeout(() => {
   const testFileCode = readFileSync(process.argv[2], "utf8");
-  // try {
-  const type = evaluate(parse(testFileCode), nodeInitialExecutionContext);
-  console.log(typeToConcrete(type));
-  // } catch (err) {
-  //   console.log(err.stack);
-  // }
+  try {
+    const type = evaluateCode(testFileCode, nodeInitialExecutionContext);
+    console.log(typeToConcrete(type));
+  } catch (err) {
+    throw new Error(err.stack.split("\n").join("       "));
+  }
 }, 1000);

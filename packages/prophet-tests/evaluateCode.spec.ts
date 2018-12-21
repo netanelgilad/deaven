@@ -1,25 +1,31 @@
 import {
-  evaluateCode,
+  evaluateCodeAsExpression,
   NotANumber,
   nodeInitialExecutionContext
 } from "@deaven/prophet";
 
 describe("Math.round", () => {
   test("()", () => {
-    expect(evaluateCode("Math.round()", nodeInitialExecutionContext)[0]).toBe(
-      NotANumber
-    );
+    expect(
+      evaluateCodeAsExpression("Math.round()", nodeInitialExecutionContext)[0]
+    ).toBe(NotANumber);
   });
 
   test("(string)", () => {
     expect(
-      evaluateCode('Math.round("asd")', nodeInitialExecutionContext)[0]
+      evaluateCodeAsExpression(
+        'Math.round("asd")',
+        nodeInitialExecutionContext
+      )[0]
     ).toBe(NotANumber);
   });
 
   test("(number)", () => {
     expect(
-      evaluateCode("Math.round(3.5)", nodeInitialExecutionContext)[0]
+      evaluateCodeAsExpression(
+        "Math.round(3.5)",
+        nodeInitialExecutionContext
+      )[0]
     ).toEqual({
       number: 4
     });
@@ -28,7 +34,7 @@ describe("Math.round", () => {
 
 test("4", () => {
   expect(
-    evaluateCode(
+    evaluateCodeAsExpression(
       `(prompt() + "World").split("")`,
       nodeInitialExecutionContext
     )[0]
@@ -161,7 +167,7 @@ Object {
 
 test("5", () => {
   expect(
-    evaluateCode(
+    evaluateCodeAsExpression(
       `(prompt() + "World").split("").reverse()`,
       nodeInitialExecutionContext
     )[0]
@@ -294,7 +300,7 @@ Object {
 
 test("6", () => {
   expect(
-    evaluateCode(
+    evaluateCodeAsExpression(
       `(prompt() + "World").split("").reverse().join("")`,
       nodeInitialExecutionContext
     )[0]
@@ -346,7 +352,7 @@ Object {
 
 test("3", () => {
   expect(
-    evaluateCode(
+    evaluateCodeAsExpression(
       `(prompt() + "World").split("").reverse().join("").substr(0,2)`,
       nodeInitialExecutionContext
     )[0]
@@ -372,7 +378,7 @@ Object {
 describe(".length", () => {
   test(`(prompt() + "World").split("")`, () => {
     expect(
-      evaluateCode(
+      evaluateCodeAsExpression(
         `(prompt() + "World").split("").length`,
         nodeInitialExecutionContext
       )[0]
@@ -385,7 +391,7 @@ describe(".length", () => {
 describe(">", () => {
   test("(greaterThanEquals, number)", () => {
     expect(
-      evaluateCode(
+      evaluateCodeAsExpression(
         `(prompt() + "World").split("").length > 4`,
         nodeInitialExecutionContext
       )[0]

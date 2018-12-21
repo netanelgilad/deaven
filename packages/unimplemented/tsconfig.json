@@ -1,0 +1,9 @@
+{
+  "extends": "@deaven/tsconfig/node/tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "lib",
+    "rootDir": "src"
+  },
+  "include": ["src"]
+}

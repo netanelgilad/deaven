@@ -1,12 +1,23 @@
 import { TExecutionContext } from "../execution-context/ExecutionContext";
-import { Undefined, Type } from "../types";
+import { Type } from "../types";
+import { NodeBuiltinModules } from "../node-builtin-modules/NodeBuiltInModules";
+import { unsafeCast } from "../unsafeGet";
+import { TString } from "../string/String";
 
 export const requireFunction = {
+  parameters: [],
   function: {
     implementation: (
       _self: Type,
-      _args: Array<Type>,
+      args: Array<Type>,
       exeContext: TExecutionContext
-    ) => [Undefined, exeContext]
+    ) => {
+      return [
+        NodeBuiltinModules.get(
+          unsafeCast<string>(unsafeCast<TString>(args[0]).value)
+        ),
+        exeContext
+      ];
+    }
   }
 };

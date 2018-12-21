@@ -13,14 +13,16 @@ import {
   AssignmentExpressionResolver,
   BlockStatementResolver,
   ReturnStatementResolver,
-  ThisExpressionResolver
+  ThisExpressionResolver,
+  ObjectExpressionResolver,
+  FunctionExpressionResolver
 } from "./ASTResolvers";
 import * as assert from "assert";
 import {
   TExecutionContext,
   ExecutionContext
 } from "./execution-context/ExecutionContext";
-import { parseExpression } from "@babel/parser";
+import { parseExpression, parse } from "@babel/parser";
 
 const ASTResolvers = new Map<string, ASTResolver<any, any>>([
   ["StringLiteral", StringLiteralResolver],
@@ -34,7 +36,9 @@ const ASTResolvers = new Map<string, ASTResolver<any, any>>([
   ["AssignmentExpression", AssignmentExpressionResolver],
   ["BlockStatement", BlockStatementResolver],
   ["ReturnStatement", ReturnStatementResolver],
-  ["ThisExpression", ThisExpressionResolver]
+  ["ThisExpression", ThisExpressionResolver],
+  ["ObjectExpression", ObjectExpressionResolver],
+  ["FunctionExpression", FunctionExpressionResolver]
 ]);
 
 export function evaluate(
@@ -47,5 +51,12 @@ export function evaluate(
 }
 
 export function evaluateCode(code: string, execContext: TExecutionContext) {
+  return evaluate(parse(code), execContext);
+}
+
+export function evaluateCodeAsExpression(
+  code: string,
+  execContext: TExecutionContext
+) {
   return evaluate(parseExpression(code), execContext);
 }

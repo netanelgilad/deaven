@@ -1,6 +1,7 @@
 import { isObject, keys } from "lodash";
 import { TString } from "./string/String";
 import { TExecutionContext } from "./execution-context/ExecutionContext";
+import { TESObject } from "./Object";
 
 export const NotANumber = {};
 export const Number = {};
@@ -27,8 +28,8 @@ export type Function = {
   implementation: (
     self: Type,
     args: Array<Type>,
-    execContext?: TExecutionContext
-  ) => Type;
+    execContext: TExecutionContext
+  ) => [Type, TExecutionContext];
 };
 
 export function isFunction(arg: any): arg is Function {
@@ -38,7 +39,8 @@ export function isFunction(arg: any): arg is Function {
 }
 
 export type FunctionBinding = {
-  self: Type;
+  parameters: string[];
+  self?: Type;
   function: Function;
 };
 
@@ -56,4 +58,5 @@ export type Type =
   | NumberLiteral
   | GreaterThanEquals
   | Function
+  | TESObject
   | FunctionBinding;
