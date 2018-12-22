@@ -14,7 +14,8 @@ import {
   ThisExpression,
   ObjectExpression,
   ObjectMember,
-  FunctionExpression
+  FunctionExpression,
+  ObjectMethod
 } from "@babel/types";
 import { String, TString } from "./string/String";
 import {
@@ -184,18 +185,30 @@ export const AssignmentExpressionResolver: ASTResolver<
   AssignmentExpression,
   Type
 > = (ast, execContext) => {
-  const [objectType, afterLeftExecContext] = evaluate(
-    unsafeCast<MemberExpression>(ast.left).object,
-    execContext
-  );
-  const [rightType, afterRightExecContext] = evaluate(
-    ast.right,
-    afterLeftExecContext
-  );
-  unsafeCast<WithProperties>(objectType).properties[
-    unsafeCast<MemberExpression>(ast.left).property.name
-  ] = rightType;
-  return [rightType, afterRightExecContext];
+  if (ast.left.type === "MemberExpression") {
+    const [objectType, afterLeftExecContext] = evaluate(
+      ast.left.object,
+      execContext
+    );
+    const [rightType, afterRightExecContext] = evaluate(
+      ast.right,
+      afterLeftExecContext
+    );
+    unsafeCast<WithProperties>(objectType).properties[
+      ast.left.property.name
+    ] = rightType;
+    return [rightType, afterRightExecContext];
+  } else {
+    const [rightType, afterRightExecContext] = evaluate(ast.right, execContext);
+    return [
+      rightType,
+      setVariableInScope(
+        afterRightExecContext,
+        unsafeCast<Identifier>(ast.left).name,
+        rightType
+      )
+    ];
+  }
 };
 
 export const ReturnStatementResolver: ASTResolver<ReturnStatement, Type> = (
@@ -221,19 +234,35 @@ export const ObjectExpressionResolver: ASTResolver<
 > = (ast, execContext) => {
   const [objValue, afterPropertiesExecContext] = ast.properties.reduce(
     ([obj, execContext], property) => {
-      const [propValueType, afterPropExecContext] = evaluate(
-        unsafeCast<ObjectMember>(property).key,
-        execContext
-      );
+      let propValueType, afterPropExecContext;
+      if (property.type === "ObjectProperty") {
+        if (property.shorthand) {
+          [propValueType, afterPropExecContext] = evaluate(
+            property.key,
+            execContext
+          );
+        } else {
+          [propValueType, afterPropExecContext] = evaluate(
+            property.value,
+            execContext
+          );
+        }
+      } else {
+        propValueType = createFunction(
+          unsafeCast<ObjectMethod>(property).body,
+          unsafeCast<ObjectMethod>(property).params
+        );
+        afterPropExecContext = execContext;
+      }
       return [
         {
           ...obj,
           [unsafeCast<ObjectMember>(property).key.name]: propValueType
         },
         afterPropExecContext
-      ] as [Object, TExecutionContext];
+      ] as [{ [key: string]: Type }, TExecutionContext];
     },
-    [{}, execContext] as [Object, TExecutionContext]
+    [{}, execContext] as [{ [key: string]: Type }, TExecutionContext]
   );
   return [ESObject(objValue), afterPropertiesExecContext];
 };

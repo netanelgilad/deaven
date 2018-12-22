@@ -3,13 +3,15 @@ import { TExecutionContext } from "./ExecutionContext";
 import {
   StatementResolver,
   ExpressionStatementResolver,
-  VariableDeclarationResolver
+  VariableDeclarationResolver,
+  FunctionDeclarationResolver
 } from "./StatementResolvers";
 import assert = require("assert");
 
 const StatementResolvers = new Map<string, StatementResolver<any>>([
   ["ExpressionStatement", ExpressionStatementResolver],
-  ["VariableDeclaration", VariableDeclarationResolver]
+  ["VariableDeclaration", VariableDeclarationResolver],
+  ["FunctionDeclaration", FunctionDeclarationResolver]
 ]);
 
 export function getExecutionContext(

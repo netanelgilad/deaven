@@ -11,6 +11,7 @@ import {
 import { TExecutionContext } from "../execution-context/ExecutionContext";
 import { evaluate } from "../evaluate";
 import { unsafeCast } from "../unsafeGet";
+import { ESObject } from "../Object";
 
 // export function Function(value) {
 //   return {
@@ -19,6 +20,7 @@ import { unsafeCast } from "../unsafeGet";
 // }
 
 export const FunctionConstructor = {
+  properties: {},
   parameters: [],
   function: {
     implementation(
@@ -36,6 +38,9 @@ export const FunctionConstructor = {
 
 export function createFunction(body: BlockStatement, params: Array<LVal>) {
   return {
+    properties: {
+      prototype: ESObject()
+    },
     parameters: params.map(x => unsafeCast<Identifier>(x).name),
     function: {
       implementation(

@@ -2,12 +2,14 @@ import {
   ExpressionStatement,
   Statement,
   VariableDeclaration,
-  Identifier
+  Identifier,
+  FunctionDeclaration
 } from "@babel/types";
 import { TExecutionContext, setVariableInScope } from "./ExecutionContext";
 import { evaluate } from "../evaluate";
 import { Undefined } from "../types";
 import { unsafeCast } from "../unsafeGet";
+import { createFunction } from "../Function/Function";
 
 export type StatementResolver<TStatement extends Statement> = (
   prevContext: TExecutionContext,
@@ -43,4 +45,14 @@ export const VariableDeclarationResolver: StatementResolver<
       );
     }
   }, prevContext);
+};
+
+export const FunctionDeclarationResolver: StatementResolver<
+  FunctionDeclaration
+> = (prevContext, statement) => {
+  return setVariableInScope(
+    prevContext,
+    unsafeCast<Identifier>(statement.id).name,
+    createFunction(statement.body, statement.params)
+  );
 };

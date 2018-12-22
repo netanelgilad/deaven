@@ -38,7 +38,7 @@ export function isFunction(arg: any): arg is Function {
   );
 }
 
-export type FunctionBinding = {
+export type FunctionBinding = WithProperties & {
   parameters: string[];
   self?: Type;
   function: Function;

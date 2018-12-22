@@ -7,6 +7,8 @@ import produce from "immer";
 import { evaluateCode } from "../evaluate";
 import { TString } from "../string/String";
 import { unsafeCast } from "../unsafeGet";
+import { ESInitialGlobal } from "../execution-context/ESInitialGlobal";
+import { TESObject } from "../Object";
 
 export const vm = {
   properties: {
@@ -32,7 +34,12 @@ export const vm = {
         ) => {
           const evalExecContext = ExecutionContext(
             produce(execContext.value, draft => {
-              draft.global = args[1];
+              draft.global = {
+                properties: {
+                  ...ESInitialGlobal.properties,
+                  ...unsafeCast<TESObject>(args[1]).properties
+                }
+              };
             })
           );
           return evaluateCode(
