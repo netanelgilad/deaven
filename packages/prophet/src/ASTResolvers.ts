@@ -15,7 +15,17 @@ import {
   ObjectExpression,
   ObjectMember,
   FunctionExpression,
-  ObjectMethod
+  ObjectMethod,
+  BooleanLiteral,
+  Statement,
+  FunctionDeclaration,
+  IfStatement,
+  EmptyStatement,
+  ExpressionStatement,
+  VariableDeclaration,
+  NewExpression,
+  callExpression,
+  LogicalExpression
 } from "@babel/types";
 import { String, TString } from "./string/String";
 import {
@@ -25,15 +35,17 @@ import {
   Undefined,
   GreaterThanEquals,
   NumberLiteral,
-  FunctionBinding
+  FunctionBinding,
+  Function,
+  isThrownValue
 } from "./types";
 import { evaluate } from "./evaluate";
 import { greaterThanEquals, plus } from "./operators";
-import { getExecutionContext } from "./execution-context/getExecutionContext";
 import {
   TExecutionContext,
   setCurrentThisValue,
-  setVariableInScope
+  setVariableInScope,
+  ExecutionContext
 } from "./execution-context/ExecutionContext";
 import { createFunction } from "./Function/Function";
 import { isNull } from "util";
@@ -43,12 +55,34 @@ import { TESObject, ESObject } from "./Object";
 export type ASTResolver<TAST extends Node, T extends Type> = (
   ast: TAST,
   prevContext: TExecutionContext
-) => [T, TExecutionContext];
+) => Iterator<[T, TExecutionContext]>;
 
 export const noExecutionContextResolver = <TAST extends Node, T extends Type>(
   fn: (ast: TAST, execContext: TExecutionContext) => T
-) => (ast: TAST, execContext: TExecutionContext) =>
-  [fn(ast, execContext), execContext] as [T, TExecutionContext];
+) =>
+  function*(ast: TAST, execContext: TExecutionContext) {
+    return [fn(ast, execContext), execContext] as [T, TExecutionContext];
+  };
+
+export const statementResolver = <TStatement extends Statement>(
+  fn: (
+    ast: TStatement,
+    execContext: TExecutionContext
+  ) => IterableIterator<[Type, TExecutionContext]>
+) =>
+  function*(ast: TStatement, execContext: TExecutionContext) {
+    const resultIter = fn(ast, execContext);
+
+    let currentEvaluationResult = resultIter.next();
+    while (
+      !isThrownValue(currentEvaluationResult.value[0]) &&
+      !currentEvaluationResult.done
+    ) {
+      currentEvaluationResult = resultIter.next(currentEvaluationResult.value);
+    }
+
+    return currentEvaluationResult.value;
+  };
 
 export const IdentifierResolver: ASTResolver<
   Identifier,
@@ -74,73 +108,64 @@ export const NumericLiteralResolver: ASTResolver<
   number: ast.value
 }));
 
-export const MemberExpressionResolver: ASTResolver<MemberExpression, Type> = (
-  ast,
-  execContext
-) => {
-  const [objectType, newExecContext] = evaluate(ast.object, execContext);
+export const MemberExpressionResolver: ASTResolver<
+  MemberExpression,
+  Type
+> = function*(ast, execContext) {
+  const [objectType, newExecContext] = yield evaluate(ast.object, execContext);
   const propertyType = (objectType as WithProperties).properties[
     ast.property.name
   ];
   if (isFunction(propertyType)) {
     return [
       {
-        parameters: [],
         self: objectType,
         function: propertyType
       },
       newExecContext
-    ];
+    ] as [Type, TExecutionContext];
   } else {
-    return [propertyType, newExecContext];
+    return [propertyType, newExecContext] as [Type, TExecutionContext];
   }
 };
 
-export const CallExpressionResolver: ASTResolver<CallExpression, Type> = (
-  ast,
-  execContext
-) => {
-  let [calleeType, newExecContext] = evaluate(ast.callee, execContext);
+export const CallExpressionResolver: ASTResolver<
+  CallExpression,
+  Type
+> = function*(ast, execContext) {
+  let [calleeType, newExecContext] = yield evaluate(ast.callee, execContext);
 
-  let [argsTypes, afterArgsExecContext] = ast.arguments.reduce(
-    ([args, execContext], argAST) => {
-      const [argType, newExecContext] = evaluate(argAST, execContext);
-      return [[...args, argType], newExecContext] as [
-        Array<Type>,
-        TExecutionContext
-      ];
-    },
-    [[], newExecContext] as [Array<Type>, TExecutionContext]
+  let currExecContext = newExecContext;
+  let argsTypes: Type[] = [];
+
+  for (const argAST of ast.arguments) {
+    const [argType, newExecContext] = yield evaluate(argAST, execContext);
+    argsTypes = [...argsTypes, argType];
+    currExecContext = newExecContext;
+  }
+
+  currExecContext = setCurrentThisValue(
+    currExecContext,
+    unsafeCast<FunctionBinding>(calleeType).self || currExecContext.value.global
   );
 
-  afterArgsExecContext = setCurrentThisValue(
-    afterArgsExecContext,
+  return yield* unsafeCast<FunctionBinding>(calleeType).function.implementation(
     unsafeCast<FunctionBinding>(calleeType).self ||
-      afterArgsExecContext.value.global
-  );
-
-  const atferParametersInScopeExecContext = unsafeCast<FunctionBinding>(
-    calleeType
-  ).parameters.reduce(
-    (prevContext, parameter, index) =>
-      setVariableInScope(prevContext, parameter, argsTypes[index]),
-    afterArgsExecContext
-  );
-
-  return unsafeCast<FunctionBinding>(calleeType).function.implementation(
-    unsafeCast<FunctionBinding>(calleeType).self ||
-      atferParametersInScopeExecContext.value.global,
+      currExecContext.value.global,
     argsTypes,
-    atferParametersInScopeExecContext
+    currExecContext
   );
 };
 
 export const BinaryExpressionResolver: ASTResolver<
   BinaryExpression,
-  boolean | TString
-> = (ast, execContext) => {
-  const [leftType, leftExecContext] = evaluate(ast.left, execContext);
-  const [rightType, rightExecContext] = evaluate(ast.right, leftExecContext);
+  any | TString
+> = function*(ast, execContext) {
+  const [leftType, leftExecContext] = yield evaluate(ast.left, execContext);
+  const [rightType, rightExecContext] = yield evaluate(
+    ast.right,
+    leftExecContext
+  );
   if (ast.operator === ">") {
     return [
       greaterThanEquals(
@@ -148,9 +173,12 @@ export const BinaryExpressionResolver: ASTResolver<
         unsafeCast<NumberLiteral>(rightType)
       ),
       rightExecContext
-    ];
+    ] as [Type, TExecutionContext];
   } else {
-    return [plus(leftType, rightType), rightExecContext];
+    return [plus(leftType, rightType), rightExecContext] as [
+      Type,
+      TExecutionContext
+    ];
   }
 };
 
@@ -161,45 +189,85 @@ export const FileResolver: ASTResolver<File, typeof Undefined> = (
   return ProgramResolver(ast.program, execContext);
 };
 
-export const ProgramResolver: ASTResolver<Program, typeof Undefined> = (
-  ast,
-  execContext
-) => {
-  return [Undefined, ast.body.reduce(getExecutionContext, execContext)];
+export const ProgramResolver: ASTResolver<
+  Program,
+  typeof Undefined
+> = function*(ast, execContext) {
+  const programFunction = createFunction(ast.body, []);
+  const programIter = programFunction.function.implementation(
+    execContext.value.global,
+    [],
+    execContext
+  );
+
+  let currentEvaluationResult = programIter.next();
+  while (
+    !isThrownValue(currentEvaluationResult.value[0]) &&
+    !currentEvaluationResult.done
+  ) {
+    currentEvaluationResult = programIter.next(currentEvaluationResult.value);
+  }
+
+  if (isThrownValue(currentEvaluationResult.value[0])) {
+    const [resultAsString, resultExecContext] = yield* unsafeCast<Function>(
+      unsafeCast<WithProperties>(currentEvaluationResult.value[0].value)
+        .properties["toString"]
+    ).implementation(
+      currentEvaluationResult.value[0].value,
+      [],
+      currentEvaluationResult.value[1]
+    );
+    return [
+      Undefined,
+      ExecutionContext({
+        ...resultExecContext.value,
+        stdout: unsafeCast<TString>(resultAsString).value
+      })
+    ] as [typeof Undefined, TExecutionContext];
+  }
+
+  return [Undefined, currentEvaluationResult.value[1]] as [
+    typeof Undefined,
+    TExecutionContext
+  ];
 };
 
-export const BlockStatementResolver: ASTResolver<BlockStatement, Type> = (
-  ast,
-  execContext
-) => {
-  return ast.body.reduce(
-    ([, execContext], statement) => {
-      const [statementType, newExecContext] = evaluate(statement, execContext);
-      return [statementType, newExecContext] as [Type, TExecutionContext];
-    },
-    [Undefined, execContext] as [Type, TExecutionContext]
-  );
-};
+export const BlockStatementResolver = statementResolver<BlockStatement>(
+  function*(ast, execContext) {
+    let currExecContext = execContext;
+    for (const statement of ast.body) {
+      [, currExecContext] = yield evaluate(statement, currExecContext);
+    }
+
+    return [Undefined, currExecContext] as [
+      typeof Undefined,
+      TExecutionContext
+    ];
+  }
+);
 
 export const AssignmentExpressionResolver: ASTResolver<
   AssignmentExpression,
   Type
-> = (ast, execContext) => {
+> = function*(ast, execContext) {
   if (ast.left.type === "MemberExpression") {
-    const [objectType, afterLeftExecContext] = evaluate(
+    const [objectType, afterLeftExecContext] = yield evaluate(
       ast.left.object,
       execContext
     );
-    const [rightType, afterRightExecContext] = evaluate(
+    const [rightType, afterRightExecContext] = yield evaluate(
       ast.right,
       afterLeftExecContext
     );
     unsafeCast<WithProperties>(objectType).properties[
       ast.left.property.name
     ] = rightType;
-    return [rightType, afterRightExecContext];
+    return [rightType, afterRightExecContext] as [Type, TExecutionContext];
   } else {
-    const [rightType, afterRightExecContext] = evaluate(ast.right, execContext);
+    const [rightType, afterRightExecContext] = yield evaluate(
+      ast.right,
+      execContext
+    );
     return [
       rightType,
       setVariableInScope(
@@ -207,69 +275,177 @@ export const AssignmentExpressionResolver: ASTResolver<
         unsafeCast<Identifier>(ast.left).name,
         rightType
       )
-    ];
+    ] as [Type, TExecutionContext];
   }
 };
 
-export const ReturnStatementResolver: ASTResolver<ReturnStatement, Type> = (
-  ast,
-  execContext
-) => {
+export const ReturnStatementResolver: ASTResolver<
+  ReturnStatement,
+  Type
+> = function*(ast, execContext) {
   if (isNull(ast.argument)) {
-    return [Undefined, execContext];
+    return [Undefined, execContext] as [typeof Undefined, TExecutionContext];
   }
   return evaluate(ast.argument, execContext);
 };
 
-export const ThisExpressionResolver: ASTResolver<ThisExpression, Type> = (
-  _ast,
-  execContext
-) => {
-  return [execContext.value.thisValue, execContext];
+export const ThisExpressionResolver: ASTResolver<
+  ThisExpression,
+  Type
+> = function*(_ast, execContext) {
+  return [execContext.value.thisValue, execContext] as [
+    Type,
+    TExecutionContext
+  ];
 };
 
 export const ObjectExpressionResolver: ASTResolver<
   ObjectExpression,
-  TESObject
-> = (ast, execContext) => {
-  const [objValue, afterPropertiesExecContext] = ast.properties.reduce(
-    ([obj, execContext], property) => {
-      let propValueType, afterPropExecContext;
-      if (property.type === "ObjectProperty") {
-        if (property.shorthand) {
-          [propValueType, afterPropExecContext] = evaluate(
-            property.key,
-            execContext
-          );
-        } else {
-          [propValueType, afterPropExecContext] = evaluate(
-            property.value,
-            execContext
-          );
-        }
-      } else {
-        propValueType = createFunction(
-          unsafeCast<ObjectMethod>(property).body,
-          unsafeCast<ObjectMethod>(property).params
+  Type
+> = function*(ast, execContext) {
+  let obj = {};
+  let currExecContext = execContext;
+  for (const property of ast.properties) {
+    let propValueType;
+    if (property.type === "ObjectProperty") {
+      if (property.shorthand) {
+        [propValueType, currExecContext] = yield evaluate(
+          property.key,
+          currExecContext
         );
-        afterPropExecContext = execContext;
+      } else {
+        [propValueType, currExecContext] = yield evaluate(
+          property.value,
+          currExecContext
+        );
       }
-      return [
-        {
-          ...obj,
-          [unsafeCast<ObjectMember>(property).key.name]: propValueType
-        },
-        afterPropExecContext
-      ] as [{ [key: string]: Type }, TExecutionContext];
-    },
-    [{}, execContext] as [{ [key: string]: Type }, TExecutionContext]
-  );
-  return [ESObject(objValue), afterPropertiesExecContext];
+    } else {
+      propValueType = createFunction(
+        unsafeCast<ObjectMethod>(property).body.body,
+        unsafeCast<ObjectMethod>(property).params
+      );
+    }
+
+    obj = {
+      ...obj,
+      [unsafeCast<ObjectMember>(property).key.name]: propValueType
+    };
+  }
+
+  return [ESObject(obj), currExecContext] as [TESObject, TExecutionContext];
 };
 
 export const FunctionExpressionResolver: ASTResolver<
   FunctionExpression,
   FunctionBinding
-> = (ast, execContext) => {
-  return [createFunction(ast.body, ast.params), execContext];
+> = function*(ast, execContext) {
+  return [createFunction(ast.body.body, ast.params), execContext] as [
+    FunctionBinding,
+    TExecutionContext
+  ];
 };
+
+export const BooleanLiteralResolver: ASTResolver<
+  BooleanLiteral,
+  typeof Undefined
+> = function*(ast, execContext) {
+  return [Undefined, execContext] as [typeof Undefined, TExecutionContext];
+};
+
+export const ExpressionStatementResolver = statementResolver<
+  ExpressionStatement
+>(function*(statement, execContext) {
+  const result = yield evaluate(statement.expression, execContext);
+  return [Undefined, result[1]] as [typeof Undefined, TExecutionContext];
+});
+
+export const VariableDeclarationResolver = statementResolver<
+  VariableDeclaration
+>(function*(statement, execContext) {
+  let currExecContext = execContext;
+  for (const declaration of statement.declarations) {
+    if (declaration.init) {
+      const initResult = yield evaluate(declaration.init, currExecContext);
+      currExecContext = setVariableInScope(
+        initResult[1],
+        unsafeCast<Identifier>(declaration.id).name,
+        initResult[0]
+      );
+    } else {
+      currExecContext = setVariableInScope(
+        currExecContext,
+        unsafeCast<Identifier>(declaration.id).name,
+        Undefined
+      );
+    }
+  }
+  return [Undefined, currExecContext] as [typeof Undefined, TExecutionContext];
+});
+
+export const FunctionDeclarationResolver = statementResolver<
+  FunctionDeclaration
+>(function*(statement, execContext) {
+  return [
+    Undefined,
+    setVariableInScope(
+      execContext,
+      unsafeCast<Identifier>(statement.id).name,
+      createFunction(statement.body.body, statement.params)
+    )
+  ] as [typeof Undefined, TExecutionContext];
+});
+
+export const IfStatementResolver = statementResolver<IfStatement>(function*(
+  statement,
+  prevContext
+) {
+  return evaluate(statement.consequent, prevContext);
+});
+
+export const EmptyStatementResolver = statementResolver<EmptyStatement>(
+  function*(_, execContext) {
+    return [Undefined, execContext] as [typeof Undefined, TExecutionContext];
+  }
+);
+
+export const NewExpressionResolver: ASTResolver<NewExpression, Type> = (
+  expression,
+  execContext
+) => {
+  return CallExpressionResolver(
+    callExpression(expression.callee, expression.arguments),
+    execContext
+  );
+};
+
+export const LogicalExpressionResolver: ASTResolver<
+  LogicalExpression,
+  Type
+> = function*(expression, execContext) {
+  return evaluate(expression.right, execContext);
+};
+
+export const ASTResolvers = new Map<string, ASTResolver<any, any>>([
+  ["StringLiteral", StringLiteralResolver],
+  ["NumericLiteral", NumericLiteralResolver],
+  ["BooleanLiteral", BooleanLiteralResolver],
+  ["Identifier", IdentifierResolver],
+  ["MemberExpression", MemberExpressionResolver],
+  ["CallExpression", CallExpressionResolver],
+  ["BinaryExpression", BinaryExpressionResolver],
+  ["File", FileResolver],
+  ["Program", ProgramResolver],
+  ["AssignmentExpression", AssignmentExpressionResolver],
+  ["ReturnStatement", ReturnStatementResolver],
+  ["ThisExpression", ThisExpressionResolver],
+  ["ObjectExpression", ObjectExpressionResolver],
+  ["FunctionExpression", FunctionExpressionResolver],
+  ["ExpressionStatement", ExpressionStatementResolver],
+  ["VariableDeclaration", VariableDeclarationResolver],
+  ["FunctionDeclaration", FunctionDeclarationResolver],
+  ["IfStatement", IfStatementResolver],
+  ["EmptyStatement", EmptyStatementResolver],
+  ["BlockStatement", BlockStatementResolver],
+  ["NewExpression", NewExpressionResolver],
+  ["LogicalExpression", LogicalExpressionResolver]
+]);

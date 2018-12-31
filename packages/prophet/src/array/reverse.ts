@@ -2,7 +2,7 @@ import { isArray, Type } from "../types";
 import { TArray, Array } from "./Array";
 import { TExecutionContext } from "../execution-context/ExecutionContext";
 
-export function reverse(
+export function* reverse(
   self: TArray<any>,
   _args: Array<Type>,
   execContext: TExecutionContext

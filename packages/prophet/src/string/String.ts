@@ -4,8 +4,10 @@ import {
   Number,
   WithProperties,
   NumberLiteral,
-  GreaterThanEquals
+  GreaterThanEquals,
+  Type
 } from "../types";
+import { TExecutionContext } from "../execution-context/ExecutionContext";
 
 export type TString = WithProperties & {
   type: "string";
@@ -16,6 +18,15 @@ export function String(value?: string | Array<TString>): TString {
   return {
     type: "string",
     properties: {
+      toString: {
+        implementation: function*(
+          _self: TString,
+          args: Array<Type>,
+          execContext: TExecutionContext
+        ) {
+          return [_self, execContext];
+        }
+      },
       split: {
         implementation: split
       },

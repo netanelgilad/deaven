@@ -3,7 +3,7 @@ import { TString, String } from "./String";
 import { Array } from "../array/Array";
 import { TExecutionContext } from "../execution-context/ExecutionContext";
 
-export function split(
+export function* split(
   self: TString,
   args: [TString, ...Array<Type>],
   execContext: TExecutionContext

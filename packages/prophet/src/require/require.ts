@@ -7,11 +7,11 @@ import { TString } from "../string/String";
 export const requireFunction = {
   parameters: [],
   function: {
-    implementation: (
+    implementation: function*(
       _self: Type,
       args: Array<Type>,
       exeContext: TExecutionContext
-    ) => {
+    ) {
       return [
         NodeBuiltinModules.get(
           unsafeCast<string>(unsafeCast<TString>(args[0]).value)

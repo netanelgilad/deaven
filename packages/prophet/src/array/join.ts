@@ -4,7 +4,7 @@ import { TArray } from "./Array";
 import { TString, String } from "../string/String";
 import { TExecutionContext } from "../execution-context/ExecutionContext";
 
-export function join(
+export function* join(
   self: TArray<any>,
   args: [TString, ...Array<Type>],
   execContext: TExecutionContext

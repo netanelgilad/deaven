@@ -41,6 +41,7 @@ function runTest262(testFile: string) {
       "--hostPath",
       process.execPath,
       "--hostArgs=--inspect",
+      "--hostArgs=--no-warnings",
       "--hostArgs=-r",
       `--hostArgs=${tsNodePath}`,
       "--hostArgs",
@@ -53,11 +54,13 @@ function runTest262(testFile: string) {
       cwd: __dirname
     }
   );
+
   expect(result.stderr.toString()).toEqual("");
   expect(
     result.stdout
       .toString()
       .split("       ")
       .join("\n")
+      .replace(/FAIL[\s\S]+disconnect\.\.\./, "")
   ).not.toContain("FAIL");
 }

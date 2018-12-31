@@ -15,11 +15,11 @@ export const vm = {
     createContext: {
       parameters: [],
       function: {
-        implementation: (
+        implementation: function*(
           _self: Type,
           args: Array<Type>,
           execContext: TExecutionContext
-        ) => {
+        ) {
           return [args[0], execContext];
         }
       }
@@ -27,11 +27,11 @@ export const vm = {
     runInContext: {
       parameters: [],
       function: {
-        implementation: (
+        implementation: function*(
           _self: Type,
           args: Array<Type>,
           execContext: TExecutionContext
-        ) => {
+        ) {
           const evalExecContext = ExecutionContext(
             produce(execContext.value, draft => {
               draft.global = {

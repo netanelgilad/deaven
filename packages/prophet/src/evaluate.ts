@@ -1,22 +1,6 @@
-import { Type } from "./types";
+import { Type, isThrownValue, Undefined } from "./types";
 import { Node } from "@babel/types";
-import {
-  ASTResolver,
-  IdentifierResolver,
-  StringLiteralResolver,
-  NumericLiteralResolver,
-  MemberExpressionResolver,
-  CallExpressionResolver,
-  BinaryExpressionResolver,
-  FileResolver,
-  ProgramResolver,
-  AssignmentExpressionResolver,
-  BlockStatementResolver,
-  ReturnStatementResolver,
-  ThisExpressionResolver,
-  ObjectExpressionResolver,
-  FunctionExpressionResolver
-} from "./ASTResolvers";
+import { ASTResolvers } from "./ASTResolvers";
 import * as assert from "assert";
 import {
   TExecutionContext,
@@ -24,30 +8,23 @@ import {
 } from "./execution-context/ExecutionContext";
 import { parseExpression, parse } from "@babel/parser";
 
-const ASTResolvers = new Map<string, ASTResolver<any, any>>([
-  ["StringLiteral", StringLiteralResolver],
-  ["NumericLiteral", NumericLiteralResolver],
-  ["Identifier", IdentifierResolver],
-  ["MemberExpression", MemberExpressionResolver],
-  ["CallExpression", CallExpressionResolver],
-  ["BinaryExpression", BinaryExpressionResolver],
-  ["File", FileResolver],
-  ["Program", ProgramResolver],
-  ["AssignmentExpression", AssignmentExpressionResolver],
-  ["BlockStatement", BlockStatementResolver],
-  ["ReturnStatement", ReturnStatementResolver],
-  ["ThisExpression", ThisExpressionResolver],
-  ["ObjectExpression", ObjectExpressionResolver],
-  ["FunctionExpression", FunctionExpressionResolver]
-]);
-
 export function evaluate(
   ast: Node,
   execContext: TExecutionContext
 ): [Type, TExecutionContext] {
   const resolver = ASTResolvers.get(ast.type);
   assert(resolver, `Can't resolve type of ast type ${ast.type}`);
-  return resolver!(ast, execContext || ExecutionContext({}));
+  const resultIter = resolver!(ast, execContext || ExecutionContext({}));
+
+  let currentEvaluationResult = resultIter.next();
+  while (
+    !isThrownValue(currentEvaluationResult.value[0]) &&
+    !currentEvaluationResult.done
+  ) {
+    currentEvaluationResult = resultIter.next(currentEvaluationResult.value);
+  }
+
+  return currentEvaluationResult.value;
 }
 
 export function evaluateCode(code: string, execContext: TExecutionContext) {

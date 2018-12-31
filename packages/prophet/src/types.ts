@@ -29,7 +29,7 @@ export type Function = {
     self: Type,
     args: Array<Type>,
     execContext: TExecutionContext
-  ) => [Type, TExecutionContext];
+  ) => IterableIterator<[Type, TExecutionContext]>;
 };
 
 export function isFunction(arg: any): arg is Function {
@@ -39,7 +39,6 @@ export function isFunction(arg: any): arg is Function {
 }
 
 export type FunctionBinding = WithProperties & {
-  parameters: string[];
   self?: Type;
   function: Function;
 };
@@ -50,6 +49,22 @@ export type WithProperties = {
   };
 };
 
+export type TThrownValue = {
+  type: "ThrownValue";
+  value: Type;
+};
+
+export function ThrownValue(value: Type) {
+  return {
+    type: "ThrownValue",
+    value
+  };
+}
+
+export function isThrownValue(arg: any): arg is TThrownValue {
+  return arg.type === "ThrownValue";
+}
+
 export type Type =
   | typeof NotANumber
   | TString
@@ -59,4 +74,5 @@ export type Type =
   | GreaterThanEquals
   | Function
   | TESObject
-  | FunctionBinding;
+  | FunctionBinding
+  | TThrownValue;

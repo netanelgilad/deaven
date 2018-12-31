@@ -1,7 +1,7 @@
 import { Type, isString, NotANumber, NumberLiteral } from "../types";
 import { TExecutionContext } from "../execution-context/ExecutionContext";
 
-export function round(
+export function* round(
   _self: any,
   args: [NumberLiteral, ...Array<Type>],
   execContext: TExecutionContext

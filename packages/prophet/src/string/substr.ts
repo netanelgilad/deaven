@@ -3,7 +3,7 @@ import { first } from "lodash";
 import { TString, String } from "./String";
 import { TExecutionContext } from "../execution-context/ExecutionContext";
 
-export function substr(
+export function* substr(
   self: TString,
   args: [NumberLiteral, NumberLiteral, ...Array<Type>],
   execContext: TExecutionContext
