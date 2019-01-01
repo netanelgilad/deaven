@@ -5,6 +5,9 @@
   "workspaces": [
     "packages/**"
   ],
+  "scripts": {
+    "clean": "rm -rf ./node_modules && rm -rf ./packages/*/node_modules"
+  },
   "repository": "https://github.com/netanelgilad/deaven",
   "author": "Netanel Gilad <netanelgilad@gmail.com>",
   "license": "MIT",

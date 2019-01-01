@@ -6,10 +6,26 @@
   "configurations": [
     {
       "type": "node",
+      "request": "attach",
+      "name": "Attach by Process ID",
+      "processId": "${command:PickProcess}"
+    },
+    {
+      "type": "node",
       "request": "launch",
       "name": "prophet-tests",
       "program": "${workspaceFolder}/node_modules/jest-cli/bin/jest.js",
-      "args": ["--runInBand"],
+      "args": ["--runInBand", "--watch"],
+      "cwd": "${workspaceFolder}/packages/prophet-tests",
+      "console": "integratedTerminal",
+      "autoAttachChildProcesses": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Current File prophet-tests",
+      "program": "${workspaceFolder}/node_modules/jest-cli/bin/jest.js",
+      "args": ["--runInBand", "${file}"],
       "cwd": "${workspaceFolder}/packages/prophet-tests",
       "console": "integratedTerminal",
       "autoAttachChildProcesses": true

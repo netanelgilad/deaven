@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "tsc -build",
-    "dev": "jest --watch --coverage"
+    "dev": "jest"
   },
   "dependencies": {
     "@babel/parser": "^7.2.0",
@@ -15,7 +15,14 @@
     "ts-node": "^7.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-typescript": "^7.1.0",
     "@types/globby": "^8.0.0",
-    "@types/node": "^10.12.12"
+    "@types/node": "^10.12.12",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "jest": "^23.5.0",
+    "regenerator-runtime": "^0.13.1"
   }
 }
