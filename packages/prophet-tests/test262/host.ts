@@ -11,7 +11,6 @@ setTimeout(() => {
     if (execContext.value.stdout) {
       process.stdout.write(execContext.value.stdout);
     }
-    // console.log(typeToConcrete(type) || "");
   } catch (err) {
     throw new Error(err.stack.split("\n").join("       "));
   }

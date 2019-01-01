@@ -19,7 +19,45 @@ describe("new operator", () => {
         })()
         `,
         nodeInitialExecutionContext
-      )
-    ).toEqual("asd");
+      )[0]
+    ).toMatchInlineSnapshot(`
+Object {
+  "properties": Object {
+    "a": Object {
+      "number": 1,
+    },
+    "foo": Object {
+      "function": Object {
+        "implementation": [Function],
+      },
+      "properties": Object {
+        "prototype": Object {
+          "properties": Object {},
+          "type": "object",
+          "value": undefined,
+        },
+      },
+    },
+  },
+  "type": "object",
+  "value": Object {
+    "a": Object {
+      "number": 1,
+    },
+    "foo": Object {
+      "function": Object {
+        "implementation": [Function],
+      },
+      "properties": Object {
+        "prototype": Object {
+          "properties": Object {},
+          "type": "object",
+          "value": undefined,
+        },
+      },
+    },
+  },
+}
+`);
   });
 });

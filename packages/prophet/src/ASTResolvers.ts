@@ -39,7 +39,7 @@ import {
   Function,
   isThrownValue
 } from "./types";
-import { evaluate } from "./evaluate";
+import { evaluate, evaluateThrowableIterator } from "./evaluate";
 import { greaterThanEquals, plus } from "./operators";
 import {
   TExecutionContext,
@@ -209,10 +209,12 @@ export const ProgramResolver: ASTResolver<
   }
 
   if (isThrownValue(currentEvaluationResult.value[0])) {
-    const [resultAsString, resultExecContext] = yield* unsafeCast<Function>(
+    const [resultAsString, resultExecContext] = yield* unsafeCast<
+      FunctionBinding
+    >(
       unsafeCast<WithProperties>(currentEvaluationResult.value[0].value)
         .properties["toString"]
-    ).implementation(
+    ).function.implementation(
       currentEvaluationResult.value[0].value,
       [],
       currentEvaluationResult.value[1]
@@ -408,21 +410,53 @@ export const EmptyStatementResolver = statementResolver<EmptyStatement>(
   }
 );
 
-export const NewExpressionResolver: ASTResolver<NewExpression, Type> = (
-  expression,
-  execContext
-) => {
-  return CallExpressionResolver(
-    callExpression(expression.callee, expression.arguments),
+export const NewExpressionResolver: ASTResolver<
+  NewExpression,
+  Type
+> = function*(expression, execContext) {
+  const thisValue = ESObject({});
+
+  let [calleeType, newExecContext] = yield evaluate(
+    expression.callee,
     execContext
   );
+
+  let currExecContext = newExecContext;
+  let argsTypes: Type[] = [];
+
+  for (const argAST of expression.arguments) {
+    const [argType, newExecContext] = yield evaluate(argAST, execContext);
+    argsTypes = [...argsTypes, argType];
+    currExecContext = newExecContext;
+  }
+
+  currExecContext = setCurrentThisValue(currExecContext, thisValue);
+
+  const [, afterCallExecContext] = evaluateThrowableIterator(
+    unsafeCast<FunctionBinding>(calleeType).function.implementation(
+      unsafeCast<FunctionBinding>(calleeType).self ||
+        currExecContext.value.global,
+      argsTypes,
+      currExecContext
+    )
+  );
+
+  return [
+    ESObject({
+      ...unsafeCast<TESObject>(
+        unsafeCast<FunctionBinding>(calleeType).properties.prototype
+      ).properties,
+      ...unsafeCast<TESObject>(afterCallExecContext.value.thisValue).value
+    }),
+    afterCallExecContext
+  ] as [Type, TExecutionContext];
 };
 
 export const LogicalExpressionResolver: ASTResolver<
   LogicalExpression,
   Type
 > = function*(expression, execContext) {
-  return evaluate(expression.right, execContext);
+  return evaluate(expression.left, execContext);
 };
 
 export const ASTResolvers = new Map<string, ASTResolver<any, any>>([

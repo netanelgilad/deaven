@@ -1,7 +1,15 @@
 import { Type } from "../types";
+import { TESObject } from "../Object";
 
 export type TExecutionContext = {
-  value: any;
+  value: {
+    thisValue: Type;
+    scope: {
+      [identifier: string]: Type;
+    };
+    global: TESObject;
+    stdout: string;
+  };
 };
 
 export function ExecutionContext(value: any) {
@@ -11,7 +19,10 @@ export function ExecutionContext(value: any) {
   };
 }
 
-export function setCurrentThisValue(execContext: TExecutionContext, val: Type) {
+export function setCurrentThisValue(
+  execContext: TExecutionContext,
+  val: Type
+): TExecutionContext {
   return ExecutionContext({ ...execContext.value, thisValue: val });
 }
 

@@ -16,15 +16,7 @@ export function evaluate(
   assert(resolver, `Can't resolve type of ast type ${ast.type}`);
   const resultIter = resolver!(ast, execContext || ExecutionContext({}));
 
-  let currentEvaluationResult = resultIter.next();
-  while (
-    !isThrownValue(currentEvaluationResult.value[0]) &&
-    !currentEvaluationResult.done
-  ) {
-    currentEvaluationResult = resultIter.next(currentEvaluationResult.value);
-  }
-
-  return currentEvaluationResult.value;
+  return evaluateThrowableIterator(resultIter);
 }
 
 export function evaluateCode(code: string, execContext: TExecutionContext) {
@@ -36,4 +28,18 @@ export function evaluateCodeAsExpression(
   execContext: TExecutionContext
 ) {
   return evaluate(parseExpression(code), execContext);
+}
+
+export function evaluateThrowableIterator(
+  itr: Iterator<[Type, TExecutionContext]>
+) {
+  let currentEvaluationResult = itr.next();
+  while (
+    !isThrownValue(currentEvaluationResult.value[0]) &&
+    !currentEvaluationResult.done
+  ) {
+    currentEvaluationResult = itr.next(currentEvaluationResult.value);
+  }
+
+  return currentEvaluationResult.value;
 }

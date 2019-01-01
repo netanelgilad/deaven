@@ -8,7 +8,7 @@ export const Number = {};
 export const TODOTYPE = {};
 export const Undefined = {};
 
-export function isString(arg: any) {
+export function isString(arg: any): arg is TString {
   return arg.type === "string";
 }
 
