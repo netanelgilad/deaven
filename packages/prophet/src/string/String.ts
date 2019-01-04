@@ -19,12 +19,14 @@ export function String(value?: string | Array<TString>): TString {
     type: "string",
     properties: {
       toString: {
-        implementation: function*(
-          _self: TString,
-          args: Array<Type>,
-          execContext: TExecutionContext
-        ) {
-          return [_self, execContext];
+        function: {
+          implementation: function*(
+            _self: TString,
+            args: Array<Type>,
+            execContext: TExecutionContext
+          ) {
+            return [_self, execContext];
+          }
         }
       },
       split: {

@@ -1,12 +1,19 @@
 import { sync } from "globby";
 import { dirname, join, basename } from "path";
 import { spawnSync } from "child_process";
+import { moveSync } from "fs-extra";
+import { sync as rimrafSync } from "rimraf";
 
-const testFilesGlobs = ["language/types/boolean/S8.3_A1_T1.js"];
+const testFilesGlobs = [
+  "language/types/boolean/S8.3_A1_T1.js",
+  `language/statements/if/cptn-else-false-abrupt-empty.js`
+];
 
 const testRoot = join(dirname(require.resolve("test262/package.json")), "test");
 
-const testFiles = sync(testFilesGlobs.map(glob => join(testRoot, glob)));
+const globsWithTestRoot = testFilesGlobs.map(glob => join(testRoot, glob));
+
+const testFiles = sync(globsWithTestRoot);
 
 for (const testFile of testFiles) {
   const testName = basename(testFile);
@@ -26,6 +33,16 @@ for (const testFile of testFiles) {
 
   suite();
 }
+
+beforeAll(() => {
+  rimrafSync("./fails");
+});
+
+afterAll(() => {
+  sync(globsWithTestRoot.map(x => x + "*.fail")).forEach(x =>
+    moveSync(x, "./" + join("./fails", x.replace(testRoot, "")))
+  );
+});
 
 function runTest262(testFile: string) {
   const test262HarnessBin = require.resolve("test262-harness/bin/run");
@@ -48,6 +65,7 @@ function runTest262(testFile: string) {
       hostPath,
       "--timeout",
       "99999999",
+      "--saveOnlyFailed",
       testFile
     ],
     {
@@ -61,6 +79,12 @@ function runTest262(testFile: string) {
       .toString()
       .split("       ")
       .join("\n")
-      .replace(/FAIL[\s\S]+disconnect\.\.\./, "")
+      .replace(/FAIL[\s\S]+inspector\s*Saved com/, "")
   ).not.toContain("FAIL");
+}
+
+function only(testGlob: any) {
+  return {
+    only: testGlob[0]
+  };
 }

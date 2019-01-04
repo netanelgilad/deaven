@@ -401,7 +401,7 @@ export const IfStatementResolver = statementResolver<IfStatement>(function*(
   statement,
   prevContext
 ) {
-  return evaluate(statement.consequent, prevContext);
+  return [Undefined, prevContext] as [typeof Undefined, TExecutionContext];
 });
 
 export const EmptyStatementResolver = statementResolver<EmptyStatement>(
