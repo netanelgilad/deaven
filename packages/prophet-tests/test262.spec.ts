@@ -47,7 +47,7 @@ afterAll(() => {
 function runTest262(testFile: string) {
   const test262HarnessBin = require.resolve("test262-harness/bin/run");
   const tsNodePath = require.resolve("ts-node/register");
-  const hostPath = require.resolve("./test262/host");
+  const hostPath = require.resolve("./test262/debug-host");
 
   const result = spawnSync(
     "node",
@@ -57,7 +57,6 @@ function runTest262(testFile: string) {
       "node",
       "--hostPath",
       process.execPath,
-      "--hostArgs=--inspect",
       "--hostArgs=--no-warnings",
       "--hostArgs=-r",
       `--hostArgs=${tsNodePath}`,
@@ -79,7 +78,6 @@ function runTest262(testFile: string) {
       .toString()
       .split("       ")
       .join("\n")
-      .replace(/FAIL[\s\S]+inspector\s*Saved com/, "")
   ).not.toContain("FAIL");
 }
 

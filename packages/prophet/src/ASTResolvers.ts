@@ -200,24 +200,19 @@ export const ProgramResolver: ASTResolver<
     execContext
   );
 
-  let currentEvaluationResult = programIter.next();
-  while (
-    !isThrownValue(currentEvaluationResult.value[0]) &&
-    !currentEvaluationResult.done
-  ) {
-    currentEvaluationResult = programIter.next(currentEvaluationResult.value);
-  }
+  const currentEvaluationResult = evaluateThrowableIterator(programIter);
 
-  if (isThrownValue(currentEvaluationResult.value[0])) {
+  if (isThrownValue(currentEvaluationResult[0])) {
     const [resultAsString, resultExecContext] = yield* unsafeCast<
       FunctionBinding
     >(
-      unsafeCast<WithProperties>(currentEvaluationResult.value[0].value)
-        .properties["toString"]
+      unsafeCast<WithProperties>(currentEvaluationResult[0].value).properties[
+        "toString"
+      ]
     ).function.implementation(
-      currentEvaluationResult.value[0].value,
+      currentEvaluationResult[0].value,
       [],
-      currentEvaluationResult.value[1]
+      currentEvaluationResult[1]
     );
     return [
       Undefined,
@@ -228,7 +223,7 @@ export const ProgramResolver: ASTResolver<
     ] as [typeof Undefined, TExecutionContext];
   }
 
-  return [Undefined, currentEvaluationResult.value[1]] as [
+  return [Undefined, currentEvaluationResult[1]] as [
     typeof Undefined,
     TExecutionContext
   ];
