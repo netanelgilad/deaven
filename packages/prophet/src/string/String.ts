@@ -3,28 +3,31 @@ import { substr } from "./substr";
 import {
   Number,
   WithProperties,
-  NumberLiteral,
+  Any,
   GreaterThanEquals,
+  NumberLiteral,
+  WithValue,
+  ValueIdentifier,
   Type
 } from "../types";
 import { TExecutionContext } from "../execution-context/ExecutionContext";
 import { ESFunction } from "../Function/Function";
-import { exec } from "child_process";
 
-export type TString = WithProperties & {
-  type: "string";
-  value?: string | Array<TString>;
-};
+export interface TESString
+  extends Type<"string">,
+    WithProperties,
+    WithValue<string | Array<TESString>> {}
 
-export function String(value?: string | Array<TString>): TString {
+export function ESString(value?: string | Array<TESString>): TESString {
   return {
     type: "string",
+    id: ValueIdentifier(),
     properties: {
       toString: {
         function: {
           implementation: function*(
-            _self: TString,
-            args: Array<Type>,
+            _self: TESString,
+            args: Array<Any>,
             execContext: TExecutionContext
           ) {
             return [_self, execContext];
@@ -44,15 +47,15 @@ export function String(value?: string | Array<TString>): TString {
 }
 
 export const StringConstructor = ESFunction(function*(
-  _self: Type,
-  args: Type[],
+  _self: Any,
+  args: Any[],
   execContext
 ) {
-  return [args[0], execContext] as [Type, TExecutionContext];
+  return [args[0], execContext] as [Any, TExecutionContext];
 });
 
 function calculateLength(
-  value?: string | Array<TString>
+  value?: string | Array<TESString>
 ): typeof Number | NumberLiteral | GreaterThanEquals {
   if (!value) {
     return Number;
@@ -70,6 +73,6 @@ function calculateLength(
         };
       }
     },
-    (undefined as any) as typeof Number | NumberLiteral | GreaterThanEquals
+    (undefined as any) as typeof Number | Any | GreaterThanEquals
   );
 }

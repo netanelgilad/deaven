@@ -1,9 +1,9 @@
-import { Type, isString, NotANumber, NumberLiteral } from "../types";
+import { Any, isString, NotANumber, NumberLiteral } from "../types";
 import { TExecutionContext } from "../execution-context/ExecutionContext";
 
 export function* round(
   _self: any,
-  args: [NumberLiteral, ...Array<Type>],
+  args: [NumberLiteral, ...Array<Any>],
   execContext: TExecutionContext
 ) {
   if (!args[0] || isString(args[0])) {

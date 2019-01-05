@@ -6,5 +6,9 @@
     "rootDir": "src"
   },
   "include": ["src"],
-  "references": [{ "path": "../tuple" }, { "path": "../unimplemented" }]
+  "references": [
+    { "path": "../tuple" },
+    { "path": "../unimplemented" },
+    { "path": "../bottomdash" }
+  ]
 }

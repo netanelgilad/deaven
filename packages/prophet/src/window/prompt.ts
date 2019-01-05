@@ -1,11 +1,11 @@
-import { String } from "../string/String";
+import { ESString } from "../string/String";
 import { TExecutionContext } from "../execution-context/ExecutionContext";
-import { Type } from "../types";
+import { Any } from "../types";
 
 export function* prompt(
-  _sefl: Type,
-  _args: Array<Type>,
+  _sefl: Any,
+  _args: Array<Any>,
   execContext: TExecutionContext
 ) {
-  return [String(), execContext];
+  return [ESString(), execContext];
 }

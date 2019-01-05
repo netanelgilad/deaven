@@ -1,5 +1,5 @@
-import { Type } from "./types";
+import { Any } from "./types";
 
-export function typeToConcrete(type: Type): any {
+export function typeToConcrete(type: Any): any {
   return;
 }

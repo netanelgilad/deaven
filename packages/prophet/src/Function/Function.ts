@@ -1,6 +1,6 @@
-import { TString } from "../string/String";
+import { TESString } from "../string/String";
 import {
-  Type,
+  Any,
   Undefined,
   FunctionImplementation,
   FunctionBinding,
@@ -37,12 +37,12 @@ export function ESFunction(implementation: FunctionImplementation) {
 }
 
 export const FunctionConstructor = ESFunction(function*(
-  _self: Type,
-  args: Type[],
+  _self: Any,
+  args: Any[],
   execContext: TExecutionContext
 ) {
   const blockStatement = ((parse(
-    `() => {${unsafeCast<TString>(args[0]).value as string}}`
+    `() => {${unsafeCast<TESString>(args[0]).value as string}}`
   ).program.body[0] as ExpressionStatement)
     .expression as ArrowFunctionExpression).body as BlockStatement;
   return [createFunction(blockStatement.body, []), execContext] as [
@@ -58,8 +58,8 @@ export function createFunction(statements: Statement[], params: Array<LVal>) {
     },
     function: {
       implementation: function*(
-        _self: Type,
-        args: Array<Type>,
+        _self: Any,
+        args: Array<Any>,
         execContext: TExecutionContext
       ) {
         const atferParametersInScopeExecContext = params.reduce(

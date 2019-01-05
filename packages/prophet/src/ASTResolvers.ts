@@ -28,21 +28,22 @@ import {
   TryStatement,
   ThrowStatement
 } from "@babel/types";
-import { String, TString } from "./string/String";
+import { ESString, TESString } from "./string/String";
 import {
   WithProperties,
   isFunction,
-  Type,
+  Any,
   Undefined,
   FunctionBinding,
   isThrownValue,
   ReturnValue,
   EvaluationResult,
   ControlFlowResult,
-  ThrownValue
+  ThrownValue,
+  TESUndefined
 } from "./types";
 import { evaluate, evaluateThrowableIterator } from "./evaluate";
-import { BinaryOperatorResolvers } from "./operators";
+import { BinaryOperatorResolvers, LogicalOperatorResolvers } from "./operators";
 import {
   TExecutionContext,
   setCurrentThisValue,
@@ -57,12 +58,12 @@ import { coerceToBoolean } from "./boolean/ESBoolean";
 import { tuple } from "@deaven/tuple";
 import assert = require("assert");
 
-export type ASTResolver<TAST extends Node, T extends Type> = (
+export type ASTResolver<TAST extends Node, T extends Any> = (
   ast: TAST,
   prevContext: TExecutionContext
 ) => Iterator<[T | ControlFlowResult, TExecutionContext]>;
 
-export const noExecutionContextResolver = <TAST extends Node, T extends Type>(
+export const noExecutionContextResolver = <TAST extends Node, T extends Any>(
   fn: (ast: TAST, execContext: TExecutionContext) => T
 ) =>
   function*(ast: TAST, execContext: TExecutionContext) {
@@ -83,7 +84,7 @@ export const statementResolver = <TStatement extends Statement>(
 
 export const IdentifierResolver: ASTResolver<
   Identifier,
-  Type
+  Any
 > = noExecutionContextResolver((ast, execContext) => {
   const resolvedFromScope = execContext.value.scope[ast.name];
   return (
@@ -95,8 +96,8 @@ export const IdentifierResolver: ASTResolver<
 
 export const StringLiteralResolver: ASTResolver<
   StringLiteral,
-  TString
-> = noExecutionContextResolver(ast => String(ast.value));
+  TESString
+> = noExecutionContextResolver(ast => ESString(ast.value));
 
 export const NumericLiteralResolver: ASTResolver<
   NumericLiteral,
@@ -107,7 +108,7 @@ export const NumericLiteralResolver: ASTResolver<
 
 export const MemberExpressionResolver: ASTResolver<
   MemberExpression,
-  Type
+  Any
 > = function*(ast, execContext) {
   const [objectType, newExecContext] = yield evaluate(ast.object, execContext);
   const propertyType = unsafeCast<WithProperties>(objectType).properties[
@@ -128,12 +129,12 @@ export const MemberExpressionResolver: ASTResolver<
 
 export const CallExpressionResolver: ASTResolver<
   CallExpression,
-  Type
+  Any
 > = function*(ast, execContext) {
   let [calleeType, newExecContext] = yield evaluate(ast.callee, execContext);
 
   let currExecContext = newExecContext;
-  let argsTypes: Type[] = [];
+  let argsTypes: Any[] = [];
 
   for (const argAST of ast.arguments) {
     const [argType, newExecContext] = yield evaluate(argAST, execContext);
@@ -156,7 +157,7 @@ export const CallExpressionResolver: ASTResolver<
 
 export const BinaryExpressionResolver: ASTResolver<
   BinaryExpression,
-  any | TString
+  any | TESString
 > = function*(ast, execContext) {
   const [leftType, leftExecContext] = yield evaluate(ast.left, execContext);
   const [rightType, rightExecContext] = yield evaluate(
@@ -171,17 +172,14 @@ export const BinaryExpressionResolver: ASTResolver<
   return tuple(binaryOperatorResolver!(leftType, rightType), rightExecContext);
 };
 
-export const FileResolver: ASTResolver<File, typeof Undefined> = (
-  ast,
-  execContext
-) => {
+export const FileResolver: ASTResolver<File, Any> = (ast, execContext) => {
   return ProgramResolver(ast.program, execContext);
 };
 
-export const ProgramResolver: ASTResolver<
-  Program,
-  typeof Undefined
-> = function*(ast, execContext) {
+export const ProgramResolver: ASTResolver<Program, Any> = function*(
+  ast,
+  execContext
+) {
   const programFunction = createFunction(ast.body, []);
   const programIter = programFunction.function.implementation(
     execContext.value.global,
@@ -207,7 +205,7 @@ export const ProgramResolver: ASTResolver<
       Undefined,
       ExecutionContext({
         ...resultExecContext.value,
-        stdout: unsafeCast<TString>(resultAsString).value
+        stdout: unsafeCast<TESString>(resultAsString).value
       })
     );
   }
@@ -228,7 +226,7 @@ export const BlockStatementResolver = statementResolver<BlockStatement>(
 
 export const AssignmentExpressionResolver: ASTResolver<
   AssignmentExpression,
-  Type
+  Any
 > = function*(ast, execContext) {
   if (ast.left.type === "MemberExpression") {
     const [objectType, afterLeftExecContext] = yield evaluate(
@@ -274,14 +272,14 @@ export const ReturnStatementResolver = statementResolver<ReturnStatement>(
 
 export const ThisExpressionResolver: ASTResolver<
   ThisExpression,
-  Type
+  Any
 > = function*(_ast, execContext) {
   return tuple(execContext.value.thisValue, execContext);
 };
 
 export const ObjectExpressionResolver: ASTResolver<
   ObjectExpression,
-  Type
+  Any
 > = function*(ast, execContext) {
   let obj = {};
   let currExecContext = execContext;
@@ -399,10 +397,10 @@ export const EmptyStatementResolver = statementResolver<EmptyStatement>(
   }
 );
 
-export const NewExpressionResolver: ASTResolver<
-  NewExpression,
-  Type
-> = function*(expression, execContext) {
+export const NewExpressionResolver: ASTResolver<NewExpression, Any> = function*(
+  expression,
+  execContext
+) {
   const thisValue = ESObject({});
 
   let [calleeType, newExecContext] = yield evaluate(
@@ -411,7 +409,7 @@ export const NewExpressionResolver: ASTResolver<
   );
 
   let currExecContext = newExecContext;
-  let argsTypes: Type[] = [];
+  let argsTypes: Any[] = [];
 
   for (const argAST of expression.arguments) {
     const [argType, newExecContext] = yield evaluate(argAST, execContext);
@@ -443,9 +441,20 @@ export const NewExpressionResolver: ASTResolver<
 
 export const LogicalExpressionResolver: ASTResolver<
   LogicalExpression,
-  Type
+  Any
 > = function*(expression, execContext) {
-  return evaluate(expression.left, execContext);
+  const logicalOperatorResolver = LogicalOperatorResolvers.get(
+    expression.operator
+  );
+  assert(
+    logicalOperatorResolver,
+    `Logical operator for ${expression.operator} has not been implemented yet`
+  );
+  return yield* logicalOperatorResolver!(
+    expression.left,
+    expression.right,
+    execContext
+  );
 };
 
 export const TryStatementResolver = statementResolver<TryStatement>(function*(

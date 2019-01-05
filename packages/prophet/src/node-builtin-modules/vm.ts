@@ -2,10 +2,10 @@ import {
   TExecutionContext,
   ExecutionContext
 } from "../execution-context/ExecutionContext";
-import { Type } from "../types";
+import { Any } from "../types";
 import produce from "immer";
 import { evaluateCode } from "../evaluate";
-import { TString } from "../string/String";
+import { TESString } from "../string/String";
 import { unsafeCast } from "../unsafeGet";
 import { ESInitialGlobal } from "../execution-context/ESInitialGlobal";
 import { TESObject, ESObject } from "../Object";
@@ -16,8 +16,8 @@ export const vm = {
       parameters: [],
       function: {
         implementation: function*(
-          _self: Type,
-          args: Array<Type>,
+          _self: Any,
+          args: Array<Any>,
           execContext: TExecutionContext
         ) {
           return [args[0], execContext];
@@ -28,8 +28,8 @@ export const vm = {
       parameters: [],
       function: {
         implementation: function*(
-          _self: Type,
-          args: Array<Type>,
+          _self: Any,
+          args: Array<Any>,
           execContext: TExecutionContext
         ) {
           const evalExecContext = ExecutionContext(
@@ -41,7 +41,7 @@ export const vm = {
             })
           );
           return evaluateCode(
-            unsafeCast<string>(unsafeCast<TString>(args[0]).value),
+            unsafeCast<string>(unsafeCast<TESString>(args[0]).value),
             evalExecContext
           );
         }

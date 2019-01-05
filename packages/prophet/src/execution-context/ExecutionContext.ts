@@ -1,11 +1,11 @@
-import { Type } from "../types";
+import { Any } from "../types";
 import { TESObject } from "../Object";
 
 export type TExecutionContext = {
   value: {
-    thisValue: Type;
+    thisValue: Any;
     scope: {
-      [identifier: string]: Type;
+      [identifier: string]: Any;
     };
     global: TESObject;
     stdout: string;
@@ -21,7 +21,7 @@ export function ExecutionContext(value: any) {
 
 export function setCurrentThisValue(
   execContext: TExecutionContext,
-  val: Type
+  val: Any
 ): TExecutionContext {
   return ExecutionContext({ ...execContext.value, thisValue: val });
 }
@@ -29,7 +29,7 @@ export function setCurrentThisValue(
 export function setVariableInScope(
   execContext: TExecutionContext,
   name: string,
-  val: Type
+  val: Any
 ) {
   return ExecutionContext({
     ...execContext.value,

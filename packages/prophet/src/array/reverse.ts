@@ -1,10 +1,10 @@
-import { isArray, Type } from "../types";
+import { isArray, Any } from "../types";
 import { TArray, Array } from "./Array";
 import { TExecutionContext } from "../execution-context/ExecutionContext";
 
 export function* reverse(
   self: TArray<any>,
-  _args: Array<Type>,
+  _args: Array<Any>,
   execContext: TExecutionContext
 ) {
   return [

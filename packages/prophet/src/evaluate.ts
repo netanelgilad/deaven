@@ -1,5 +1,11 @@
-import { isThrownValue, EvaluationResult, isReturnValue } from "./types";
-import { Node } from "@babel/types";
+import {
+  isThrownValue,
+  EvaluationResult,
+  isReturnValue,
+  ExpressionEvaluationResult,
+  TThrownValue
+} from "./types";
+import { Node, Expression } from "@babel/types";
 import { ASTResolvers } from "./ASTResolvers";
 import * as assert from "assert";
 import {
@@ -7,6 +13,7 @@ import {
   ExecutionContext
 } from "./execution-context/ExecutionContext";
 import { parseExpression, parse } from "@babel/parser";
+import { unsafeCast } from "./unsafeGet";
 
 export class ASTEvaluationError extends Error {
   constructor(err: Error, public ast: Node) {
@@ -22,16 +29,22 @@ export class CodeEvaluationError extends ASTEvaluationError {
   }
 }
 
-export function evaluate(
-  ast: Node,
+export type NodeEvaluationResult<T extends Node> = T extends Expression
+  ? [ExpressionEvaluationResult, TExecutionContext]
+  : [EvaluationResult, TExecutionContext];
+
+export function evaluate<T extends Node>(
+  ast: T,
   execContext: TExecutionContext
-): [EvaluationResult, TExecutionContext] {
+): NodeEvaluationResult<T> {
   try {
     const resolver = ASTResolvers.get(ast.type);
     assert(resolver, `Can't resolve type of ast type ${ast.type}`);
     const resultIter = resolver!(ast, execContext || ExecutionContext({}));
 
-    return evaluateThrowableIterator(resultIter);
+    return unsafeCast<NodeEvaluationResult<T>>(
+      evaluateThrowableIterator(resultIter)
+    );
   } catch (err) {
     if (
       err instanceof ASTEvaluationError ||
@@ -63,13 +76,12 @@ export function evaluateCodeAsExpression(
   return evaluate(parseExpression(code), execContext);
 }
 
-export function evaluateThrowableIterator(
-  itr: Iterator<[EvaluationResult, TExecutionContext]>
-) {
+export function evaluateThrowableIterator<
+  T extends Iterator<[EvaluationResult, TExecutionContext]>
+>(itr: T) {
   let currentEvaluationResult = itr.next();
   while (
     !isThrownValue(currentEvaluationResult.value[0]) &&
-    !isReturnValue(currentEvaluationResult.value[0]) &&
     !currentEvaluationResult.done
   ) {
     currentEvaluationResult = itr.next(currentEvaluationResult.value);

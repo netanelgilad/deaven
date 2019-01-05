@@ -1,14 +1,21 @@
 import { isObject, keys } from "lodash";
-import { TString } from "./string/String";
+import { TESString } from "./string/String";
 import { TExecutionContext } from "./execution-context/ExecutionContext";
 import { TESObject } from "./Object";
+import { NumberLiteral } from "@babel/types";
+import { unsafeCast } from "./unsafeGet";
 
 export const NotANumber = {};
 export const Number = {};
 export const TODOTYPE = {};
-export const Undefined = {};
 
-export function isString(arg: any): arg is TString {
+export type TESUndefined = Type<"undefined">;
+
+export const Undefined: TESUndefined = {
+  type: "undefined"
+};
+
+export function isString(arg: any): arg is TESString {
   return arg.type === "string";
 }
 
@@ -25,8 +32,8 @@ export type GreaterThanEquals = {
 };
 
 export type FunctionImplementation = (
-  self: Type,
-  args: Array<Type>,
+  self: Any,
+  args: Array<Any>,
   execContext: TExecutionContext
 ) => IterableIterator<[EvaluationResult, TExecutionContext]>;
 
@@ -41,22 +48,37 @@ export function isFunction(arg: any): arg is Function {
 }
 
 export type FunctionBinding = WithProperties & {
-  self?: Type;
+  self?: Any;
   function: Function;
 };
 
 export type WithProperties = {
   properties: {
-    [name: string]: Type;
+    [name: string]: Any;
   };
+};
+
+export function ValueIdentifier() {
+  return {} as object;
+}
+
+export type Type<T extends string> = {
+  type: T;
+};
+
+export type TValueIdentifier = ReturnType<typeof ValueIdentifier>;
+
+export type WithValue<T> = {
+  id?: TValueIdentifier;
+  value?: T;
 };
 
 export type TReturnValue = {
   type: "ReturnValue";
-  value: Type;
+  value: Any;
 };
 
-export function ReturnValue(value: Type) {
+export function ReturnValue(value: Any) {
   return {
     type: "ReturnValue",
     value
@@ -69,10 +91,10 @@ export function isReturnValue(arg: any): arg is TReturnValue {
 
 export type TThrownValue = {
   type: "ThrownValue";
-  value: Type;
+  value: Any;
 };
 
-export function ThrownValue(value: Type) {
+export function ThrownValue(value: Any) {
   return {
     type: "ThrownValue",
     value
@@ -83,15 +105,20 @@ export function isThrownValue(arg: any): arg is TThrownValue {
   return arg.type === "ThrownValue";
 }
 
-export type TESBoolean = WithProperties & {
-  value?: boolean;
-};
+export type TESBoolean = Type<"boolean"> &
+  WithProperties &
+  WithValue<boolean> & {};
 
-export type Type =
+export function isESBoolean(arg: Any): arg is TESBoolean {
+  return unsafeCast<Type<string>>(arg).type === "boolean";
+}
+
+export type Any =
+  | Type<string>
   | typeof NotANumber
-  | TString
+  | TESString
   | typeof Number
-  | typeof Undefined
+  | TESUndefined
   | NumberLiteral
   | GreaterThanEquals
   | Function
@@ -100,6 +127,6 @@ export type Type =
   | TESBoolean
   | TThrownValue;
 
+export type ExpressionEvaluationResult = TThrownValue | Any;
 export type ControlFlowResult = TThrownValue | TReturnValue | undefined;
-
-export type EvaluationResult = Type | ControlFlowResult;
+export type EvaluationResult = Any | ControlFlowResult;

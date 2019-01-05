@@ -1,17 +1,17 @@
-import { Type, isArray } from "../types";
+import { Any, isArray } from "../types";
 import { isUndefined } from "lodash";
 import { TArray } from "./Array";
-import { TString, String } from "../string/String";
+import { TESString, ESString } from "../string/String";
 import { TExecutionContext } from "../execution-context/ExecutionContext";
 
 export function* join(
   self: TArray<any>,
-  args: [TString, ...Array<Type>],
+  args: [TESString, ...Array<Any>],
   execContext: TExecutionContext
 ) {
-  const reduceArray = (arg: TArray<any>): TString => {
+  const reduceArray = (arg: TArray<any>): TESString => {
     if (!arg.value) {
-      return String();
+      return ESString();
     }
     return (arg.value as Array<TArray<any>>).reduce((result, part) => {
       let stringOfCurrentPart;
@@ -32,9 +32,9 @@ export function* join(
           stringOfCurrentPart.value;
         return result;
       } else {
-        return String([result, stringOfCurrentPart as TString]);
+        return ESString([result, stringOfCurrentPart as TESString]);
       }
-    }, String(""));
+    }, ESString(""));
   };
 
   return [reduceArray(self), execContext];

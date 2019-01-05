@@ -1,6 +1,7 @@
 import { reverse } from "./reverse";
 import { join } from "./join";
 import { Number, NumberLiteral, GreaterThanEquals } from "../types";
+import { unsafeCast } from "../unsafeGet";
 
 export type TArray<T> = {
   value?: Array<T> | Array<TArray<T>>;
@@ -37,7 +38,7 @@ function calculateLength(
   if (concrete) {
     return { number: value.length };
   }
-  return (value as Array<TArray<any>>).reduce(
+  return unsafeCast<Array<TArray<any>>>(value).reduce(
     (result, part) => {
       if (!result) {
         return calculateLength(part.value, part.concrete);
@@ -45,11 +46,11 @@ function calculateLength(
         const currentPartLength = calculateLength(part.value, part.concrete);
         if (currentPartLength === Number) {
           return {
-            gte: (result as NumberLiteral).number
+            gte: unsafeCast<NumberLiteral>(result).number
           };
         }
         return {
-          gte: (currentPartLength as NumberLiteral).number
+          gte: unsafeCast<NumberLiteral>(currentPartLength).number
         };
       }
     },
