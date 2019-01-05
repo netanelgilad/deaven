@@ -1,5 +1,11 @@
 import { TString } from "../string/String";
-import { Type, Undefined, ThrownValue } from "../types";
+import {
+  Type,
+  Undefined,
+  ThrownValue,
+  FunctionImplementation,
+  FunctionBinding
+} from "../types";
 import { parse } from "@babel/parser";
 import {
   ExpressionStatement,
@@ -19,22 +25,31 @@ import { evaluate } from "../evaluate";
 import { unsafeCast } from "../unsafeGet";
 import { ESObject } from "../Object";
 
-export const FunctionConstructor = {
-  properties: {},
-  parameters: [],
-  function: {
-    implementation: function*(
-      _self: void,
-      args: [TString],
-      execContext: TExecutionContext
-    ) {
-      const blockStatement = ((parse(`() => {${args[0].value as string}}`)
-        .program.body[0] as ExpressionStatement)
-        .expression as ArrowFunctionExpression).body as BlockStatement;
-      return [createFunction(blockStatement.body, []), execContext];
+export function ESFunction(implementation: FunctionImplementation) {
+  return {
+    properties: {
+      prototype: ESObject()
+    },
+    function: {
+      implementation
     }
-  }
-};
+  };
+}
+
+export const FunctionConstructor = ESFunction(function*(
+  _self: Type,
+  args: Type[],
+  execContext: TExecutionContext
+) {
+  const blockStatement = ((parse(
+    `() => {${unsafeCast<TString>(args[0]).value as string}}`
+  ).program.body[0] as ExpressionStatement)
+    .expression as ArrowFunctionExpression).body as BlockStatement;
+  return [createFunction(blockStatement.body, []), execContext] as [
+    FunctionBinding,
+    TExecutionContext
+  ];
+});
 
 export function createFunction(statements: Statement[], params: Array<LVal>) {
   return {

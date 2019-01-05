@@ -8,6 +8,8 @@ import {
   Type
 } from "../types";
 import { TExecutionContext } from "../execution-context/ExecutionContext";
+import { ESFunction } from "../Function/Function";
+import { exec } from "child_process";
 
 export type TString = WithProperties & {
   type: "string";
@@ -40,6 +42,14 @@ export function String(value?: string | Array<TString>): TString {
     value
   };
 }
+
+export const StringConstructor = ESFunction(function*(
+  _self: Type,
+  args: Type[],
+  execContext
+) {
+  return [args[0], execContext] as [Type, TExecutionContext];
+});
 
 function calculateLength(
   value?: string | Array<TString>

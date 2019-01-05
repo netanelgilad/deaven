@@ -24,8 +24,8 @@ import {
   ExpressionStatement,
   VariableDeclaration,
   NewExpression,
-  callExpression,
-  LogicalExpression
+  LogicalExpression,
+  TryStatement
 } from "@babel/types";
 import { String, TString } from "./string/String";
 import {
@@ -36,7 +36,6 @@ import {
   GreaterThanEquals,
   NumberLiteral,
   FunctionBinding,
-  Function,
   isThrownValue
 } from "./types";
 import { evaluate, evaluateThrowableIterator } from "./evaluate";
@@ -454,6 +453,13 @@ export const LogicalExpressionResolver: ASTResolver<
   return evaluate(expression.left, execContext);
 };
 
+export const TryStatementResolver = statementResolver<TryStatement>(function*(
+  statement,
+  execContext
+) {
+  return evaluate(statement.block, execContext);
+});
+
 export const ASTResolvers = new Map<string, ASTResolver<any, any>>([
   ["StringLiteral", StringLiteralResolver],
   ["NumericLiteral", NumericLiteralResolver],
@@ -476,5 +482,6 @@ export const ASTResolvers = new Map<string, ASTResolver<any, any>>([
   ["EmptyStatement", EmptyStatementResolver],
   ["BlockStatement", BlockStatementResolver],
   ["NewExpression", NewExpressionResolver],
-  ["LogicalExpression", LogicalExpressionResolver]
+  ["LogicalExpression", LogicalExpressionResolver],
+  ["TryStatement", TryStatementResolver]
 ]);

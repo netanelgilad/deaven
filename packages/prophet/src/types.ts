@@ -24,12 +24,14 @@ export type GreaterThanEquals = {
   gte: number;
 };
 
+export type FunctionImplementation = (
+  self: Type,
+  args: Array<Type>,
+  execContext: TExecutionContext
+) => IterableIterator<[Type, TExecutionContext]>;
+
 export type Function = {
-  implementation: (
-    self: Type,
-    args: Array<Type>,
-    execContext: TExecutionContext
-  ) => IterableIterator<[Type, TExecutionContext]>;
+  implementation: FunctionImplementation;
 };
 
 export function isFunction(arg: any): arg is Function {
