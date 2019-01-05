@@ -1,5 +1,8 @@
 import { Type, GreaterThanEquals, NumberLiteral, isString } from "./types";
 import { String, TString } from "./string/String";
+import { unsafeCast } from "./unsafeGet";
+
+export type BinaryOperatorResolver = (left: Type, right: Type) => Type;
 
 export function plus(left: Type, right: Type) {
   if (isString(left) && typeof left.value === "string") {
@@ -11,9 +14,14 @@ export function plus(left: Type, right: Type) {
   return String([left as TString, right as TString]);
 }
 
-export function greaterThanEquals(
-  left: GreaterThanEquals,
-  right: NumberLiteral
-) {
-  return left.gte > right.number;
+export function greaterThan(left: Type, right: Type) {
+  return (
+    unsafeCast<GreaterThanEquals>(left).gte >
+    unsafeCast<NumberLiteral>(right).number
+  );
 }
+
+export const BinaryOperatorResolvers = new Map<string, BinaryOperatorResolver>([
+  [">", greaterThan],
+  ["+", plus]
+]);

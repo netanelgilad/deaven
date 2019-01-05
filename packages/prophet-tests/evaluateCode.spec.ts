@@ -95,7 +95,9 @@ Object {
               "implementation": [Function],
             },
             "toString": Object {
-              "implementation": [Function],
+              "function": Object {
+                "implementation": [Function],
+              },
             },
           },
           "type": "string",
@@ -113,7 +115,9 @@ Object {
               "implementation": [Function],
             },
             "toString": Object {
-              "implementation": [Function],
+              "function": Object {
+                "implementation": [Function],
+              },
             },
           },
           "type": "string",
@@ -131,7 +135,9 @@ Object {
               "implementation": [Function],
             },
             "toString": Object {
-              "implementation": [Function],
+              "function": Object {
+                "implementation": [Function],
+              },
             },
           },
           "type": "string",
@@ -149,7 +155,9 @@ Object {
               "implementation": [Function],
             },
             "toString": Object {
-              "implementation": [Function],
+              "function": Object {
+                "implementation": [Function],
+              },
             },
           },
           "type": "string",
@@ -167,7 +175,9 @@ Object {
               "implementation": [Function],
             },
             "toString": Object {
-              "implementation": [Function],
+              "function": Object {
+                "implementation": [Function],
+              },
             },
           },
           "type": "string",
@@ -229,7 +239,9 @@ Object {
               "implementation": [Function],
             },
             "toString": Object {
-              "implementation": [Function],
+              "function": Object {
+                "implementation": [Function],
+              },
             },
           },
           "type": "string",
@@ -247,7 +259,9 @@ Object {
               "implementation": [Function],
             },
             "toString": Object {
-              "implementation": [Function],
+              "function": Object {
+                "implementation": [Function],
+              },
             },
           },
           "type": "string",
@@ -265,7 +279,9 @@ Object {
               "implementation": [Function],
             },
             "toString": Object {
-              "implementation": [Function],
+              "function": Object {
+                "implementation": [Function],
+              },
             },
           },
           "type": "string",
@@ -283,7 +299,9 @@ Object {
               "implementation": [Function],
             },
             "toString": Object {
-              "implementation": [Function],
+              "function": Object {
+                "implementation": [Function],
+              },
             },
           },
           "type": "string",
@@ -301,7 +319,9 @@ Object {
               "implementation": [Function],
             },
             "toString": Object {
-              "implementation": [Function],
+              "function": Object {
+                "implementation": [Function],
+              },
             },
           },
           "type": "string",
@@ -347,7 +367,9 @@ Object {
       "implementation": [Function],
     },
     "toString": Object {
-      "implementation": [Function],
+      "function": Object {
+        "implementation": [Function],
+      },
     },
   },
   "type": "string",
@@ -362,7 +384,9 @@ Object {
           "implementation": [Function],
         },
         "toString": Object {
-          "implementation": [Function],
+          "function": Object {
+            "implementation": [Function],
+          },
         },
       },
       "type": "string",
@@ -378,7 +402,9 @@ Object {
           "implementation": [Function],
         },
         "toString": Object {
-          "implementation": [Function],
+          "function": Object {
+            "implementation": [Function],
+          },
         },
       },
       "type": "string",
@@ -408,7 +434,9 @@ Object {
       "implementation": [Function],
     },
     "toString": Object {
-      "implementation": [Function],
+      "function": Object {
+        "implementation": [Function],
+      },
     },
   },
   "type": "string",

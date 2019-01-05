@@ -1,4 +1,4 @@
-import { Type, isThrownValue, Undefined } from "./types";
+import { isThrownValue, EvaluationResult, isReturnValue } from "./types";
 import { Node } from "@babel/types";
 import { ASTResolvers } from "./ASTResolvers";
 import * as assert from "assert";
@@ -25,7 +25,7 @@ export class CodeEvaluationError extends ASTEvaluationError {
 export function evaluate(
   ast: Node,
   execContext: TExecutionContext
-): [Type, TExecutionContext] {
+): [EvaluationResult, TExecutionContext] {
   try {
     const resolver = ASTResolvers.get(ast.type);
     assert(resolver, `Can't resolve type of ast type ${ast.type}`);
@@ -64,11 +64,12 @@ export function evaluateCodeAsExpression(
 }
 
 export function evaluateThrowableIterator(
-  itr: Iterator<[Type, TExecutionContext]>
+  itr: Iterator<[EvaluationResult, TExecutionContext]>
 ) {
   let currentEvaluationResult = itr.next();
   while (
     !isThrownValue(currentEvaluationResult.value[0]) &&
+    !isReturnValue(currentEvaluationResult.value[0]) &&
     !currentEvaluationResult.done
   ) {
     currentEvaluationResult = itr.next(currentEvaluationResult.value);

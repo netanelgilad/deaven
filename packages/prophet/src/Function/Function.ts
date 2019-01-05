@@ -2,9 +2,10 @@ import { TString } from "../string/String";
 import {
   Type,
   Undefined,
-  ThrownValue,
   FunctionImplementation,
-  FunctionBinding
+  FunctionBinding,
+  isReturnValue,
+  EvaluationResult
 } from "../types";
 import { parse } from "@babel/parser";
 import {
@@ -13,8 +14,6 @@ import {
   BlockStatement,
   LVal,
   Identifier,
-  isReturnStatement,
-  isThrowStatement,
   Statement
 } from "@babel/types";
 import {
@@ -24,6 +23,7 @@ import {
 import { evaluate } from "../evaluate";
 import { unsafeCast } from "../unsafeGet";
 import { ESObject } from "../Object";
+import { tuple } from "@deaven/tuple";
 
 export function ESFunction(implementation: FunctionImplementation) {
   return {
@@ -72,31 +72,27 @@ export function createFunction(statements: Statement[], params: Array<LVal>) {
           execContext
         );
 
-        let currExecContext = atferParametersInScopeExecContext;
-        for (const statement of statements) {
-          if (isReturnStatement(statement)) {
-            if (!statement.argument) {
-              return [Undefined, currExecContext] as [Type, TExecutionContext];
-            }
-            return evaluate(statement.argument, currExecContext);
-          } else if (isThrowStatement(statement)) {
-            const [thrownValue, newExecContext] = yield evaluate(
-              statement.argument,
-              currExecContext
-            );
-            return [ThrownValue(thrownValue), newExecContext] as [
-              Type,
-              TExecutionContext
-            ];
-          }
+        let currentEvaluationResult = tuple(
+          Undefined,
+          atferParametersInScopeExecContext
+        ) as [EvaluationResult, TExecutionContext];
 
-          [, currExecContext] = yield evaluate(statement, currExecContext);
+        for (const statement of statements) {
+          currentEvaluationResult = evaluate(
+            statement,
+            currentEvaluationResult[1]
+          );
+          if (isReturnValue(currentEvaluationResult[0])) {
+            return tuple(
+              currentEvaluationResult[0].value,
+              currentEvaluationResult[1]
+            );
+          } else {
+            yield currentEvaluationResult;
+          }
         }
 
-        return [Undefined, currExecContext] as [
-          typeof Undefined,
-          TExecutionContext
-        ];
+        return tuple(Undefined, currentEvaluationResult[1]);
       }
     }
   };

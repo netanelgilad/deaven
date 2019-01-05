@@ -6,25 +6,27 @@ import {
 } from "@deaven/prophet";
 import { codeFrameColumns } from "@babel/code-frame";
 
-const testFileCode = readFileSync(process.argv[2], "utf8");
-try {
-  const [, execContext] = evaluateCode(
-    testFileCode,
-    nodeInitialExecutionContext
-  );
-  if (execContext.value.stdout) {
-    process.stdout.write(execContext.value.stdout);
-  }
-} catch (err) {
-  if (err instanceof CodeEvaluationError) {
-    const codeFrame = codeFrameColumns(
-      err.code,
-      { start: err.ast.loc!.start },
-      {}
+setTimeout(() => {
+  const testFileCode = readFileSync(process.argv[2], "utf8");
+  try {
+    const [, execContext] = evaluateCode(
+      testFileCode,
+      nodeInitialExecutionContext
     );
-    console.log(err.stack!.split("\n").join("       "));
-    console.log(codeFrame.split("\n").join("       "));
-  } else {
-    throw new Error(err.stack.split("\n").join("       "));
+    if (execContext.value.stdout) {
+      process.stdout.write(execContext.value.stdout);
+    }
+  } catch (err) {
+    if (err instanceof CodeEvaluationError) {
+      const codeFrame = codeFrameColumns(
+        err.code,
+        { start: err.ast.loc!.start },
+        {}
+      );
+      console.log(err.stack!.split("\n").join("       "));
+      console.log(codeFrame.split("\n").join("       "));
+    } else {
+      throw new Error(err.stack.split("\n").join("       "));
+    }
   }
-}
+}, 2000);

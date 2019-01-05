@@ -10,6 +10,7 @@
     "@babel/parser": "^7.2.0",
     "@babel/types": "^7.2.0",
     "@deaven/unimplemented": "^0.1.0",
+    "@deaven/tuple": "^1.0.0",
     "immer": "^1.9.3",
     "lodash": "^4.17.10"
   },

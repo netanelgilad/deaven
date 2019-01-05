@@ -28,7 +28,7 @@ export type FunctionImplementation = (
   self: Type,
   args: Array<Type>,
   execContext: TExecutionContext
-) => IterableIterator<[Type, TExecutionContext]>;
+) => IterableIterator<[EvaluationResult, TExecutionContext]>;
 
 export type Function = {
   implementation: FunctionImplementation;
@@ -51,6 +51,22 @@ export type WithProperties = {
   };
 };
 
+export type TReturnValue = {
+  type: "ReturnValue";
+  value: Type;
+};
+
+export function ReturnValue(value: Type) {
+  return {
+    type: "ReturnValue",
+    value
+  };
+}
+
+export function isReturnValue(arg: any): arg is TReturnValue {
+  return arg.type === "ReturnValue";
+}
+
 export type TThrownValue = {
   type: "ThrownValue";
   value: Type;
@@ -67,6 +83,10 @@ export function isThrownValue(arg: any): arg is TThrownValue {
   return arg.type === "ThrownValue";
 }
 
+export type TESBoolean = WithProperties & {
+  value?: boolean;
+};
+
 export type Type =
   | typeof NotANumber
   | TString
@@ -77,4 +97,9 @@ export type Type =
   | Function
   | TESObject
   | FunctionBinding
+  | TESBoolean
   | TThrownValue;
+
+export type ControlFlowResult = TThrownValue | TReturnValue | undefined;
+
+export type EvaluationResult = Type | ControlFlowResult;
