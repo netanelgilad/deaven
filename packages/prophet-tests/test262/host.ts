@@ -17,7 +17,11 @@ try {
   }
 } catch (err) {
   if (err instanceof CodeEvaluationError) {
-    const codeFrame = codeFrameColumns(err.code, err.ast.loc!, {});
+    const codeFrame = codeFrameColumns(
+      err.code,
+      { start: err.ast.loc!.start },
+      {}
+    );
     console.log(err.stack!.split("\n").join("       "));
     console.log(codeFrame.split("\n").join("       "));
   } else {
