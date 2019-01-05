@@ -1,6 +1,6 @@
 import { getSync } from "stacktrace-js";
 
-export function unimplemented(functionName?: string) {
+export function unimplemented(functionName?: string): any {
   const callerInfo = getSync()[1];
   throw new Error(
     `${functionName ||
