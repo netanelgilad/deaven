@@ -9,14 +9,16 @@ import {
 import { parseExpression, parse } from "@babel/parser";
 
 export class ASTEvaluationError extends Error {
-  constructor(message: string, public ast: Node) {
-    super(message);
+  constructor(err: Error, public ast: Node) {
+    super(err.message);
+    this.stack = err.stack;
   }
 }
 
 export class CodeEvaluationError extends ASTEvaluationError {
   constructor(astError: ASTEvaluationError, public code: string) {
-    super(astError.message, astError.ast);
+    super(astError, astError.ast);
+    this.stack = astError.stack;
   }
 }
 
@@ -37,7 +39,7 @@ export function evaluate(
     ) {
       throw err;
     }
-    throw new ASTEvaluationError(err.message, ast);
+    throw new ASTEvaluationError(err, ast);
   }
 }
 
