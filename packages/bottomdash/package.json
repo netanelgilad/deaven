@@ -1,0 +1,7 @@
+{
+  "name": "@deaven/bottomdash",
+  "version": "1.0.0",
+  "description": "Declare type using an expression",
+  "main": "index.js",
+  "license": "MIT"
+}
