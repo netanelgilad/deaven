@@ -1,9 +1,10 @@
-import { Any, isString, NotANumber, NumberLiteral } from "../types";
+import { Any, isString, NotANumber, TESNumber } from "../types";
 import { TExecutionContext } from "../execution-context/ExecutionContext";
+import { unsafeCast } from "../unsafeGet";
 
 export function* round(
   _self: any,
-  args: [NumberLiteral, ...Array<Any>],
+  args: [TESNumber, ...Array<Any>],
   execContext: TExecutionContext
 ) {
   if (!args[0] || isString(args[0])) {
@@ -11,7 +12,7 @@ export function* round(
   } else {
     return [
       {
-        number: Math.round(args[0].number)
+        number: Math.round(unsafeCast<number>(args[0].value))
       },
       execContext
     ];

@@ -15,6 +15,10 @@ export const Undefined: TESUndefined = {
   type: "undefined"
 };
 
+export function isUndefined(arg: any): arg is TESUndefined {
+  return arg.type === "undefined";
+}
+
 export function isString(arg: any): arg is TESString {
   return arg.type === "string";
 }
@@ -23,9 +27,20 @@ export function isArray(arg: any) {
   return arg.type === "array";
 }
 
-export type NumberLiteral = {
-  number: number;
-};
+export type TESNumber = Type<"number"> & WithProperties & WithValue<number>;
+
+export function ESNumber(value?: number): TESNumber {
+  return {
+    type: "number",
+    id: ValueIdentifier(),
+    properties: {},
+    value
+  };
+}
+
+export function isESNumber(arg: any): arg is TESNumber {
+  return arg.type === "number";
+}
 
 export type GreaterThanEquals = {
   gte: number;

@@ -2,8 +2,7 @@ import {
   isThrownValue,
   EvaluationResult,
   isReturnValue,
-  ExpressionEvaluationResult,
-  TThrownValue
+  ExpressionEvaluationResult
 } from "./types";
 import { Node, Expression } from "@babel/types";
 import { ASTResolvers } from "./ASTResolvers";
@@ -82,6 +81,7 @@ export function evaluateThrowableIterator<
   let currentEvaluationResult = itr.next();
   while (
     !isThrownValue(currentEvaluationResult.value[0]) &&
+    !isReturnValue(currentEvaluationResult.value[0]) &&
     !currentEvaluationResult.done
   ) {
     currentEvaluationResult = itr.next(currentEvaluationResult.value);

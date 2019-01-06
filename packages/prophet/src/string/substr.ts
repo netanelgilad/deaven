@@ -1,17 +1,21 @@
-import { Any, NumberLiteral } from "../types";
+import { Any, TESNumber } from "../types";
 import { first } from "lodash";
 import { TESString, ESString } from "./String";
 import { TExecutionContext } from "../execution-context/ExecutionContext";
+import { unsafeCast } from "../unsafeGet";
 
 export function* substr(
   self: TESString,
-  args: [NumberLiteral, NumberLiteral, ...Array<Any>],
+  args: [TESNumber, TESNumber, ...Array<Any>],
   execContext: TExecutionContext
 ) {
   return [
     ESString(
       ((first(self.value as Array<TESString>) as TESString)
-        .value as string).substr(args[0].number, args[1].number)
+        .value as string).substr(
+        unsafeCast<number>(args[0].value),
+        unsafeCast<number>(args[1].value)
+      )
     ),
     execContext
   ];

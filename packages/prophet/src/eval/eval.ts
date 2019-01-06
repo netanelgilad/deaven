@@ -1,12 +1,12 @@
 import { ESFunction } from "../Function/Function";
 import { TExecutionContext } from "../execution-context/ExecutionContext";
-import { Any } from "../types";
-import { ESString, TESString } from "../string/String";
+import { Any, Undefined } from "../types";
+import { tuple } from "@deaven/tuple";
 
 export const evalFn = ESFunction(function*(
   _self: Any,
-  args: Any[],
+  _args: Any[],
   execContext: TExecutionContext
 ) {
-  return [ESString(""), execContext] as [TESString, TExecutionContext];
+  return tuple(Undefined, execContext);
 });

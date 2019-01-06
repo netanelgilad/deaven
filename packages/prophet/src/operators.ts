@@ -1,10 +1,11 @@
 import {
   Any,
   GreaterThanEquals,
-  NumberLiteral,
+  TESNumber,
   isString,
   WithValue,
-  ExpressionEvaluationResult
+  ExpressionEvaluationResult,
+  isUndefined
 } from "./types";
 import { ESString, TESString } from "./string/String";
 import { unsafeCast } from "./unsafeGet";
@@ -35,17 +36,27 @@ export function plus(left: Any, right: Any) {
 export function greaterThan(left: Any, right: Any) {
   return (
     unsafeCast<GreaterThanEquals>(left).gte >
-    unsafeCast<NumberLiteral>(right).number
+    unsafeCast<number>(unsafeCast<TESNumber>(right).value)
   );
 }
 
 export function exactEquality(left: Any, right: Any) {
+  if (isUndefined(left) && isUndefined(right)) {
+    return ESBoolean(true);
+  }
   return ESBoolean(
     unsafeCast<WithValue<any>>(left).id === unsafeCast<WithValue<any>>(right).id
   );
 }
 
 export function notExactEquality(left: Any, right: Any) {
+  if (isUndefined(left)) {
+    if (isUndefined(right)) {
+      return ESBoolean(false);
+    } else {
+      return ESBoolean(true);
+    }
+  }
   return ESBoolean(
     unsafeCast<WithValue<any>>(left).id !== unsafeCast<WithValue<any>>(right).id
   );

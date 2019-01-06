@@ -5,7 +5,7 @@ import {
   WithProperties,
   Any,
   GreaterThanEquals,
-  NumberLiteral,
+  TESNumber,
   WithValue,
   ValueIdentifier,
   Type
@@ -56,7 +56,7 @@ export const StringConstructor = ESFunction(function*(
 
 function calculateLength(
   value?: string | Array<TESString>
-): typeof Number | NumberLiteral | GreaterThanEquals {
+): typeof Number | TESNumber | GreaterThanEquals {
   if (!value) {
     return Number;
   }
@@ -69,7 +69,7 @@ function calculateLength(
         return calculateLength(part.value);
       } else {
         return {
-          gte: (result as NumberLiteral).number
+          gte: (result as TESNumber).value
         };
       }
     },

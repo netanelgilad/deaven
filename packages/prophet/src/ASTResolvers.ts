@@ -40,7 +40,8 @@ import {
   EvaluationResult,
   ControlFlowResult,
   ThrownValue,
-  TESUndefined
+  TESNumber,
+  ESNumber
 } from "./types";
 import { evaluate, evaluateThrowableIterator } from "./evaluate";
 import { BinaryOperatorResolvers, LogicalOperatorResolvers } from "./operators";
@@ -101,10 +102,8 @@ export const StringLiteralResolver: ASTResolver<
 
 export const NumericLiteralResolver: ASTResolver<
   NumericLiteral,
-  { number: number }
-> = noExecutionContextResolver(ast => ({
-  number: ast.value
-}));
+  TESNumber
+> = noExecutionContextResolver(ast => ESNumber(ast.value));
 
 export const MemberExpressionResolver: ASTResolver<
   MemberExpression,

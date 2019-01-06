@@ -1,6 +1,6 @@
 import { reverse } from "./reverse";
 import { join } from "./join";
-import { Number, NumberLiteral, GreaterThanEquals } from "../types";
+import { Number, TESNumber, GreaterThanEquals } from "../types";
 import { unsafeCast } from "../unsafeGet";
 
 export type TArray<T> = {
@@ -31,7 +31,7 @@ export function Array<T>(
 function calculateLength(
   value?: string | Array<TArray<any>>,
   concrete?: boolean
-): typeof Number | NumberLiteral | GreaterThanEquals {
+): typeof Number | TESNumber | GreaterThanEquals {
   if (!value) {
     return Number;
   }
@@ -46,14 +46,14 @@ function calculateLength(
         const currentPartLength = calculateLength(part.value, part.concrete);
         if (currentPartLength === Number) {
           return {
-            gte: unsafeCast<NumberLiteral>(result).number
+            gte: unsafeCast<TESNumber>(result).value
           };
         }
         return {
-          gte: unsafeCast<NumberLiteral>(currentPartLength).number
+          gte: unsafeCast<TESNumber>(currentPartLength).value
         };
       }
     },
-    (undefined as any) as typeof Number | NumberLiteral | GreaterThanEquals
+    (undefined as any) as typeof Number | TESNumber | GreaterThanEquals
   );
 }
