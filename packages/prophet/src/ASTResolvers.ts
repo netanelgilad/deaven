@@ -26,7 +26,8 @@ import {
   NewExpression,
   LogicalExpression,
   TryStatement,
-  ThrowStatement
+  ThrowStatement,
+  DoWhileStatement
 } from "@babel/types";
 import { ESString, TESString } from "./string/String";
 import {
@@ -473,6 +474,12 @@ export const ThrowStatementResolver = statementResolver<ThrowStatement>(
   }
 );
 
+export const DoWhileStatementResolver = statementResolver<DoWhileStatement>(
+  function*(_statement, execContext) {
+    return tuple(Undefined, execContext);
+  }
+);
+
 export const ASTResolvers = new Map<string, ASTResolver<any, any>>([
   ["StringLiteral", StringLiteralResolver],
   ["NumericLiteral", NumericLiteralResolver],
@@ -497,5 +504,6 @@ export const ASTResolvers = new Map<string, ASTResolver<any, any>>([
   ["NewExpression", NewExpressionResolver],
   ["LogicalExpression", LogicalExpressionResolver],
   ["TryStatement", TryStatementResolver],
-  ["ThrowStatement", ThrowStatementResolver]
+  ["ThrowStatement", ThrowStatementResolver],
+  ["DoWhileStatement", DoWhileStatementResolver]
 ]);
