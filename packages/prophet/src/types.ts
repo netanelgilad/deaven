@@ -143,5 +143,5 @@ export type Any =
   | TThrownValue;
 
 export type ExpressionEvaluationResult = TThrownValue | Any;
-export type ControlFlowResult = TThrownValue | TReturnValue | undefined;
+export type ControlFlowResult = TThrownValue | TReturnValue;
 export type EvaluationResult = Any | ControlFlowResult;
