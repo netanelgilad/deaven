@@ -47,7 +47,10 @@ afterAll(() => {
 function runTest262(testFile: string) {
   const test262HarnessBin = require.resolve("test262-harness/bin/run");
   const tsNodePath = require.resolve("ts-node/register");
-  const hostPath = require.resolve("./test262/debug-host");
+  const debugHostPath = require.resolve("./test262/debug-host");
+  const hostPath = require.resolve("./test262/host");
+  const argv = process.execArgv.join();
+  const isDebug = argv.includes("inspect") || argv.includes("debug");
 
   const result = spawnSync(
     "node",
@@ -61,9 +64,8 @@ function runTest262(testFile: string) {
       "--hostArgs=-r",
       `--hostArgs=${tsNodePath}`,
       "--hostArgs",
-      hostPath,
-      "--timeout",
-      "99999999",
+      isDebug ? debugHostPath : hostPath,
+      ...(isDebug ? ["--timeout", "99999999"] : []),
       "--saveOnlyFailed",
       testFile
     ],

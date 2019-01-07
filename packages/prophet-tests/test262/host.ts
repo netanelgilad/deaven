@@ -6,7 +6,10 @@ import {
 } from "@deaven/prophet";
 import { codeFrameColumns } from "@babel/code-frame";
 
-setTimeout(() => {
+const argv = process.execArgv.join();
+const isDebug = argv.includes("inspect") || argv.includes("debug");
+
+function runTest() {
   const testFileCode = readFileSync(process.argv[2], "utf8");
   try {
     const [, execContext] = evaluateCode(
@@ -25,4 +28,6 @@ setTimeout(() => {
       throw new Error(err.stack.split("\n").join("       "));
     }
   }
-}, 2000);
+}
+
+isDebug ? setTimeout(runTest, 2000) : runTest;
