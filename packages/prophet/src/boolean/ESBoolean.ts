@@ -9,6 +9,9 @@ import {
   isESString
 } from "../types";
 import { unimplemented } from "../../../unimplemented";
+import { isESObject } from "../Object";
+import { ESFunction } from "../Function/Function";
+import { TExecutionContext } from "../execution-context/ExecutionContext";
 
 export function ESBoolean(value?: boolean): TESBoolean {
   return {
@@ -44,5 +47,17 @@ export function coerceToBoolean(val: Any): TESBoolean {
       : unimplemented();
   }
 
+  if (isESObject(val)) {
+    return ESBoolean(true);
+  }
+
   return unimplemented();
 }
+
+export const ESBooleanConstructor = ESFunction(function*(
+  _self: Any,
+  args: Any[],
+  execContext
+) {
+  return [args[0], execContext] as [Any, TExecutionContext];
+});

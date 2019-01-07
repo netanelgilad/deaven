@@ -15,8 +15,13 @@ import { TExecutionContext } from "./execution-context/ExecutionContext";
 import { _ } from "@deaven/bottomdash";
 import { evaluate } from "./evaluate";
 import { unimplemented } from "@deaven/unimplemented";
+import { tuple } from "@deaven/tuple";
 
 export type BinaryOperatorResolver = (left: Any, right: Any) => Any;
+export type UnaryOperatorResolver = (
+  arg: Any,
+  execContext: TExecutionContext
+) => [Any, TExecutionContext];
 export type LogicalOperatorResolver = (
   left: Expression,
   right: Expression,
@@ -107,6 +112,15 @@ export const notEqual = _<BinaryOperatorResolver>((left, right) => {
   );
 });
 
+export const not = _<UnaryOperatorResolver>((arg, execContext) => {
+  const argAsBoolean = coerceToBoolean(arg);
+  if (typeof argAsBoolean.value === "boolean") {
+    return tuple(ESBoolean(!argAsBoolean.value), execContext);
+  }
+
+  return unimplemented();
+});
+
 export const BinaryOperatorResolvers = new Map<string, BinaryOperatorResolver>([
   [">", greaterThan],
   ["+", plus],
@@ -119,3 +133,7 @@ export const LogicalOperatorResolvers = new Map<
   string,
   LogicalOperatorResolver
 >([["&&", logicalAnd], ["||", logicalOr]]);
+
+export const UnaryOperatorResolvers = new Map<string, UnaryOperatorResolver>([
+  ["!", not]
+]);

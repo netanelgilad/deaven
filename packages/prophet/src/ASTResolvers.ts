@@ -30,7 +30,8 @@ import {
   DoWhileStatement,
   NullLiteral,
   UpdateExpression,
-  isIdentifier
+  isIdentifier,
+  UnaryExpression
 } from "@babel/types";
 import { ESString, TESString } from "./string/String";
 import {
@@ -51,7 +52,11 @@ import {
   ESNull
 } from "./types";
 import { evaluate, evaluateThrowableIterator } from "./evaluate";
-import { BinaryOperatorResolvers, LogicalOperatorResolvers } from "./operators";
+import {
+  BinaryOperatorResolvers,
+  LogicalOperatorResolvers,
+  UnaryOperatorResolvers
+} from "./operators";
 import {
   TExecutionContext,
   setCurrentThisValue,
@@ -533,6 +538,24 @@ export const UpdateExpressionResolver: ASTResolver<
   return unimplemented();
 };
 
+export const UnaryExpressionResolver: ASTResolver<
+  UnaryExpression,
+  Any
+> = function*(expression, execContext) {
+  const [argType, afterArgExecContext] = yield evaluate(
+    expression.argument,
+    execContext
+  );
+  const unaryOperatorResolver = UnaryOperatorResolvers.get(expression.operator);
+  assert(
+    unaryOperatorResolver,
+    `Unary operator resolver for ${
+      expression.operator
+    } hasn't been implemented yet`
+  );
+  return unaryOperatorResolver!(argType, afterArgExecContext);
+};
+
 export const ASTResolvers = new Map<string, ASTResolver<any, any>>([
   ["StringLiteral", StringLiteralResolver],
   ["NumericLiteral", NumericLiteralResolver],
@@ -560,5 +583,6 @@ export const ASTResolvers = new Map<string, ASTResolver<any, any>>([
   ["ThrowStatement", ThrowStatementResolver],
   ["DoWhileStatement", DoWhileStatementResolver],
   ["NullLiteral", NullLiteralResolver],
-  ["UpdateExpression", UpdateExpressionResolver]
+  ["UpdateExpression", UpdateExpressionResolver],
+  ["UnaryExpression", UnaryExpressionResolver]
 ]);

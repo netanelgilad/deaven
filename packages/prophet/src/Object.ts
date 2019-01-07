@@ -14,3 +14,7 @@ export function ESObject(value?: { [key: string]: Any }): TESObject {
     value
   };
 }
+
+export function isESObject(arg: any): arg is TESObject {
+  return arg.type === "object";
+}
