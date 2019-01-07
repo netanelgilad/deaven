@@ -10,7 +10,7 @@ import {
 } from "../types";
 import { unimplemented } from "../../../unimplemented";
 import { isESObject } from "../Object";
-import { ESFunction } from "../Function/Function";
+import { ESFunction, isESFunction } from "../Function/Function";
 import { TExecutionContext } from "../execution-context/ExecutionContext";
 
 export function ESBoolean(value?: boolean): TESBoolean {
@@ -48,6 +48,10 @@ export function coerceToBoolean(val: Any): TESBoolean {
   }
 
   if (isESObject(val)) {
+    return ESBoolean(true);
+  }
+
+  if (isESFunction(val)) {
     return ESBoolean(true);
   }
 

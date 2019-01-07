@@ -27,6 +27,7 @@ import { tuple } from "@deaven/tuple";
 
 export function ESFunction(implementation: FunctionImplementation) {
   return {
+    type: "function",
     properties: {
       prototype: ESObject()
     },
@@ -34,6 +35,10 @@ export function ESFunction(implementation: FunctionImplementation) {
       implementation
     }
   };
+}
+
+export function isESFunction(arg: any): arg is FunctionBinding {
+  return arg.type === "function";
 }
 
 export const FunctionConstructor = ESFunction(function*(
@@ -53,6 +58,7 @@ export const FunctionConstructor = ESFunction(function*(
 
 export function createFunction(statements: Statement[], params: Array<LVal>) {
   return {
+    type: "function",
     properties: {
       prototype: ESObject()
     },
