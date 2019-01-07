@@ -28,7 +28,9 @@ import {
   TryStatement,
   ThrowStatement,
   DoWhileStatement,
-  NullLiteral
+  NullLiteral,
+  UpdateExpression,
+  isIdentifier
 } from "@babel/types";
 import { ESString, TESString } from "./string/String";
 import {
@@ -500,6 +502,37 @@ export const NullLiteralResolver: ASTResolver<
   TESNull
 > = noExecutionContextResolver(() => ESNull);
 
+export const UpdateExpressionResolver: ASTResolver<
+  UpdateExpression,
+  TESNumber
+> = function*(expression, execContext) {
+  if (isIdentifier(expression.argument)) {
+    const [argType, afterArgExecContext] = yield evaluate(
+      expression.argument,
+      execContext
+    );
+
+    let argTypeAfterUpdate: TESNumber;
+    if (expression.operator === "++") {
+      argTypeAfterUpdate = ESNumber(
+        unsafeCast<number>(unsafeCast<TESNumber>(argType).value) + 1
+      );
+    } else {
+      return unimplemented();
+    }
+
+    const afterUpdateExecContext = setVariableInScope(
+      afterArgExecContext,
+      expression.argument.name,
+      argTypeAfterUpdate
+    );
+
+    return tuple(argTypeAfterUpdate, afterUpdateExecContext);
+  }
+
+  return unimplemented();
+};
+
 export const ASTResolvers = new Map<string, ASTResolver<any, any>>([
   ["StringLiteral", StringLiteralResolver],
   ["NumericLiteral", NumericLiteralResolver],
@@ -526,5 +559,6 @@ export const ASTResolvers = new Map<string, ASTResolver<any, any>>([
   ["TryStatement", TryStatementResolver],
   ["ThrowStatement", ThrowStatementResolver],
   ["DoWhileStatement", DoWhileStatementResolver],
-  ["NullLiteral", NullLiteralResolver]
+  ["NullLiteral", NullLiteralResolver],
+  ["UpdateExpression", UpdateExpressionResolver]
 ]);

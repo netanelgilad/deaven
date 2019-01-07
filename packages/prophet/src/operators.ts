@@ -101,11 +101,18 @@ export const logicalOr = _<LogicalOperatorResolver>(function*(
   return unimplemented();
 });
 
+export const notEqual = _<BinaryOperatorResolver>((left, right) => {
+  return ESBoolean(
+    unsafeCast<TESNumber>(left).value != unsafeCast<TESNumber>(right).value
+  );
+});
+
 export const BinaryOperatorResolvers = new Map<string, BinaryOperatorResolver>([
   [">", greaterThan],
   ["+", plus],
   ["===", exactEquality],
-  ["!==", notExactEquality]
+  ["!==", notExactEquality],
+  ["!=", notEqual]
 ]);
 
 export const LogicalOperatorResolvers = new Map<
