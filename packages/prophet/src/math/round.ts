@@ -1,4 +1,4 @@
-import { Any, isString, NotANumber, TESNumber } from "../types";
+import { Any, isESString, NotANumber, TESNumber } from "../types";
 import { TExecutionContext } from "../execution-context/ExecutionContext";
 import { unsafeCast } from "../unsafeGet";
 
@@ -7,7 +7,7 @@ export function* round(
   args: [TESNumber, ...Array<Any>],
   execContext: TExecutionContext
 ) {
-  if (!args[0] || isString(args[0])) {
+  if (!args[0] || isESString(args[0])) {
     return [NotANumber, execContext];
   } else {
     return [

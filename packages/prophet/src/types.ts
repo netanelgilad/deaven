@@ -11,6 +11,16 @@ export const TODOTYPE = {};
 
 export type TESUndefined = Type<"undefined">;
 
+export type TESNull = Type<"null">;
+
+export const ESNull: TESNull = {
+  type: "null"
+};
+
+export function isESNull(arg: any): arg is TESNull {
+  return arg.type === "null";
+}
+
 export const Undefined: TESUndefined = {
   type: "undefined"
 };
@@ -19,7 +29,7 @@ export function isUndefined(arg: any): arg is TESUndefined {
   return arg.type === "undefined";
 }
 
-export function isString(arg: any): arg is TESString {
+export function isESString(arg: any): arg is TESString {
   return arg.type === "string";
 }
 

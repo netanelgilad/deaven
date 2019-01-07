@@ -4,10 +4,7 @@ import { spawnSync } from "child_process";
 import { moveSync } from "fs-extra";
 import { sync as rimrafSync } from "rimraf";
 
-const testFilesGlobs = [
-  "language/types/boolean/S8.3_A1_T1.js",
-  `language/statements/if/cptn-else-false-abrupt-empty.js`
-];
+const testFilesGlobs = [`language/statements/if/S12.5_A1.1_T1.js`];
 
 const testRoot = join(dirname(require.resolve("test262/package.json")), "test");
 

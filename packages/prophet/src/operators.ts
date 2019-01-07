@@ -2,7 +2,7 @@ import {
   Any,
   GreaterThanEquals,
   TESNumber,
-  isString,
+  isESString,
   WithValue,
   ExpressionEvaluationResult,
   isUndefined
@@ -24,8 +24,8 @@ export type LogicalOperatorResolver = (
 ) => IterableIterator<[ExpressionEvaluationResult, TExecutionContext]>;
 
 export function plus(left: Any, right: Any) {
-  if (isString(left) && typeof left.value === "string") {
-    if (isString(right)) {
+  if (isESString(left) && typeof left.value === "string") {
+    if (isESString(right)) {
       return ESString(left.value + right.value);
     }
     return ESString(left.value + "true");

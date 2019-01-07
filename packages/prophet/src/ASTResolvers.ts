@@ -27,7 +27,8 @@ import {
   LogicalExpression,
   TryStatement,
   ThrowStatement,
-  DoWhileStatement
+  DoWhileStatement,
+  NullLiteral
 } from "@babel/types";
 import { ESString, TESString } from "./string/String";
 import {
@@ -42,7 +43,10 @@ import {
   ControlFlowResult,
   ThrownValue,
   TESNumber,
-  ESNumber
+  ESNumber,
+  TESBoolean,
+  TESNull,
+  ESNull
 } from "./types";
 import { evaluate, evaluateThrowableIterator } from "./evaluate";
 import { BinaryOperatorResolvers, LogicalOperatorResolvers } from "./operators";
@@ -56,9 +60,10 @@ import { createFunction } from "./Function/Function";
 import { isNull } from "util";
 import { unsafeCast } from "./unsafeGet";
 import { TESObject, ESObject } from "./Object";
-import { coerceToBoolean } from "./boolean/ESBoolean";
+import { coerceToBoolean, ESBoolean } from "./boolean/ESBoolean";
 import { tuple } from "@deaven/tuple";
 import assert = require("assert");
+import { unimplemented } from "../../unimplemented";
 
 export type ASTResolver<TAST extends Node, T extends Any> = (
   ast: TAST,
@@ -322,9 +327,9 @@ export const FunctionExpressionResolver: ASTResolver<
 
 export const BooleanLiteralResolver: ASTResolver<
   BooleanLiteral,
-  typeof Undefined
+  TESBoolean
 > = function*(ast, execContext) {
-  return tuple(Undefined, execContext);
+  return tuple(ESBoolean(ast.value), execContext);
 };
 
 export const ExpressionStatementResolver = statementResolver<
@@ -386,9 +391,19 @@ export const IfStatementResolver = statementResolver<IfStatement>(function*(
       afterTestExecContext
     );
     return tuple(Undefined, consequentExecContext);
+  } else if (testTypeAsBoolean.value === false) {
+    if (statement.alternate) {
+      const [, consequentExecContext] = yield evaluate(
+        statement.alternate,
+        afterTestExecContext
+      );
+      return tuple(Undefined, consequentExecContext);
+    }
+
+    return tuple(Undefined, afterTestExecContext);
   }
 
-  return tuple(Undefined, afterTestExecContext);
+  return unimplemented();
 });
 
 export const EmptyStatementResolver = statementResolver<EmptyStatement>(
@@ -480,6 +495,11 @@ export const DoWhileStatementResolver = statementResolver<DoWhileStatement>(
   }
 );
 
+export const NullLiteralResolver: ASTResolver<
+  NullLiteral,
+  TESNull
+> = noExecutionContextResolver(() => ESNull);
+
 export const ASTResolvers = new Map<string, ASTResolver<any, any>>([
   ["StringLiteral", StringLiteralResolver],
   ["NumericLiteral", NumericLiteralResolver],
@@ -505,5 +525,6 @@ export const ASTResolvers = new Map<string, ASTResolver<any, any>>([
   ["LogicalExpression", LogicalExpressionResolver],
   ["TryStatement", TryStatementResolver],
   ["ThrowStatement", ThrowStatementResolver],
-  ["DoWhileStatement", DoWhileStatementResolver]
+  ["DoWhileStatement", DoWhileStatementResolver],
+  ["NullLiteral", NullLiteralResolver]
 ]);
