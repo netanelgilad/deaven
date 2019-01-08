@@ -2,13 +2,15 @@ import {
   TExecutionContext,
   ExecutionContext
 } from "../execution-context/ExecutionContext";
-import { Any } from "../types";
+import { Any, ThrownValue } from "../types";
 import produce from "immer";
 import { evaluateCode } from "../evaluate";
-import { TESString } from "../string/String";
+import { TESString, ESString } from "../string/String";
 import { unsafeCast } from "../unsafeGet";
 import { ESInitialGlobal } from "../execution-context/ESInitialGlobal";
-import { TESObject, ESObject } from "../Object";
+import { TESObject, ESObject, createNewObjectFromConstructor } from "../Object";
+import { tuple } from "@deaven/tuple";
+import { SyntaxErrorConstructor } from "../error/SyntaxError";
 
 export const vm = {
   properties: {
@@ -40,10 +42,25 @@ export const vm = {
               });
             })
           );
-          return evaluateCode(
-            unsafeCast<string>(unsafeCast<TESString>(args[0]).value),
-            evalExecContext
-          );
+          try {
+            return evaluateCode(
+              unsafeCast<string>(unsafeCast<TESString>(args[0]).value),
+              evalExecContext
+            );
+          } catch (err) {
+            if (err instanceof SyntaxError) {
+              const [
+                syntaxError,
+                afterErrorExecContext
+              ] = yield* createNewObjectFromConstructor(
+                SyntaxErrorConstructor,
+                [ESString(err.stack)],
+                evalExecContext
+              );
+              return tuple(ThrownValue(syntaxError), afterErrorExecContext);
+            }
+            throw err;
+          }
         }
       }
     }

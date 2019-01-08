@@ -8,7 +8,7 @@ export type TExecutionContext = {
       [identifier: string]: Any;
     };
     global: TESObject;
-    stdout: string;
+    stderr: string;
   };
 };
 

@@ -66,7 +66,7 @@ import {
 import { createFunction } from "./Function/Function";
 import { isNull } from "util";
 import { unsafeCast } from "./unsafeGet";
-import { TESObject, ESObject } from "./Object";
+import { ESObject, createNewObjectFromConstructor } from "./Object";
 import { coerceToBoolean, ESBoolean } from "./boolean/ESBoolean";
 import { tuple } from "@deaven/tuple";
 import assert = require("assert");
@@ -217,7 +217,7 @@ export const ProgramResolver: ASTResolver<Program, Any> = function*(
       Undefined,
       ExecutionContext({
         ...resultExecContext.value,
-        stdout: unsafeCast<TESString>(resultAsString).value
+        stderr: unsafeCast<TESString>(resultAsString).value
       })
     );
   }
@@ -423,8 +423,6 @@ export const NewExpressionResolver: ASTResolver<NewExpression, Any> = function*(
   expression,
   execContext
 ) {
-  const thisValue = ESObject({});
-
   let [calleeType, newExecContext] = yield evaluate(
     expression.callee,
     execContext
@@ -439,25 +437,10 @@ export const NewExpressionResolver: ASTResolver<NewExpression, Any> = function*(
     currExecContext = newExecContext;
   }
 
-  currExecContext = setCurrentThisValue(currExecContext, thisValue);
-
-  const [, afterCallExecContext] = evaluateThrowableIterator(
-    unsafeCast<FunctionBinding>(calleeType).function.implementation(
-      unsafeCast<FunctionBinding>(calleeType).self ||
-        currExecContext.value.global,
-      argsTypes,
-      currExecContext
-    )
-  );
-
-  return tuple(
-    ESObject({
-      ...unsafeCast<TESObject>(
-        unsafeCast<FunctionBinding>(calleeType).properties.prototype
-      ).properties,
-      ...unsafeCast<TESObject>(afterCallExecContext.value.thisValue).value
-    }),
-    afterCallExecContext
+  return yield* createNewObjectFromConstructor(
+    unsafeCast<FunctionBinding>(calleeType),
+    argsTypes,
+    currExecContext
   );
 };
 

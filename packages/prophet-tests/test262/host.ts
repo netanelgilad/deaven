@@ -16,8 +16,8 @@ function runTest() {
       testFileCode,
       nodeInitialExecutionContext
     );
-    if (execContext.value.stdout) {
-      process.stdout.write(execContext.value.stdout);
+    if (execContext.value.stderr) {
+      process.stderr.write(execContext.value.stderr);
     }
   } catch (err) {
     if (err instanceof CodeEvaluationError) {
@@ -30,4 +30,4 @@ function runTest() {
   }
 }
 
-isDebug ? setTimeout(runTest, 2000) : runTest;
+isDebug ? setTimeout(runTest, 2000) : runTest();

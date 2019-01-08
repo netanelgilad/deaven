@@ -2,7 +2,7 @@ import { evaluateCode } from "@deaven/prophet";
 import { nodeInitialExecutionContext } from "@deaven/prophet/lib";
 
 describe("errors", () => {
-  describe("should return an execContext with an stdout with an error message", () => {
+  describe("should return an execContext with an stderr with an error message", () => {
     test("when throw is a top level statement", () => {
       expect(
         evaluateCode(
@@ -10,7 +10,7 @@ describe("errors", () => {
         throw "hello"
       `,
           nodeInitialExecutionContext
-        )[1].value.stdout
+        )[1].value.stderr
       ).toEqual("hello");
     });
     test("when throw is a statement inside a called function", () => {
@@ -24,7 +24,7 @@ describe("errors", () => {
           foo()
       `,
           nodeInitialExecutionContext
-        )[1].value.stdout
+        )[1].value.stderr
       ).toEqual("hello");
     });
   });
