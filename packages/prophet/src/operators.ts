@@ -5,7 +5,8 @@ import {
   isESString,
   WithValue,
   ExpressionEvaluationResult,
-  isUndefined
+  isUndefined,
+  isESNumber
 } from "./types";
 import { ESString, TESString } from "./string/String";
 import { unsafeCast } from "./unsafeGet";
@@ -61,6 +62,14 @@ export function notExactEquality(left: Any, right: Any) {
     } else {
       return ESBoolean(true);
     }
+  }
+  if (
+    isESNumber(left) &&
+    typeof left.value === "number" &&
+    isESNumber(right) &&
+    typeof right.value === "number"
+  ) {
+    return ESBoolean(left.value !== right.value);
   }
   return ESBoolean(
     unsafeCast<WithValue<any>>(left).id !== unsafeCast<WithValue<any>>(right).id

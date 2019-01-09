@@ -8,7 +8,7 @@ const testFilesGlobs = [
   `language/statements/if/S12.5_A1.{1,2}_T{1,2}.js`,
   `language/statements/if/S12.5_A10_T{1,2}.js`,
   `language/statements/if/S12.5_A11.js`,
-  `language/statements/if/S12.5_A12_T{1,2,3}.js`
+  `language/statements/if/S12.5_A12_T{1,2,3,4}.js`
 ];
 
 const testRoot = join(dirname(require.resolve("test262/package.json")), "test");
