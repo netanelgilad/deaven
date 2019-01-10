@@ -31,7 +31,8 @@ import {
   NullLiteral,
   UpdateExpression,
   isIdentifier,
-  UnaryExpression
+  UnaryExpression,
+  CatchClause
 } from "@babel/types";
 import { ESString, TESString } from "./string/String";
 import {
@@ -466,7 +467,21 @@ export const TryStatementResolver = statementResolver<TryStatement>(function*(
   statement,
   execContext
 ) {
-  return evaluate(statement.block, execContext);
+  const tryBlockEvaluationResult = evaluate(statement.block, execContext);
+  if (isThrownValue(tryBlockEvaluationResult[0])) {
+    const preCatchHandlerExecContext = setVariableInScope(
+      tryBlockEvaluationResult[1],
+      unsafeCast<Identifier>(unsafeCast<CatchClause>(statement.handler).param)
+        .name,
+      tryBlockEvaluationResult[0].value
+    );
+    return evaluate(
+      unsafeCast<CatchClause>(statement.handler).body,
+      preCatchHandlerExecContext
+    );
+  }
+
+  return tryBlockEvaluationResult;
 });
 
 export const ThrowStatementResolver = statementResolver<ThrowStatement>(
