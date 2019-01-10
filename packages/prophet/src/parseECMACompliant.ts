@@ -15,7 +15,8 @@ export function parseECMACompliant(code: string): File {
         if (
           isFunctionDeclaration(path.consequent) ||
           (path.alternate && isFunctionDeclaration(path.alternate)) ||
-          isLabeledStatement(path.consequent)
+          isLabeledStatement(path.consequent) ||
+          (path.alternate && isLabeledStatement(path.alternate))
         ) {
           throw new SyntaxError();
         }
