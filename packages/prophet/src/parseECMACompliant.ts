@@ -3,7 +3,8 @@ import {
   File,
   traverse,
   isIfStatement,
-  isFunctionDeclaration
+  isFunctionDeclaration,
+  isLabeledStatement
 } from "@babel/types";
 
 export function parseECMACompliant(code: string): File {
@@ -13,7 +14,8 @@ export function parseECMACompliant(code: string): File {
       if (isIfStatement(path)) {
         if (
           isFunctionDeclaration(path.consequent) ||
-          (path.alternate && isFunctionDeclaration(path.alternate))
+          (path.alternate && isFunctionDeclaration(path.alternate)) ||
+          isLabeledStatement(path.consequent)
         ) {
           throw new SyntaxError();
         }
