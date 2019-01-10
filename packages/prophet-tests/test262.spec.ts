@@ -4,14 +4,7 @@ import { spawnSync } from "child_process";
 import { moveSync } from "fs-extra";
 import { sync as rimrafSync } from "rimraf";
 
-const testFilesGlobs = [
-  `language/statements/if/S12.5_A1.{1,2}_T{1,2}.js`,
-  `language/statements/if/S12.5_A10_T{1,2}.js`,
-  `language/statements/if/S12.5_A11.js`,
-  `language/statements/if/S12.5_A12_T{1,2,3,4}.js`,
-  `language/statements/if/S12.5_A1_T{1,2}.js`,
-  `language/statements/if/S12.5_A{2,3}.js`
-];
+const testFilesGlobs = [`language/statements/if/S12.5*.js`];
 
 const testRoot = join(dirname(require.resolve("test262/package.json")), "test");
 

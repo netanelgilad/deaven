@@ -71,6 +71,16 @@ export function notExactEquality(left: Any, right: Any) {
   ) {
     return ESBoolean(left.value !== right.value);
   }
+
+  if (
+    isESString(left) &&
+    typeof left.value === "string" &&
+    isESString(right) &&
+    typeof right.value === "string"
+  ) {
+    return ESBoolean(left.value !== right.value);
+  }
+
   return ESBoolean(
     unsafeCast<WithValue<any>>(left).id !== unsafeCast<WithValue<any>>(right).id
   );
