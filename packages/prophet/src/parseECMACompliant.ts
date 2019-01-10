@@ -11,7 +11,10 @@ export function parseECMACompliant(code: string): File {
   traverse(ast, {
     enter(path) {
       if (isIfStatement(path)) {
-        if (isFunctionDeclaration(path.consequent)) {
+        if (
+          isFunctionDeclaration(path.consequent) ||
+          (path.alternate && isFunctionDeclaration(path.alternate))
+        ) {
           throw new SyntaxError();
         }
       }
