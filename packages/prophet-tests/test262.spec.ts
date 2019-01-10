@@ -4,7 +4,10 @@ import { spawnSync } from "child_process";
 import { moveSync } from "fs-extra";
 import { sync as rimrafSync } from "rimraf";
 
-const testFilesGlobs = [`language/statements/if/S12.5*.js`];
+const testFilesGlobs = [
+  `language/statements/if/S12.5*.js`,
+  "language/statements/if/if-async-fun-else-async-fun.js"
+];
 
 const testRoot = join(dirname(require.resolve("test262/package.json")), "test");
 

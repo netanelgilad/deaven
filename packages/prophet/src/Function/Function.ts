@@ -7,7 +7,6 @@ import {
   isReturnValue,
   EvaluationResult
 } from "../types";
-import { parse } from "@babel/parser";
 import {
   ExpressionStatement,
   ArrowFunctionExpression,
@@ -24,6 +23,7 @@ import { evaluate } from "../evaluate";
 import { unsafeCast } from "../unsafeGet";
 import { ESObject } from "../Object";
 import { tuple } from "@deaven/tuple";
+import { parseECMACompliant } from "../parseECMACompliant";
 
 export function ESFunction(implementation: FunctionImplementation) {
   return {
@@ -46,7 +46,7 @@ export const FunctionConstructor = ESFunction(function*(
   args: Any[],
   execContext: TExecutionContext
 ) {
-  const blockStatement = ((parse(
+  const blockStatement = ((parseECMACompliant(
     `() => {${unsafeCast<TESString>(args[0]).value as string}}`
   ).program.body[0] as ExpressionStatement)
     .expression as ArrowFunctionExpression).body as BlockStatement;

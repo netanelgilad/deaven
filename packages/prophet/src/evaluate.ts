@@ -11,8 +11,9 @@ import {
   TExecutionContext,
   ExecutionContext
 } from "./execution-context/ExecutionContext";
-import { parseExpression, parse } from "@babel/parser";
+import { parseExpression } from "@babel/parser";
 import { unsafeCast } from "./unsafeGet";
+import { parseECMACompliant } from "./parseECMACompliant";
 
 export class ASTEvaluationError extends Error {
   constructor(err: Error, public ast: Node) {
@@ -57,7 +58,7 @@ export function evaluate<T extends Node>(
 
 export function evaluateCode(code: string, execContext: TExecutionContext) {
   try {
-    return evaluate(parse(code), execContext);
+    return evaluate(parseECMACompliant(code), execContext);
   } catch (err) {
     if (err instanceof CodeEvaluationError) {
       throw err;

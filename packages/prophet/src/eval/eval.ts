@@ -4,9 +4,9 @@ import { Any, Undefined } from "../types";
 import { tuple } from "@deaven/tuple";
 import { TESString } from "../string/String";
 import { unsafeCast } from "../unsafeGet";
-import { parse } from "@babel/parser";
 import { evaluate } from "../evaluate";
 import { isExpressionStatement } from "@babel/types";
+import { parseECMACompliant } from "../parseECMACompliant";
 
 export const evalFn = ESFunction(function*(
   _self: Any,
@@ -14,7 +14,7 @@ export const evalFn = ESFunction(function*(
   execContext: TExecutionContext
 ) {
   const source = unsafeCast<string>(unsafeCast<TESString>(args[0]).value);
-  const parsedSource = parse(source);
+  const parsedSource = parseECMACompliant(source);
   const statements = parsedSource.program.body;
 
   let currentEvaluationResult = tuple(Undefined, execContext);
