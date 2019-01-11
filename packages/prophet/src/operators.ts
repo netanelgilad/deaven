@@ -7,7 +7,9 @@ import {
   ExpressionEvaluationResult,
   isUndefined,
   isESNumber,
-  ESNumber
+  ESNumber,
+  isESBoolean,
+  Type
 } from "./types";
 import { ESString, TESString } from "./string/String";
 import { unsafeCast } from "./unsafeGet";
@@ -105,6 +107,15 @@ export function notExactEquality(left: Any, right: Any) {
     return ESBoolean(left.value !== right.value);
   }
 
+  if (
+    isESBoolean(left) &&
+    typeof left.value === "boolean" &&
+    isESBoolean(right) &&
+    typeof right.value === "boolean"
+  ) {
+    return ESBoolean(left.value !== right.value);
+  }
+
   return ESBoolean(
     unsafeCast<WithValue<any>>(left).id !== unsafeCast<WithValue<any>>(right).id
   );
@@ -149,6 +160,19 @@ export const logicalOr = _<LogicalOperatorResolver>(function*(
   return unimplemented();
 });
 
+export const equal = _<BinaryOperatorResolver>((left, right) => {
+  if (
+    isESBoolean(left) &&
+    typeof left.value === "boolean" &&
+    isESBoolean(right) &&
+    typeof right.value === "boolean"
+  ) {
+    return ESBoolean(left.value == right.value);
+  }
+
+  return unimplemented();
+});
+
 export const notEqual = _<BinaryOperatorResolver>((left, right) => {
   return ESBoolean(
     unsafeCast<TESNumber>(left).value != unsafeCast<TESNumber>(right).value
@@ -164,13 +188,18 @@ export const not = _<UnaryOperatorResolver>((arg, execContext) => {
   return unimplemented();
 });
 
+export const typeOf = _<UnaryOperatorResolver>((arg, execContext) => {
+  return tuple(ESString(unsafeCast<Type<string>>(arg).type), execContext);
+});
+
 export const BinaryOperatorResolvers = new Map<string, BinaryOperatorResolver>([
   [">", greaterThan],
   ["+", plus],
   ["-", minus],
   ["===", exactEquality],
   ["!==", notExactEquality],
-  ["!=", notEqual]
+  ["!=", notEqual],
+  ["==", equal]
 ]);
 
 export const LogicalOperatorResolvers = new Map<
@@ -179,5 +208,6 @@ export const LogicalOperatorResolvers = new Map<
 >([["&&", logicalAnd], ["||", logicalOr]]);
 
 export const UnaryOperatorResolvers = new Map<string, UnaryOperatorResolver>([
-  ["!", not]
+  ["!", not],
+  ["typeof", typeOf]
 ]);
