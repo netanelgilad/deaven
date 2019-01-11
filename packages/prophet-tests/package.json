@@ -8,7 +8,6 @@
   },
   "dependencies": {
     "@babel/code-frame": "^7.0.0",
-    "@babel/parser": "^7.2.0",
     "@deaven/prophet": "^0.1.0",
     "@types/babel__code-frame": "^7.0.0",
     "globby": "^8.0.1",

@@ -8,14 +8,6 @@ import {
   EvaluationResult
 } from "../types";
 import {
-  ExpressionStatement,
-  ArrowFunctionExpression,
-  BlockStatement,
-  LVal,
-  Identifier,
-  Statement
-} from "@babel/types";
-import {
   TExecutionContext,
   setVariableInScope
 } from "../execution-context/ExecutionContext";
@@ -24,6 +16,7 @@ import { unsafeCast } from "../unsafeGet";
 import { ESObject } from "../Object";
 import { tuple } from "@deaven/tuple";
 import { parseECMACompliant } from "../parseECMACompliant";
+import { ESTree } from "cherow";
 
 export function ESFunction(implementation: FunctionImplementation) {
   return {
@@ -48,15 +41,19 @@ export const FunctionConstructor = ESFunction(function*(
 ) {
   const blockStatement = ((parseECMACompliant(
     `() => {${unsafeCast<TESString>(args[0]).value as string}}`
-  ).program.body[0] as ExpressionStatement)
-    .expression as ArrowFunctionExpression).body as BlockStatement;
+  ).body[0] as ESTree.ExpressionStatement)
+    .expression as ESTree.ArrowFunctionExpression)
+    .body as ESTree.BlockStatement;
   return [createFunction(blockStatement.body, []), execContext] as [
     FunctionBinding,
     TExecutionContext
   ];
 });
 
-export function createFunction(statements: Statement[], params: Array<LVal>) {
+export function createFunction(
+  statements: ESTree.Statement[],
+  params: Array<ESTree.Pattern>
+) {
   return {
     type: "function",
     properties: {
@@ -72,7 +69,7 @@ export function createFunction(statements: Statement[], params: Array<LVal>) {
           (prevContext, parameter, index) =>
             setVariableInScope(
               prevContext,
-              unsafeCast<Identifier>(parameter).name,
+              unsafeCast<ESTree.Identifier>(parameter).name,
               args[index]
             ),
           execContext

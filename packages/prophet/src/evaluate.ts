@@ -4,19 +4,18 @@ import {
   isReturnValue,
   ExpressionEvaluationResult
 } from "./types";
-import { Node, Expression } from "@babel/types";
 import { ASTResolvers } from "./ASTResolvers";
 import * as assert from "assert";
 import {
   TExecutionContext,
   ExecutionContext
 } from "./execution-context/ExecutionContext";
-import { parseExpression } from "@babel/parser";
 import { unsafeCast } from "./unsafeGet";
 import { parseECMACompliant } from "./parseECMACompliant";
+import { ESTree, parseScript } from "cherow";
 
 export class ASTEvaluationError extends Error {
-  constructor(err: Error, public ast: Node) {
+  constructor(err: Error, public ast: ESTree.Node) {
     super(err.message);
     this.stack = err.stack;
   }
@@ -29,11 +28,13 @@ export class CodeEvaluationError extends ASTEvaluationError {
   }
 }
 
-export type NodeEvaluationResult<T extends Node> = T extends Expression
+export type NodeEvaluationResult<
+  T extends ESTree.Node
+> = T extends ESTree.Expression
   ? [ExpressionEvaluationResult, TExecutionContext]
   : [EvaluationResult, TExecutionContext];
 
-export function evaluate<T extends Node>(
+export function evaluate<T extends ESTree.Node>(
   ast: T,
   execContext: TExecutionContext
 ): NodeEvaluationResult<T> {
@@ -73,7 +74,7 @@ export function evaluateCodeAsExpression(
   code: string,
   execContext: TExecutionContext
 ) {
-  return evaluate(parseExpression(code), execContext);
+  return evaluate(parseScript(code), execContext);
 }
 
 export function evaluateThrowableIterator<

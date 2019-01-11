@@ -7,7 +7,9 @@ import { sync as rimrafSync } from "rimraf";
 const testFilesGlobs = [
   `language/statements/if/S12.5*.js`,
   "language/statements/if/if-{async,cls,const,decl,fun,gen,let,stmt}-*.js",
-  "language/statements/if/labelled-fn-stmt-*.js"
+  "language/statements/if/labelled-fn-stmt-*.js",
+  "language/statements/if/let-array-with-newline.js",
+  "language/statements/if/let-block-with-newline.js"
 ];
 
 const testRoot = join(dirname(require.resolve("test262/package.json")), "test");

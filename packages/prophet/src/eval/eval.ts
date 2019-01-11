@@ -5,7 +5,6 @@ import { tuple } from "@deaven/tuple";
 import { TESString } from "../string/String";
 import { unsafeCast } from "../unsafeGet";
 import { evaluate } from "../evaluate";
-import { isExpressionStatement } from "@babel/types";
 import { parseECMACompliant } from "../parseECMACompliant";
 
 export const evalFn = ESFunction(function*(
@@ -15,7 +14,7 @@ export const evalFn = ESFunction(function*(
 ) {
   const source = unsafeCast<string>(unsafeCast<TESString>(args[0]).value);
   const parsedSource = parseECMACompliant(source);
-  const statements = parsedSource.program.body;
+  const statements = parsedSource.body;
 
   let currentEvaluationResult = tuple(Undefined, execContext);
   for (const statement of statements.slice(0, statements.length - 1)) {
@@ -27,7 +26,7 @@ export const evalFn = ESFunction(function*(
 
   const lastStatement = statements[statements.length - 1];
 
-  if (isExpressionStatement(lastStatement)) {
+  if (lastStatement.type === "ExpressionStatement") {
     return evaluate(lastStatement.expression, currentEvaluationResult[1]);
   }
 

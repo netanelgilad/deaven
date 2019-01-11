@@ -2,7 +2,6 @@ import { isObject, keys } from "lodash";
 import { TESString } from "./string/String";
 import { TExecutionContext } from "./execution-context/ExecutionContext";
 import { TESObject } from "./Object";
-import { NumberLiteral } from "@babel/types";
 import { unsafeCast } from "./unsafeGet";
 
 export const NotANumber = {};
@@ -144,7 +143,6 @@ export type Any =
   | TESString
   | typeof Number
   | TESUndefined
-  | NumberLiteral
   | GreaterThanEquals
   | Function
   | TESObject

@@ -7,11 +7,10 @@
     "test": "jest"
   },
   "dependencies": {
-    "@babel/parser": "^7.2.0",
-    "@babel/types": "^7.2.0",
     "@deaven/bottomdash": "^1.0.0",
-    "@deaven/unimplemented": "^0.1.0",
     "@deaven/tuple": "^1.0.0",
+    "@deaven/unimplemented": "^0.1.0",
+    "cherow": "1.5.4",
     "immer": "^1.9.3",
     "lodash": "^4.17.10"
   },

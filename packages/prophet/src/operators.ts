@@ -11,12 +11,12 @@ import {
 import { ESString, TESString } from "./string/String";
 import { unsafeCast } from "./unsafeGet";
 import { ESBoolean, coerceToBoolean } from "./boolean/ESBoolean";
-import { Expression } from "@babel/types";
 import { TExecutionContext } from "./execution-context/ExecutionContext";
 import { _ } from "@deaven/bottomdash";
 import { evaluate } from "./evaluate";
 import { unimplemented } from "@deaven/unimplemented";
 import { tuple } from "@deaven/tuple";
+import { ESTree } from "cherow";
 
 export type BinaryOperatorResolver = (left: Any, right: Any) => Any;
 export type UnaryOperatorResolver = (
@@ -24,8 +24,8 @@ export type UnaryOperatorResolver = (
   execContext: TExecutionContext
 ) => [Any, TExecutionContext];
 export type LogicalOperatorResolver = (
-  left: Expression,
-  right: Expression,
+  left: ESTree.Expression,
+  right: ESTree.Expression,
   execContext: TExecutionContext
 ) => IterableIterator<[ExpressionEvaluationResult, TExecutionContext]>;
 
