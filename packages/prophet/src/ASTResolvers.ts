@@ -302,7 +302,18 @@ export const FunctionExpressionResolver: ASTResolver<
   ESTree.FunctionExpression,
   FunctionBinding
 > = function*(ast, execContext) {
-  return tuple(createFunction(ast.body.body, ast.params), execContext);
+  const functionType = createFunction(ast.body.body, ast.params);
+
+  return tuple(
+    functionType,
+    ast.id
+      ? setVariableInScope(
+          execContext,
+          unsafeCast<ESTree.Identifier>(ast.id).name,
+          functionType
+        )
+      : execContext
+  );
 };
 
 export const ExpressionStatementResolver = statementResolver<
