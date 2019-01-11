@@ -6,7 +6,8 @@ import {
   WithValue,
   ExpressionEvaluationResult,
   isUndefined,
-  isESNumber
+  isESNumber,
+  ESNumber
 } from "./types";
 import { ESString, TESString } from "./string/String";
 import { unsafeCast } from "./unsafeGet";
@@ -37,6 +38,19 @@ export function plus(left: Any, right: Any) {
     return ESString(left.value + "true");
   }
   return ESString([unsafeCast<TESString>(left), unsafeCast<TESString>(right)]);
+}
+
+export function minus(left: Any, right: Any) {
+  if (
+    isESNumber(left) &&
+    typeof left.value === "number" &&
+    isESNumber(right) &&
+    typeof right.value === "number"
+  ) {
+    return ESNumber(left.value - right.value);
+  }
+
+  return unimplemented();
 }
 
 export function greaterThan(left: Any, right: Any) {
@@ -153,6 +167,7 @@ export const not = _<UnaryOperatorResolver>((arg, execContext) => {
 export const BinaryOperatorResolvers = new Map<string, BinaryOperatorResolver>([
   [">", greaterThan],
   ["+", plus],
+  ["-", minus],
   ["===", exactEquality],
   ["!==", notExactEquality],
   ["!=", notEqual]
