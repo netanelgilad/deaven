@@ -50,6 +50,16 @@ export function exactEquality(left: Any, right: Any) {
   if (isUndefined(left) && isUndefined(right)) {
     return ESBoolean(true);
   }
+
+  if (
+    isESNumber(left) &&
+    typeof left.value === "number" &&
+    isESNumber(right) &&
+    typeof right.value === "number"
+  ) {
+    return ESBoolean(left.value === right.value);
+  }
+
   return ESBoolean(
     unsafeCast<WithValue<any>>(left).id === unsafeCast<WithValue<any>>(right).id
   );
