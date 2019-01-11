@@ -1,11 +1,8 @@
 const { spawnSync } = require("child_process");
 
-const tsNodePath = require.resolve("ts-node/register");
 const result = spawnSync("node", [
-  "-r",
-  tsNodePath,
   "--inspect",
-  require.resolve("./host.ts"),
+  require.resolve("./host"),
   process.argv[2]
 ]);
 
