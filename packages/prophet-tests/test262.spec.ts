@@ -62,6 +62,8 @@ function runTest262(testFile: string) {
       "--hostPath",
       process.execPath,
       "--hostArgs=--no-warnings",
+      "--hostArgs=-r",
+      "--hostArgs=source-map-support/register",
       "--hostArgs",
       isDebug ? debugHostPath : hostPath,
       ...(isDebug ? ["--timeout", "99999999"] : []),

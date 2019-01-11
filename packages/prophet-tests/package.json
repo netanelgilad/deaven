@@ -11,6 +11,7 @@
     "@deaven/prophet": "^0.1.0",
     "@types/babel__code-frame": "^7.0.0",
     "globby": "^8.0.1",
+    "source-map-support": "^0.5.9",
     "test262": "https://github.com/tc39/test262",
     "test262-harness": "^5.0.0"
   },
