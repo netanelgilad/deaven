@@ -1,10 +1,10 @@
-import { readFileSync } from "fs";
-import {
+const { readFileSync } = require("fs");
+const {
   nodeInitialExecutionContext,
   evaluateCode,
   CodeEvaluationError
-} from "@deaven/prophet";
-import { codeFrameColumns } from "@babel/code-frame";
+} = require("@deaven/prophet");
+const { codeFrameColumns } = require("@babel/code-frame");
 
 const argv = process.execArgv.join();
 const isDebug = argv.includes("inspect") || argv.includes("debug");
@@ -21,8 +21,8 @@ function runTest() {
     }
   } catch (err) {
     if (err instanceof CodeEvaluationError) {
-      const codeFrame = codeFrameColumns(err.code, err.ast.loc!, {});
-      console.log(err.stack!.split("\n").join("       "));
+      const codeFrame = codeFrameColumns(err.code, err.ast.loc, {});
+      console.log(err.stack.split("\n").join("       "));
       console.log(codeFrame.split("\n").join("       "));
     } else {
       throw new Error(err.stack.split("\n").join("       "));

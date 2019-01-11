@@ -49,7 +49,6 @@ afterAll(() => {
 
 function runTest262(testFile: string) {
   const test262HarnessBin = require.resolve("test262-harness/bin/run");
-  const tsNodePath = require.resolve("ts-node/register");
   const debugHostPath = require.resolve("./test262/debug-host");
   const hostPath = require.resolve("./test262/host");
   const argv = process.execArgv.join();
@@ -64,8 +63,6 @@ function runTest262(testFile: string) {
       "--hostPath",
       process.execPath,
       "--hostArgs=--no-warnings",
-      "--hostArgs=-r",
-      `--hostArgs=${tsNodePath}`,
       "--hostArgs",
       isDebug ? debugHostPath : hostPath,
       ...(isDebug ? ["--timeout", "99999999"] : []),
