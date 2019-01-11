@@ -123,7 +123,7 @@ export const CallExpressionResolver: ASTResolver<
   let argsTypes: Any[] = [];
 
   for (const argAST of ast.arguments) {
-    const [argType, newExecContext] = yield evaluate(argAST, execContext);
+    const [argType, newExecContext] = yield evaluate(argAST, currExecContext);
     argsTypes = [...argsTypes, argType];
     currExecContext = newExecContext;
   }
