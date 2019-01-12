@@ -9,7 +9,8 @@ const testFilesGlobs = [
   "language/statements/if/if-{async,cls,const,decl,fun,gen,let,stmt}-*.js",
   "language/statements/if/labelled-fn-stmt-*.js",
   "language/statements/if/let-*-with-newline.js",
-  "language/types/boolean/S8.3_A{3,1_T{1,2}}.js"
+  "language/types/boolean/S8.3_A{3,1_T{1,2}}.js",
+  "built-ins/Boolean/S15.6.1.1_A1_T1.js"
 ];
 
 const testRoot = join(dirname(require.resolve("test262/package.json")), "test");

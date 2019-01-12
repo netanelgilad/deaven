@@ -6,7 +6,8 @@ import {
   isESNumber,
   isESNull,
   isUndefined,
-  isESString
+  isESString,
+  Undefined
 } from "../types";
 import { unimplemented } from "../../../unimplemented";
 import { isESObject } from "../Object";
@@ -63,5 +64,8 @@ export const ESBooleanConstructor = ESFunction(function*(
   args: Any[],
   execContext
 ) {
-  return [args[0], execContext] as [Any, TExecutionContext];
+  return [coerceToBoolean(args[0] || Undefined), execContext] as [
+    Any,
+    TExecutionContext
+  ];
 });
