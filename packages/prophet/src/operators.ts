@@ -9,7 +9,8 @@ import {
   isESNumber,
   ESNumber,
   isESBoolean,
-  Type
+  Type,
+  Undefined
 } from "./types";
 import { ESString, TESString } from "./string/String";
 import { unsafeCast } from "./unsafeGet";
@@ -199,6 +200,10 @@ export const unaryMinus = _<UnaryOperatorResolver>((arg, execContext) => {
   );
 });
 
+export const unaryVoid = _<UnaryOperatorResolver>((_, execContext) => {
+  return tuple(Undefined, execContext);
+});
+
 export const BinaryOperatorResolvers = new Map<string, BinaryOperatorResolver>([
   [">", greaterThan],
   ["+", plus],
@@ -217,5 +222,6 @@ export const LogicalOperatorResolvers = new Map<
 export const UnaryOperatorResolvers = new Map<string, UnaryOperatorResolver>([
   ["!", not],
   ["-", unaryMinus],
-  ["typeof", typeOf]
+  ["typeof", typeOf],
+  ["void", unaryVoid]
 ]);
