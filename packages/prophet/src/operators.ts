@@ -192,6 +192,13 @@ export const typeOf = _<UnaryOperatorResolver>((arg, execContext) => {
   return tuple(ESString(unsafeCast<Type<string>>(arg).type), execContext);
 });
 
+export const unaryMinus = _<UnaryOperatorResolver>((arg, execContext) => {
+  return tuple(
+    ESNumber(-unsafeCast<number>(unsafeCast<TESNumber>(arg).value)),
+    execContext
+  );
+});
+
 export const BinaryOperatorResolvers = new Map<string, BinaryOperatorResolver>([
   [">", greaterThan],
   ["+", plus],
@@ -209,5 +216,6 @@ export const LogicalOperatorResolvers = new Map<
 
 export const UnaryOperatorResolvers = new Map<string, UnaryOperatorResolver>([
   ["!", not],
+  ["-", unaryMinus],
   ["typeof", typeOf]
 ]);
