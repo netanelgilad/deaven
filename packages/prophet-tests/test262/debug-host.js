@@ -1,6 +1,8 @@
 const { spawnSync } = require("child_process");
 
 const result = spawnSync("node", [
+  "-r",
+  "source-map-support/register",
   "--inspect",
   require.resolve("./host"),
   process.argv[2]
