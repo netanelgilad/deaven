@@ -2,7 +2,7 @@ import { isObject, keys } from "lodash";
 import { TESString } from "./string/String";
 import { TExecutionContext } from "./execution-context/ExecutionContext";
 import { TESObject } from "./Object";
-import { unsafeCast } from "./unsafeGet";
+import { unsafeCast } from "@deaven/unsafe-cast";
 
 export const NotANumber = {};
 export const Number = {};

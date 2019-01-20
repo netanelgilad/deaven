@@ -1,7 +1,7 @@
 import { reverse } from "./reverse";
 import { join } from "./join";
 import { Number, TESNumber, GreaterThanEquals } from "../types";
-import { unsafeCast } from "../unsafeGet";
+import { unsafeCast } from "@deaven/unsafe-cast";
 
 export type TArray<T> = {
   value?: Array<T> | Array<TArray<T>>;

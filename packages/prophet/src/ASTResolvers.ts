@@ -28,7 +28,7 @@ import {
 } from "./execution-context/ExecutionContext";
 import { createFunction } from "./Function/Function";
 import { isNull } from "util";
-import { unsafeCast } from "./unsafeGet";
+import { unsafeCast } from "@deaven/unsafe-cast";
 import { ESObject, createNewObjectFromConstructor } from "./Object";
 import { coerceToBoolean, ESBoolean } from "./boolean/ESBoolean";
 import { tuple } from "@deaven/tuple";

@@ -12,7 +12,7 @@ import {
   setVariableInScope
 } from "../execution-context/ExecutionContext";
 import { evaluate } from "../evaluate";
-import { unsafeCast } from "../unsafeGet";
+import { unsafeCast } from "@deaven/unsafe-cast";
 import { ESObject } from "../Object";
 import { tuple } from "@deaven/tuple";
 import { parseECMACompliant } from "../parseECMACompliant";

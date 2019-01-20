@@ -1,7 +1,7 @@
 import { ESFunction } from "../Function/Function";
 import { TExecutionContext } from "../execution-context/ExecutionContext";
 import { Any, WithProperties, Undefined } from "../types";
-import { unsafeCast } from "../unsafeGet";
+import { unsafeCast } from "@deaven/unsafe-cast";
 import { tuple } from "@deaven/tuple";
 
 export const SyntaxErrorConstructor = ESFunction(function*(

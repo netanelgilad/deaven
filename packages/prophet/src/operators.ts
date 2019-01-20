@@ -13,7 +13,7 @@ import {
   Undefined
 } from "./types";
 import { ESString, TESString } from "./string/String";
-import { unsafeCast } from "./unsafeGet";
+import { unsafeCast } from "@deaven/unsafe-cast";
 import { ESBoolean, coerceToBoolean } from "./boolean/ESBoolean";
 import { TExecutionContext } from "./execution-context/ExecutionContext";
 import { _ } from "@deaven/bottomdash";

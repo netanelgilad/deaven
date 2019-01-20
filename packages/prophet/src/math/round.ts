@@ -1,6 +1,6 @@
 import { Any, isESString, NotANumber, TESNumber } from "../types";
 import { TExecutionContext } from "../execution-context/ExecutionContext";
-import { unsafeCast } from "../unsafeGet";
+import { unsafeCast } from "@deaven/unsafe-cast";
 
 export function* round(
   _self: any,

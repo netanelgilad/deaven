@@ -10,7 +10,7 @@ import {
   TExecutionContext,
   ExecutionContext
 } from "./execution-context/ExecutionContext";
-import { unsafeCast } from "./unsafeGet";
+import { unsafeCast } from "@deaven/unsafe-cast";
 import { parseECMACompliant } from "./parseECMACompliant";
 import { ESTree, parseScript } from "cherow";
 
