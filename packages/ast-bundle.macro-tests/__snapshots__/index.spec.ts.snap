@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`macros 1. macros: 1. macros 1`] = `
+"
+import bundle from '@deaven/ast-bundle.macro'
+
+async function sleep(timeout: number) {
+  await new Promise(resolve => setTimeout(resolve, timeout));
+}
+
+bundle(sleep)
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+\\"use strict\\";
+
+\\"async function sleep(timeout: number) {\\\\n  await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\";
+"
+`;

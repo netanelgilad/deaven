@@ -3,7 +3,8 @@
   "version": "",
   "private": true,
   "workspaces": [
-    "packages/**"
+    "packages/**",
+    "external-types/**"
   ],
   "scripts": {
     "clean": "rm -rf ./node_modules && rm -rf ./packages/*/node_modules"
