@@ -1,1 +1,2 @@
-export * from "./lib/index";
+declare const astBundle: (ast: any) => string;
+export default astBundle;
