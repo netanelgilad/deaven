@@ -35,6 +35,6 @@ export class HookComponent {
   render(
     renderer?: (...args: any[]) => JSX.Element | null
   ): JSX.Element | null {
-    return renderer ? this._render(renderer, this.compositions) : null;
+    return this._render(renderer || (() => null), this.compositions);
   }
 }
