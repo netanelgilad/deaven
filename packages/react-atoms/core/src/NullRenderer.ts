@@ -1,4 +1,6 @@
 import * as ReactReconciler from "react-reconciler";
+import { useRef } from "./Ref";
+import { useEffect } from "./Effect";
 
 const rootHostContext = {};
 const childHostContext = {};
@@ -37,3 +39,26 @@ const hostConfig = {
 };
 
 export const NullRenderer = ReactReconciler(hostConfig as any);
+
+export function Renderer(props: { element: Element }) {
+  return useRef(undefined)
+    .compose(ref =>
+      useEffect(() => {
+        ref.current = NullRenderer.createContainer({}, false, false);
+      }, [])
+    )
+    .compose(ref =>
+      useEffect(
+        () => {
+          NullRenderer.updateContainer(
+            props.element,
+            ref.current,
+            null,
+            () => {}
+          );
+        },
+        [props.element]
+      )
+    )
+    .render();
+}
