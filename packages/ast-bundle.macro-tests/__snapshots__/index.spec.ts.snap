@@ -17,3 +17,46 @@ bundle(sleep)
 \\"async function sleep(timeout: number) {\\\\n  await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\";
 "
 `;
+
+exports[`macros 2. macros: 2. macros 1`] = `
+"
+import astBundle from \\"@deaven/ast-bundle.macro\\";
+import { ConsoleLog } from \\"./ConsoleLog\\";
+import { Tuple } from \\"@deaven/react-atoms.core\\";
+
+async function sleep(timeout: number) {
+  await new Promise(resolve => setTimeout(resolve, timeout));
+}
+
+export default function Project() {
+  return Tuple(
+    ConsoleLog({ message: \\"Title 1\\" }),
+    ConsoleLog({ message: \\"Hello World 15\\" }),
+    ConsoleLog({ message: astBundle(sleep) })
+  );
+}
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+\\"use strict\\";
+
+Object.defineProperty(exports, \\"__esModule\\", {
+  value: true
+});
+exports.default = Project;
+
+var _ConsoleLog = require(\\"./ConsoleLog\\");
+
+var _reactAtoms = require(\\"@deaven/react-atoms.core\\");
+
+function Project() {
+  return (0, _reactAtoms.Tuple)((0, _ConsoleLog.ConsoleLog)({
+    message: \\"Title 1\\"
+  }), (0, _ConsoleLog.ConsoleLog)({
+    message: \\"Hello World 15\\"
+  }), (0, _ConsoleLog.ConsoleLog)({
+    message: \\"async function sleep(timeout: number) {\\\\n  await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\"
+  }));
+}
+"
+`;
