@@ -22,12 +22,10 @@ export class HookComponent {
       return this.hookFn(renderer);
     } else {
       return this._render((...args) => {
-        const current = compositions[compositions.length - 1];
         const current = compositions[0];
         return current(...args).render((...args2: any[]) => {
           return renderer(...args, ...args2);
         });
-      }, compositions.slice(0, compositions.length - 1));
       }, compositions.slice(1));
     }
   }
