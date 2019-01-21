@@ -17,6 +17,10 @@ export class EffectAsClass extends React.Component<EffectProps, {}> {
   }
 
   componentDidUpdate(prevProps: EffectProps) {
+    if (this.props.inputs && this.props.inputs.length === 0) {
+      return;
+    }
+
     if (this.props.inputs && prevProps.inputs) {
       if (prevProps.inputs[0] !== this.props.inputs[0]) {
         this.props.doFn();
