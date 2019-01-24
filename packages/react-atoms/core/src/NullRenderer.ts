@@ -43,11 +43,6 @@ export const NullRenderer = ReactReconciler(hostConfig as any);
 export function Renderer(props: { element: Element }) {
   return useRef(undefined)
     .compose(ref =>
-      useEffect(() => {
-        ref.current = NullRenderer.createContainer({}, false, false);
-      }, [])
-    )
-    .compose(ref =>
       useEffect(
         () => {
           NullRenderer.updateContainer(
@@ -59,6 +54,11 @@ export function Renderer(props: { element: Element }) {
         },
         [props.element]
       )
+    )
+    .compose(ref =>
+      useEffect(() => {
+        ref.current = NullRenderer.createContainer({}, false, false);
+      }, [])
     )
     .render();
 }
