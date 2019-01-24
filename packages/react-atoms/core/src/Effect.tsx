@@ -38,7 +38,11 @@ export class EffectAsClass extends React.Component<EffectProps, {}> {
     }
 
     if (this.props.inputs && prevProps.inputs) {
-      if (prevProps.inputs[0] !== this.props.inputs[0]) {
+      if (
+        prevProps.inputs.some(
+          (input, index) => input !== this.props.inputs![index]
+        )
+      ) {
         this.runDoFn();
       }
     } else {
