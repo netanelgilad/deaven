@@ -5,6 +5,8 @@ export * from "./State";
 export * from "./Effect";
 export * from "./Ref";
 export * from "./NullRenderer";
+export * from "./Context";
+export * from "./usePrevious";
 
 export function Tuple<T extends React.ReactNode[]>(...props: T) {
   return React.createElement(React.Fragment, null, ...props);
