@@ -3,7 +3,7 @@ export class HookComponent {
   hookFn: any;
 
   constructor(
-    hookFn: ((renderer: () => JSX.Element | null) => JSX.Element | null),
+    hookFn: ((renderer: () => JSX.Element) => JSX.Element),
     compositions: Array<(...args: any[]) => HookComponent> = []
   ) {
     this.hookFn = hookFn;
@@ -15,9 +15,9 @@ export class HookComponent {
   }
 
   private _render(
-    renderer: (...args: any[]) => JSX.Element | null,
+    renderer: (...args: any[]) => JSX.Element,
     compositions: Array<(...args: any[]) => HookComponent>
-  ): JSX.Element | null {
+  ): JSX.Element {
     if (compositions.length === 0) {
       return this.hookFn(renderer);
     } else {
@@ -30,9 +30,10 @@ export class HookComponent {
     }
   }
 
-  render(
-    renderer?: (...args: any[]) => JSX.Element | null
-  ): JSX.Element | null {
-    return this._render(renderer || (() => null), this.compositions);
+  render(renderer?: (...args: any[]) => JSX.Element): JSX.Element {
+    return this._render(
+      renderer || (() => (null as unknown) as JSX.Element),
+      this.compositions
+    );
   }
 }

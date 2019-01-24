@@ -1,7 +1,7 @@
 import * as React from "react";
 import { HookComponent } from "./HookComponent";
 
-export type EffectRenderer = () => JSX.Element | null;
+export type EffectRenderer = () => JSX.Element;
 
 export type EffectCleanup = (() => void) | void;
 
