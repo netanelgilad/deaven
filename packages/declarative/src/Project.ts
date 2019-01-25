@@ -7,6 +7,8 @@ async function sleep(timeout: number) {
   await new Promise(resolve => setTimeout(resolve, timeout));
 }
 
+const sleepBundle = astBundle(sleep, { export: true });
+
 export default function Project() {
   return Directory({
     name: "declarative-packages",
@@ -16,7 +18,19 @@ export default function Project() {
         children: Tuple([
           File({
             name: "index.js",
-            contents: astBundle(sleep, { export: true })
+            contents: sleepBundle.compiled
+          }),
+          File({
+            name: "index.d.ts",
+            contents: sleepBundle.declaration
+          }),
+          File({
+            name: "index.ts",
+            contents: sleepBundle.source
+          }),
+          File({
+            name: "index.d.ts.map",
+            contents: sleepBundle.declarationMap
           }),
           File({
             name: "package.json",
