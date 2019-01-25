@@ -3,5 +3,10 @@ declare const astBundle: (
   options?: {
     export?: boolean;
   }
-) => string;
+) => {
+  source: string;
+  compiled: string;
+  declarationMap: string;
+  declaration: string;
+};
 export default astBundle;

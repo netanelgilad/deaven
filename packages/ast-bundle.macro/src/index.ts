@@ -7,10 +7,14 @@ import {
   Expression,
   expressionStatement,
   exportNamedDeclaration,
-  FunctionDeclaration
+  FunctionDeclaration,
+  objectExpression,
+  objectProperty
 } from "@babel/types";
 import { NodePath, Scope, Binding } from "@babel/traverse";
 import { unsafeCast } from "@deaven/unsafe-cast";
+import { Project, ScriptTarget } from "ts-simple-ast";
+import { ModuleKind } from "typescript";
 
 function resolveBindingInScope(
   scope: Scope,
@@ -31,7 +35,6 @@ function buildAST(
     export?: boolean;
   } = {}
 ) {
-  // console.log({ a: path.scope.path.scope, b: path.node.name });
   const pathToReturn = unsafeCast<NodePath<Statement>>(
     unsafeCast<Binding>(resolveBindingInScope(path.scope, path.node.name)).path
   );
@@ -80,13 +83,48 @@ const astBundleMacro: MacroFunction = function myMacro({
 
       const ast = buildAST(targetPath, options);
 
-      const { code } = babel.transformFromAstSync(ast, state.file.code, {
-        sourceType: "module",
-        cwd: state.cwd,
-        filename: state.filename
-      })!;
+      const { code } = babel.transformFromAstSync(ast)!;
 
-      referencePath.parentPath.replaceWith(stringLiteral(code!));
+      const project = new Project({
+        compilerOptions: {
+          module: ModuleKind.CommonJS,
+          target: ScriptTarget.ES2017,
+          declaration: true,
+          declarationMap: true,
+          inlineSourceMap: true
+        }
+      });
+
+      const sourceFile = project.createSourceFile("./index.ts", code!);
+      const emitOutput = sourceFile.getEmitOutput().getOutputFiles();
+
+      const bundleOutput = {
+        source: code!,
+        compiled: emitOutput[0].getText(),
+        declarationMap: emitOutput[1].getText(),
+        declaration: emitOutput[2].getText()
+      };
+
+      const result = objectExpression([
+        objectProperty(
+          stringLiteral("source"),
+          stringLiteral(bundleOutput.source)
+        ),
+        objectProperty(
+          stringLiteral("compiled"),
+          stringLiteral(bundleOutput.compiled!)
+        ),
+        objectProperty(
+          stringLiteral("declarationMap"),
+          stringLiteral(bundleOutput.declarationMap!)
+        ),
+        objectProperty(
+          stringLiteral("declaration"),
+          stringLiteral(bundleOutput.declaration!)
+        )
+      ]);
+
+      referencePath.parentPath.replaceWith(result);
     }
   }
 };

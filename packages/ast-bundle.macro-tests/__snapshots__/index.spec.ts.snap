@@ -14,7 +14,12 @@ bundle(sleep)
 
 \\"use strict\\";
 
-\\"\\\\\\"use strict\\\\\\";\\\\n\\\\nasync function sleep(timeout) {\\\\n  await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\";
+({
+  \\"source\\": \\"async function sleep(timeout: number) {\\\\n  await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\",
+  \\"compiled\\": \\"async function sleep(timeout) {\\\\n    await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxLQUFLLFVBQVUsS0FBSyxDQUFDLE9BQWU7SUFDbEMsTUFBTSxJQUFJLE9BQU8sQ0FBQyxPQUFPLENBQUMsRUFBRSxDQUFDLFVBQVUsQ0FBQyxPQUFPLEVBQUUsT0FBTyxDQUFDLENBQUMsQ0FBQztBQUM3RCxDQUFDIn0=\\",
+  \\"declarationMap\\": \\"{\\\\\\"version\\\\\\":3,\\\\\\"file\\\\\\":\\\\\\"index.d.ts\\\\\\",\\\\\\"sourceRoot\\\\\\":\\\\\\"\\\\\\",\\\\\\"sources\\\\\\":[\\\\\\"index.ts\\\\\\"],\\\\\\"names\\\\\\":[],\\\\\\"mappings\\\\\\":\\\\\\"AAAA,iBAAe,KAAK,CAAC,OAAO,EAAE,MAAM,iBAEnC\\\\\\"}\\",
+  \\"declaration\\": \\"declare function sleep(timeout: number): Promise<void>;\\\\n//# sourceMappingURL=index.d.ts.map\\"
+});
 "
 `;
 
@@ -55,7 +60,12 @@ function Project() {
   }), (0, _ConsoleLog.ConsoleLog)({
     message: \\"Hello World 15\\"
   }), (0, _ConsoleLog.ConsoleLog)({
-    message: \\"\\\\\\"use strict\\\\\\";\\\\n\\\\nasync function sleep(timeout) {\\\\n  await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\"
+    message: {
+      \\"source\\": \\"async function sleep(timeout: number) {\\\\n  await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\",
+      \\"compiled\\": \\"async function sleep(timeout) {\\\\n    await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxLQUFLLFVBQVUsS0FBSyxDQUFDLE9BQWU7SUFDbEMsTUFBTSxJQUFJLE9BQU8sQ0FBQyxPQUFPLENBQUMsRUFBRSxDQUFDLFVBQVUsQ0FBQyxPQUFPLEVBQUUsT0FBTyxDQUFDLENBQUMsQ0FBQztBQUM3RCxDQUFDIn0=\\",
+      \\"declarationMap\\": \\"{\\\\\\"version\\\\\\":3,\\\\\\"file\\\\\\":\\\\\\"index.d.ts\\\\\\",\\\\\\"sourceRoot\\\\\\":\\\\\\"\\\\\\",\\\\\\"sources\\\\\\":[\\\\\\"index.ts\\\\\\"],\\\\\\"names\\\\\\":[],\\\\\\"mappings\\\\\\":\\\\\\"AAAA,iBAAe,KAAK,CAAC,OAAO,EAAE,MAAM,iBAEnC\\\\\\"}\\",
+      \\"declaration\\": \\"declare function sleep(timeout: number): Promise<void>;\\\\n//# sourceMappingURL=index.d.ts.map\\"
+    }
   }));
 }
 "
@@ -75,6 +85,11 @@ bundle(sleep, {export: true})
 
 \\"use strict\\";
 
-\\"\\\\\\"use strict\\\\\\";\\\\n\\\\nObject.defineProperty(exports, \\\\\\"__esModule\\\\\\", {\\\\n  value: true\\\\n});\\\\nexports.sleep = sleep;\\\\n\\\\nasync function sleep(timeout) {\\\\n  await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\";
+({
+  \\"source\\": \\"export async function sleep(timeout: number) {\\\\n  await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\",
+  \\"compiled\\": \\"\\\\\\"use strict\\\\\\";\\\\nObject.defineProperty(exports, \\\\\\"__esModule\\\\\\", { value: true });\\\\nasync function sleep(timeout) {\\\\n    await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\\\nexports.sleep = sleep;\\\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFPLEtBQUssVUFBVSxLQUFLLENBQUMsT0FBZTtJQUN6QyxNQUFNLElBQUksT0FBTyxDQUFDLE9BQU8sQ0FBQyxFQUFFLENBQUMsVUFBVSxDQUFDLE9BQU8sRUFBRSxPQUFPLENBQUMsQ0FBQyxDQUFDO0FBQzdELENBQUM7QUFGRCxzQkFFQyJ9\\",
+  \\"declarationMap\\": \\"{\\\\\\"version\\\\\\":3,\\\\\\"file\\\\\\":\\\\\\"index.d.ts\\\\\\",\\\\\\"sourceRoot\\\\\\":\\\\\\"\\\\\\",\\\\\\"sources\\\\\\":[\\\\\\"index.ts\\\\\\"],\\\\\\"names\\\\\\":[],\\\\\\"mappings\\\\\\":\\\\\\"AAAA,wBAAsB,KAAK,CAAC,OAAO,EAAE,MAAM,iBAE1C\\\\\\"}\\",
+  \\"declaration\\": \\"export declare function sleep(timeout: number): Promise<void>;\\\\n//# sourceMappingURL=index.d.ts.map\\"
+});
 "
 `;
