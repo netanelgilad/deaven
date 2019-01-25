@@ -3,6 +3,13 @@
 import pluginTester from "babel-plugin-tester";
 import plugin from "babel-plugin-macros";
 
+function only(strings) {
+  return {
+    only: true,
+    code: strings[0]
+  };
+}
+
 pluginTester({
   plugin,
   snapshot: true,
@@ -55,6 +62,15 @@ pluginTester({
     }
 
     bundle(sleep, {export: true})
+    `,
+    `
+    import bundle from '@deaven/ast-bundle.macro'
+
+    const unsafeCast = <T>(obj: any) => {
+      return (obj as any) as T;
+    }
+
+    bundle(unsafeCast, { export: true })
     `
   ]
 });

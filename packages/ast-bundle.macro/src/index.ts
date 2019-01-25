@@ -7,9 +7,11 @@ import {
   Expression,
   expressionStatement,
   exportNamedDeclaration,
-  FunctionDeclaration,
   objectExpression,
-  objectProperty
+  objectProperty,
+  isVariableDeclarator,
+  variableDeclaration,
+  Declaration
 } from "@babel/types";
 import { NodePath, Scope, Binding } from "@babel/traverse";
 import { unsafeCast } from "@deaven/unsafe-cast";
@@ -39,9 +41,14 @@ function buildAST(
     unsafeCast<Binding>(resolveBindingInScope(path.scope, path.node.name)).path
   );
   let nodeToReturn = pathToReturn.node;
+
+  if (isVariableDeclarator(nodeToReturn)) {
+    nodeToReturn = variableDeclaration("const", [nodeToReturn]);
+  }
+
   if (options.export) {
     nodeToReturn = exportNamedDeclaration(
-      unsafeCast<FunctionDeclaration>(nodeToReturn),
+      unsafeCast<Declaration>(nodeToReturn),
       []
     );
   }

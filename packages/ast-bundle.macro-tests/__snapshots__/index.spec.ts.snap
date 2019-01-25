@@ -15,6 +15,7 @@ bundle(sleep)
 \\"use strict\\";
 
 ({
+  \\"name\\": \\"sleep\\",
   \\"source\\": \\"async function sleep(timeout: number) {\\\\n  await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\",
   \\"compiled\\": \\"async function sleep(timeout) {\\\\n    await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxLQUFLLFVBQVUsS0FBSyxDQUFDLE9BQWU7SUFDbEMsTUFBTSxJQUFJLE9BQU8sQ0FBQyxPQUFPLENBQUMsRUFBRSxDQUFDLFVBQVUsQ0FBQyxPQUFPLEVBQUUsT0FBTyxDQUFDLENBQUMsQ0FBQztBQUM3RCxDQUFDIn0=\\",
   \\"declarationMap\\": \\"{\\\\\\"version\\\\\\":3,\\\\\\"file\\\\\\":\\\\\\"index.d.ts\\\\\\",\\\\\\"sourceRoot\\\\\\":\\\\\\"\\\\\\",\\\\\\"sources\\\\\\":[\\\\\\"index.ts\\\\\\"],\\\\\\"names\\\\\\":[],\\\\\\"mappings\\\\\\":\\\\\\"AAAA,iBAAe,KAAK,CAAC,OAAO,EAAE,MAAM,iBAEnC\\\\\\"}\\",
@@ -61,6 +62,7 @@ function Project() {
     message: \\"Hello World 15\\"
   }), (0, _ConsoleLog.ConsoleLog)({
     message: {
+      \\"name\\": \\"sleep\\",
       \\"source\\": \\"async function sleep(timeout: number) {\\\\n  await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\",
       \\"compiled\\": \\"async function sleep(timeout) {\\\\n    await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxLQUFLLFVBQVUsS0FBSyxDQUFDLE9BQWU7SUFDbEMsTUFBTSxJQUFJLE9BQU8sQ0FBQyxPQUFPLENBQUMsRUFBRSxDQUFDLFVBQVUsQ0FBQyxPQUFPLEVBQUUsT0FBTyxDQUFDLENBQUMsQ0FBQztBQUM3RCxDQUFDIn0=\\",
       \\"declarationMap\\": \\"{\\\\\\"version\\\\\\":3,\\\\\\"file\\\\\\":\\\\\\"index.d.ts\\\\\\",\\\\\\"sourceRoot\\\\\\":\\\\\\"\\\\\\",\\\\\\"sources\\\\\\":[\\\\\\"index.ts\\\\\\"],\\\\\\"names\\\\\\":[],\\\\\\"mappings\\\\\\":\\\\\\"AAAA,iBAAe,KAAK,CAAC,OAAO,EAAE,MAAM,iBAEnC\\\\\\"}\\",
@@ -86,10 +88,35 @@ bundle(sleep, {export: true})
 \\"use strict\\";
 
 ({
+  \\"name\\": \\"sleep\\",
   \\"source\\": \\"export async function sleep(timeout: number) {\\\\n  await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\",
   \\"compiled\\": \\"\\\\\\"use strict\\\\\\";\\\\nObject.defineProperty(exports, \\\\\\"__esModule\\\\\\", { value: true });\\\\nasync function sleep(timeout) {\\\\n    await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\\\nexports.sleep = sleep;\\\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFPLEtBQUssVUFBVSxLQUFLLENBQUMsT0FBZTtJQUN6QyxNQUFNLElBQUksT0FBTyxDQUFDLE9BQU8sQ0FBQyxFQUFFLENBQUMsVUFBVSxDQUFDLE9BQU8sRUFBRSxPQUFPLENBQUMsQ0FBQyxDQUFDO0FBQzdELENBQUM7QUFGRCxzQkFFQyJ9\\",
   \\"declarationMap\\": \\"{\\\\\\"version\\\\\\":3,\\\\\\"file\\\\\\":\\\\\\"index.d.ts\\\\\\",\\\\\\"sourceRoot\\\\\\":\\\\\\"\\\\\\",\\\\\\"sources\\\\\\":[\\\\\\"index.ts\\\\\\"],\\\\\\"names\\\\\\":[],\\\\\\"mappings\\\\\\":\\\\\\"AAAA,wBAAsB,KAAK,CAAC,OAAO,EAAE,MAAM,iBAE1C\\\\\\"}\\",
   \\"declaration\\": \\"export declare function sleep(timeout: number): Promise<void>;\\\\n//# sourceMappingURL=index.d.ts.map\\"
+});
+"
+`;
+
+exports[`macros 4. macros: 4. macros 1`] = `
+"
+import bundle from '@deaven/ast-bundle.macro'
+
+const unsafeCast = <T>(obj: any) => {
+  return (obj as any) as T;
+}
+
+bundle(unsafeCast, { export: true })
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+\\"use strict\\";
+
+({
+  \\"name\\": \\"unsafeCast\\",
+  \\"source\\": \\"export const unsafeCast = <T>(obj: any) => {\\\\n  return ((obj as any) as T);\\\\n};\\",
+  \\"compiled\\": \\"\\\\\\"use strict\\\\\\";\\\\nObject.defineProperty(exports, \\\\\\"__esModule\\\\\\", { value: true });\\\\nexports.unsafeCast = (obj) => {\\\\n    return obj;\\\\n};\\\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFhLFFBQUEsVUFBVSxHQUFHLENBQUksR0FBUSxFQUFFLEVBQUU7SUFDeEMsT0FBUyxHQUFpQixDQUFDO0FBQzdCLENBQUMsQ0FBQyJ9\\",
+  \\"declarationMap\\": \\"{\\\\\\"version\\\\\\":3,\\\\\\"file\\\\\\":\\\\\\"index.d.ts\\\\\\",\\\\\\"sourceRoot\\\\\\":\\\\\\"\\\\\\",\\\\\\"sources\\\\\\":[\\\\\\"index.ts\\\\\\"],\\\\\\"names\\\\\\":[],\\\\\\"mappings\\\\\\":\\\\\\"AAAA,eAAO,MAAM,UAAU,oBAEtB,CAAC\\\\\\"}\\",
+  \\"declaration\\": \\"export declare const unsafeCast: <T>(obj: any) => T;\\\\n//# sourceMappingURL=index.d.ts.map\\"
 });
 "
 `;
