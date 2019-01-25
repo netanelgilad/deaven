@@ -120,3 +120,25 @@ bundle(unsafeCast, { export: true })
 });
 "
 `;
+
+exports[`macros 5. macros: 5. macros 1`] = `
+"
+import bundle from '@deaven/ast-bundle.macro'
+
+export const _ = <T>(arg: T) => arg;
+export const __ = _;
+
+bundle([_, __], { export: true })
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+\\"use strict\\";
+
+({
+  \\"source\\": \\"export const _ = <T>(arg: T) => arg;\\\\nexport const __ = _;\\",
+  \\"compiled\\": \\"\\\\\\"use strict\\\\\\";\\\\nObject.defineProperty(exports, \\\\\\"__esModule\\\\\\", { value: true });\\\\nexports._ = (arg) => arg;\\\\nexports.__ = exports._;\\\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFhLFFBQUEsQ0FBQyxHQUFHLENBQUksR0FBTSxFQUFFLEVBQUUsQ0FBQyxHQUFHLENBQUM7QUFDdkIsUUFBQSxFQUFFLEdBQUcsU0FBQyxDQUFDIn0=\\",
+  \\"declarationMap\\": \\"{\\\\\\"version\\\\\\":3,\\\\\\"file\\\\\\":\\\\\\"index.d.ts\\\\\\",\\\\\\"sourceRoot\\\\\\":\\\\\\"\\\\\\",\\\\\\"sources\\\\\\":[\\\\\\"index.ts\\\\\\"],\\\\\\"names\\\\\\":[],\\\\\\"mappings\\\\\\":\\\\\\"AAAA,eAAO,MAAM,CAAC,kBAAqB,CAAC;AACpC,eAAO,MAAM,EAAE,kBAAI,CAAC\\\\\\"}\\",
+  \\"declaration\\": \\"export declare const _: <T>(arg: T) => T;\\\\nexport declare const __: <T>(arg: T) => T;\\\\n//# sourceMappingURL=index.d.ts.map\\"
+});
+"
+`;

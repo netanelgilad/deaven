@@ -71,6 +71,14 @@ pluginTester({
     }
 
     bundle(unsafeCast, { export: true })
+    `,
+    `
+    import bundle from '@deaven/ast-bundle.macro'
+
+    export const _ = <T>(arg: T) => arg;
+    export const __ = _;
+
+    bundle([_, __], { export: true })
     `
   ]
 });

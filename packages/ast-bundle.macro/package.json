@@ -11,6 +11,7 @@
     "@babel/types": "^7.2.2",
     "@types/babel-plugin-macros": "^1.0.0",
     "babel-plugin-macros": "^2.4.5",
-    "ts-simple-ast": "^21.0.0"
+    "ts-simple-ast": "^21.0.0",
+    "utility-types": "^3.4.1"
   }
 }
