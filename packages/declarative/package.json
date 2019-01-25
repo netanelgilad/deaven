@@ -1,0 +1,33 @@
+{
+  "name": "@deaven/declarative",
+  "version": "1.0.0",
+  "description": "Code declaratively",
+  "main": "index.js",
+  "bin": {
+    "declarative": "index.js"
+  },
+  "author": "Netanel Gilad <netanelgilad@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel src --out-dir lib --extensions \".tsx,.ts\" --source-maps inline"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-react": "^7.0.0",
+    "@deaven/ast-bundle.macro": "^1.0.0",
+    "@types/memory-fs": "^0.3.2",
+    "@types/webpack": "^4.4.23",
+    "babel-plugin-macros": "^2.4.5"
+  },
+  "dependencies": {
+    "@types/webpack-node-externals": "^1.6.3",
+    "babel-loader": "^8.0.5",
+    "memory-fs": "^0.4.1",
+    "react": "^16.7.0",
+    "source-map-support": "^0.5.10",
+    "typescript": "^3.2.4",
+    "webpack": "^4.28.4",
+    "webpack-node-externals": "^1.7.2"
+  }
+}

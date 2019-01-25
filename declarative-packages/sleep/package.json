@@ -1,0 +1,7 @@
+{
+  "name": "@deaven/sleep",
+  "version": "1.0.0",
+  "description": "Promise based sleep",
+  "author": "Netanel Gilad <netanelgilad@gmail.com>",
+  "license": "MIT"
+}
