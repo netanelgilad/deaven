@@ -11,8 +11,11 @@ const unsafeCast = <T>(obj: any) => {
   return (obj as any) as T;
 };
 
+const tuple = <T extends unknown[]>(...args: T) => args;
+
 const sleepBundle = astBundle(sleep, { export: true });
 const unsafeCastBundle = astBundle(unsafeCast, { export: true });
+const tupleBundle = astBundle(tuple, { export: true });
 
 function kebabCase(str: string) {
   return str
@@ -80,6 +83,10 @@ export default function Project() {
         bundle: unsafeCastBundle,
         description:
           "Cast types but with the ability to find references in fix them"
+      }),
+      DeavenPackage({
+        bundle: tupleBundle,
+        description: "Easily infer tuple types in TypeScript"
       })
     ])
   });
