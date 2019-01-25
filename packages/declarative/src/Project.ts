@@ -1,4 +1,4 @@
-import astBundle from "@deaven/ast-bundle.macro";
+import astBundle, { Bundle, NamedBundle } from "@deaven/ast-bundle.macro";
 import { File } from "./File";
 import { Directory } from "./Directory";
 import { Tuple } from "@deaven/react-atoms.core";
@@ -13,9 +13,14 @@ const unsafeCast = <T>(obj: any) => {
 
 const tuple = <T extends unknown[]>(...args: T) => args;
 
-const sleepBundle = astBundle(sleep, { export: true });
-const unsafeCastBundle = astBundle(unsafeCast, { export: true });
-const tupleBundle = astBundle(tuple, { export: true });
+const _ = <T>(arg: T) => arg;
+const __ = _;
+
+const sleepBundle = astBundle(sleep, { export: true }) as NamedBundle;
+const unsafeCastBundle = astBundle(unsafeCast, { export: true }) as NamedBundle;
+const tupleBundle = astBundle(tuple, { export: true }) as NamedBundle;
+
+const bottomdashBundle = astBundle([_, __], { export: true }) as Bundle;
 
 function kebabCase(str: string) {
   return str
@@ -24,18 +29,22 @@ function kebabCase(str: string) {
     .toLowerCase();
 }
 
-export function DeavenPackage(props: {
-  bundle: {
-    name: string;
-    source: string;
-    compiled: string;
-    declaration: string;
-    declarationMap: string;
-  };
-  description: string;
-}) {
+export function DeavenPackage(
+  props: {
+    description: string;
+  } & (
+    | {
+        bundle: NamedBundle;
+      }
+    | {
+        bundle: Bundle;
+        name: string;
+      })
+) {
+  const packageName =
+    "name" in props ? props.name : kebabCase(props.bundle.name);
   return Directory({
-    name: kebabCase(props.bundle.name),
+    name: packageName,
     children: Tuple([
       File({
         name: "index.js",
@@ -57,7 +66,7 @@ export function DeavenPackage(props: {
         name: "package.json",
         contents: JSON.stringify(
           {
-            name: `@deaven/${kebabCase(props.bundle.name)}`,
+            name: `@deaven/${packageName}`,
             version: "1.0.0",
             description: props.description,
             author: "Netanel Gilad <netanelgilad@gmail.com>",
@@ -87,6 +96,11 @@ export default function Project() {
       DeavenPackage({
         bundle: tupleBundle,
         description: "Easily infer tuple types in TypeScript"
+      }),
+      DeavenPackage({
+        name: "bottomdash",
+        bundle: bottomdashBundle,
+        description: "Declare type using an expression"
       })
     ])
   });

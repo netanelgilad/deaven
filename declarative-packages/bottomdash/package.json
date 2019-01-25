@@ -2,6 +2,6 @@
   "name": "@deaven/bottomdash",
   "version": "1.0.0",
   "description": "Declare type using an expression",
-  "main": "index.js",
+  "author": "Netanel Gilad <netanelgilad@gmail.com>",
   "license": "MIT"
 }
