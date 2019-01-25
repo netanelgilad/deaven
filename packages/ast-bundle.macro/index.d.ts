@@ -4,6 +4,7 @@ declare const astBundle: (
     export?: boolean;
   }
 ) => {
+  name: string;
   source: string;
   compiled: string;
   declarationMap: string;

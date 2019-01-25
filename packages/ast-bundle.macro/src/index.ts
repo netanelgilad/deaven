@@ -99,6 +99,7 @@ const astBundleMacro: MacroFunction = function myMacro({
       const emitOutput = sourceFile.getEmitOutput().getOutputFiles();
 
       const bundleOutput = {
+        name: targetPath.node.name,
         source: code!,
         compiled: emitOutput[0].getText(),
         declarationMap: emitOutput[1].getText(),
@@ -106,6 +107,7 @@ const astBundleMacro: MacroFunction = function myMacro({
       };
 
       const result = objectExpression([
+        objectProperty(stringLiteral("name"), stringLiteral(bundleOutput.name)),
         objectProperty(
           stringLiteral("source"),
           stringLiteral(bundleOutput.source)
