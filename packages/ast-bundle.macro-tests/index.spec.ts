@@ -46,6 +46,15 @@ pluginTester({
         ConsoleLog({ message: astBundle(sleep) })
       );
     }
+    `,
+    `
+    import bundle from '@deaven/ast-bundle.macro'
+
+    async function sleep(timeout: number) {
+      await new Promise(resolve => setTimeout(resolve, timeout));
+    }
+
+    bundle(sleep, {export: true})
     `
   ]
 });

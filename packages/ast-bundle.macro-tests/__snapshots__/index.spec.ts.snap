@@ -14,7 +14,7 @@ bundle(sleep)
 
 \\"use strict\\";
 
-\\"async function sleep(timeout: number) {\\\\n  await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\";
+\\"\\\\\\"use strict\\\\\\";\\\\n\\\\nasync function sleep(timeout) {\\\\n  await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\";
 "
 `;
 
@@ -55,8 +55,26 @@ function Project() {
   }), (0, _ConsoleLog.ConsoleLog)({
     message: \\"Hello World 15\\"
   }), (0, _ConsoleLog.ConsoleLog)({
-    message: \\"async function sleep(timeout: number) {\\\\n  await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\"
+    message: \\"\\\\\\"use strict\\\\\\";\\\\n\\\\nasync function sleep(timeout) {\\\\n  await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\"
   }));
 }
+"
+`;
+
+exports[`macros 3. macros: 3. macros 1`] = `
+"
+import bundle from '@deaven/ast-bundle.macro'
+
+async function sleep(timeout: number) {
+  await new Promise(resolve => setTimeout(resolve, timeout));
+}
+
+bundle(sleep, {export: true})
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+\\"use strict\\";
+
+\\"\\\\\\"use strict\\\\\\";\\\\n\\\\nObject.defineProperty(exports, \\\\\\"__esModule\\\\\\", {\\\\n  value: true\\\\n});\\\\nexports.sleep = sleep;\\\\n\\\\nasync function sleep(timeout) {\\\\n  await new Promise(resolve => setTimeout(resolve, timeout));\\\\n}\\";
 "
 `;

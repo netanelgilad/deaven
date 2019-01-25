@@ -1,2 +1,7 @@
-declare const astBundle: (ast: any) => string;
+declare const astBundle: (
+  ast: any,
+  options?: {
+    export?: boolean;
+  }
+) => string;
 export default astBundle;

@@ -4,7 +4,13 @@ declare const plugin: unknown;
 export type MacroFunction = (
   options: {
     references: { [key: string]: Array<NodePath> };
-    state: unknown;
+    state: {
+      cwd: string;
+      filename: string;
+      file: {
+        code: string;
+      };
+    };
     babel: typeof import("@babel/core");
   }
 ) => unknown;
