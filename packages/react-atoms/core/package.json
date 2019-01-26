@@ -12,7 +12,7 @@
     "react-reconciler": "^0.18.0"
   },
   "devDependencies": {
-    "@types/react": "^16.7.20",
+    "@types/react": "^16.7.21",
     "@types/react-reconciler": "^0.18.0"
   }
 }
