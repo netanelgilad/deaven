@@ -80,6 +80,10 @@ const astBundleMacro: MacroFunction = function myMacro({
   babel,
   state
 }) {
+  if (!references["default"]) {
+    return;
+  }
+
   for (const referencePath of references["default"]) {
     const targetPath = unsafeCast<NodePath<Identifier>>(
       referencePath.parentPath.get("arguments.0")

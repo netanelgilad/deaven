@@ -142,3 +142,13 @@ bundle([_, __], { export: true })
 });
 "
 `;
+
+exports[`macros 6. macros: 6. macros 1`] = `
+"
+import { NamedBundle, Bundle } from \\"@deaven/ast-bundle.macro\\";
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+\\"use strict\\";
+"
+`;

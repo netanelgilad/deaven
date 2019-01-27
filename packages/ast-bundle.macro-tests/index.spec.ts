@@ -79,6 +79,9 @@ pluginTester({
     export const __ = _;
 
     bundle([_, __], { export: true })
+    `,
+    `
+    import { NamedBundle, Bundle } from "@deaven/ast-bundle.macro";
     `
   ]
 });
