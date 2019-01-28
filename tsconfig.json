@@ -11,6 +11,9 @@
     "noUnusedParameters": true,
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
-    "jsx": "react"
-  }
+    "jsx": "react",
+    "skipLibCheck": true
+  },
+  "include": ["packages/**/*.ts"],
+  "exclude": ["node_modules", "**/lib/**"]
 }
