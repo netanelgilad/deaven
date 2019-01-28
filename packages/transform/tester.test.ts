@@ -1,3 +1,5 @@
+/// <reference types="jest" />
+
 export function foo(a: any) {
   return a.b;
 }

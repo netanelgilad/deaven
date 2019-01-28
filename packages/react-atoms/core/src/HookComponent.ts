@@ -1,9 +1,11 @@
+/// <reference types="react" />
+
 export class HookComponent {
   compositions: Array<(...args: any[]) => HookComponent>;
   hookFn: any;
 
   constructor(
-    hookFn: ((renderer: () => JSX.Element) => JSX.Element),
+    hookFn: (renderer: () => JSX.Element) => JSX.Element,
     compositions: Array<(...args: any[]) => HookComponent> = []
   ) {
     this.hookFn = hookFn;

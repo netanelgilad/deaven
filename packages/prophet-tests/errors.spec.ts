@@ -1,3 +1,5 @@
+/// <reference types="jest" />
+
 import { evaluateCode } from "@deaven/prophet";
 import { nodeInitialExecutionContext } from "@deaven/prophet/lib";
 
