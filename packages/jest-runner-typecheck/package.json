@@ -1,0 +1,17 @@
+{
+  "name": "jest-runner-typecheck",
+  "version": "0.1.0",
+  "description": "Use jest to typecheck your files",
+  "main": "index.js",
+  "author": "Netanel Gilad <netanelgilad@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "create-jest-runner": "^0.4.1"
+  },
+  "devDependencies": {
+    "@types/create-jest-runner": "^1.0.0"
+  }
+}
