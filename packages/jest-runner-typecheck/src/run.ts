@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import {
   codeFrameColumns as codeFrame,
   SourceLocation
@@ -6,7 +7,11 @@ import * as ts from "typescript";
 import * as fs from "fs";
 import { pass, fail } from "create-jest-runner";
 
-const files: ts.MapLike<{ version: number }> = {};
+const files: ts.MapLike<{
+  version: number;
+  mtime: number;
+  lastResult?: unknown;
+}> = {};
 
 // Create the language service host to allow the LS to communicate with the host
 const servicesHost: ts.LanguageServiceHost = {
@@ -68,27 +73,40 @@ const appendCodeFrame = ({
   })}`;
 };
 
+function returnResult(testPath: string, result: unknown) {
+  files[testPath].lastResult = result;
+  return result;
+}
+
 const runTsc = ({
-  testPath,
-  config: jestConfig
+  testPath
 }: {
   testPath: string;
   config: { rootDir: string };
 }) => {
   const start = Date.now();
-  if (!files[testPath]) {
-    files[testPath] = { version: 0 };
-  }
-
-  files[testPath].version++;
-
-  const allDiagnostics = getErrors(testPath);
 
   const baseObj = {
     start,
     title: "tsc",
     test: { path: testPath }
   };
+
+  debugger;
+  const { mtime } = fs.statSync(testPath);
+  if (!files[testPath]) {
+    files[testPath] = { version: 0, mtime: 0 };
+  }
+
+  if (+mtime <= +files[testPath].mtime) {
+    files[testPath].mtime = +mtime;
+    return files[testPath].lastResult;
+  }
+
+  files[testPath].version++;
+  files[testPath].mtime = +mtime;
+
+  const allDiagnostics = getErrors(testPath);
 
   const errors = allDiagnostics
     .map(diagnostic => {
@@ -140,14 +158,17 @@ const runTsc = ({
   const end = Date.now();
 
   if (errors.length === 0) {
-    return pass({ ...baseObj, end });
+    return returnResult(testPath, pass({ ...baseObj, end }));
   }
 
-  return fail({
-    ...baseObj,
-    errorMessage: errors.join("\n\n"),
-    end
-  });
+  return returnResult(
+    testPath,
+    fail({
+      ...baseObj,
+      errorMessage: errors.join("\n\n"),
+      end
+    })
+  );
 };
 
 module.exports = runTsc;
