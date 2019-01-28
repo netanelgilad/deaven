@@ -1,4 +1,4 @@
-////// <reference path="./external-types" />
+/// <reference path="./external-types.d.ts" />
 import { execString } from "applescript";
 import { promisify } from "util";
 import { sleep } from "@deaven/sleep";

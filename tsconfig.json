@@ -4,6 +4,13 @@
     "noEmit": true,
     "lib": ["es2017", "dom"],
     "target": "es2017",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react"
   }
 }

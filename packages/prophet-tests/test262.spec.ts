@@ -1,3 +1,5 @@
+/// <reference types="jest" />
+
 import { sync } from "globby";
 import { dirname, join, basename } from "path";
 import { spawnSync } from "child_process";
@@ -88,6 +90,7 @@ function runTest262(testFile: string) {
   ).not.toContain("FAIL");
 }
 
+// @ts-ignore
 function only(testGlob: any) {
   return {
     only: testGlob[0]

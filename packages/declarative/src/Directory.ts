@@ -16,25 +16,22 @@ export const Directory = (props: { name: string; children: JSX.Element }) =>
   useState(false)
     .compose(() => usePrevious(props.name))
     .compose(() => useContext(DirectoryContext))
-    .compose((mounted, setMounted, ref, parentDirectory) =>
-      useEffect(
-        () => {
-          if (mounted) {
-            console.log(
-              "moving",
-              join(parentDirectory, ref.current),
-              join(parentDirectory, props.name)
-            );
-            moveSync(
-              join(parentDirectory, ref.current),
-              join(parentDirectory, props.name)
-            );
-          }
-        },
-        [props.name]
-      )
+    .compose((mounted, _setMounted, ref, parentDirectory) =>
+      useEffect(() => {
+        if (mounted) {
+          console.log(
+            "moving",
+            join(parentDirectory, ref.current),
+            join(parentDirectory, props.name)
+          );
+          moveSync(
+            join(parentDirectory, ref.current),
+            join(parentDirectory, props.name)
+          );
+        }
+      }, [props.name])
     )
-    .compose((mounted, setMounted, ref, parentDirectory) =>
+    .compose((_mounted, setMounted, _ref, parentDirectory) =>
       useEffect(() => {
         console.log("creating", join(parentDirectory, props.name));
         mkdirSync(join(parentDirectory, props.name));
@@ -45,7 +42,7 @@ export const Directory = (props: { name: string; children: JSX.Element }) =>
         };
       }, [])
     )
-    .render((mounted, setMounted, ref, parentDirectory) =>
+    .render((mounted, _setMounted, _ref, parentDirectory) =>
       mounted
         ? Provider(DirectoryContext)({
             value: join(parentDirectory, props.name),

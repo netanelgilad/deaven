@@ -26,11 +26,11 @@ export function ESString(value?: string | Array<TESString>): TESString {
       toString: {
         function: {
           implementation: function*(
-            _self: TESString,
-            args: Array<Any>,
+            self: TESString,
+            _args: Array<Any>,
             execContext: TExecutionContext
           ) {
-            return [_self, execContext];
+            return [self, execContext];
           }
         }
       },

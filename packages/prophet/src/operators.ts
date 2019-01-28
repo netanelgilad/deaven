@@ -149,7 +149,7 @@ export const logicalAnd = _<LogicalOperatorResolver>(function*(
 
 export const logicalOr = _<LogicalOperatorResolver>(function*(
   left,
-  right,
+  _right,
   execContext
 ) {
   const [leftType, afterLeftExecContext] = yield evaluate(left, execContext);

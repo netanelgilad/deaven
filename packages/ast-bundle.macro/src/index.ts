@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import { createMacro, MacroFunction } from "babel-plugin-macros";
 import {
   program,
@@ -32,11 +33,11 @@ function resolveBindingInScope(
     return resolveBindingInScope(scope.parent, name);
   }
 }
-
 function collectIdentifier(path: NodePath<Identifier>) {
   const pathToReturn = unsafeCast<NodePath<Declaration>>(
     unsafeCast<Binding>(resolveBindingInScope(path.scope, path.node.name)).path
   );
+
   let nodeToReturn = pathToReturn.node;
 
   if (isVariableDeclarator(nodeToReturn)) {

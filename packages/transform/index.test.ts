@@ -6,7 +6,7 @@ export function updateASTWithStringChange(props: {
   previousAST: unknown;
   stringChange: Array<StringChange>;
 }) {
-  return [parse(props.stringChange[0][2], { sourceType: "module" })];
+  return [parse(props.stringChange[0][2]!, { sourceType: "module" })];
 }
 
 // it("should ", () => {

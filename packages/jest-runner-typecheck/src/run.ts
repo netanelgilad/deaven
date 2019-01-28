@@ -34,7 +34,9 @@ const servicesHost: ts.LanguageServiceHost = {
     isolatedModules: true,
     noUnusedLocals: true,
     noUnusedParameters: true,
-    noEmit: true
+    noEmit: true,
+    allowSyntheticDefaultImports: true,
+    jsx: ts.JsxEmit.React
   }),
   getDefaultLibFileName: options => ts.getDefaultLibFilePath(options),
   fileExists: ts.sys.fileExists,
@@ -50,9 +52,8 @@ const services = ts.createLanguageService(
 
 function getErrors(fileName: string) {
   return services
-    .getCompilerOptionsDiagnostics()
-    .concat(services.getSyntacticDiagnostics(fileName))
-    .concat(services.getSemanticDiagnostics(fileName));
+    .getSemanticDiagnostics(fileName)
+    .concat(services.getSyntacticDiagnostics(fileName));
 }
 
 const appendCodeFrame = ({

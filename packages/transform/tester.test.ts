@@ -1,18 +1,21 @@
-function foo(a) {
+export function foo(a: any) {
   return a.b;
 }
 
-function bar(c) {
+function bar(c: any) {
   return c.d;
 }
 
-function throwsOnFirstParameterUndefined(target) {
+function throwsOnFirstParameterUndefined(target: any) {
   it("throws on undefined", () => {
     expect(() => target(undefined)).toThrow();
   });
 }
 
-function returnsTheValueOfAGivenPropertyOFirstParameter(target, propertyName) {
+function returnsTheValueOfAGivenPropertyOFirstParameter(
+  target: any,
+  propertyName: any
+) {
   it(`returns the value of a property named '${propertyName}' on the first parameter`, () => {
     const value = {};
     expect(target({ [propertyName]: value })).toBe(value);
@@ -20,8 +23,8 @@ function returnsTheValueOfAGivenPropertyOFirstParameter(target, propertyName) {
 }
 
 function returnsUndefinedWhenFirstParameterNotHavingAGivenPropertyName(
-  target,
-  propertyName
+  target: any,
+  propertyName: any
 ) {
   it(`returns undefined on not having a property named '${propertyName}'`, () => {
     expect(target({})).toBeUndefined();

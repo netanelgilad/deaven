@@ -1,8 +1,0 @@
-{
-  "extends": "@deaven/tsconfig/node/tsconfig.json",
-  "compilerOptions": {
-    "outDir": "lib",
-    "rootDir": "src"
-  },
-  "include": ["src"]
-}

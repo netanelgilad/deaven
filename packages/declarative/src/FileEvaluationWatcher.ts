@@ -62,34 +62,31 @@ export function FileEvaluationWatcher(props: {
   path: string;
   onEvaluationResult: (result: any) => any;
 }) {
-  return useEffect(
-    () => {
-      try {
-        watchWebpackResults(
-          webpack({
-            entry: props.path,
-            target: "node",
-            mode: "development",
-            output: {
-              libraryTarget: "commonjs2",
-              path: __dirname
-            },
-            module: {
-              rules: [
-                {
-                  test: /\.js$/,
-                  loaders: ["babel-loader"]
-                }
-              ]
-            },
-            externals: [nodeExternals(), "./File", "./Directory"]
-          }),
-          files => props.onEvaluationResult(files["main.js"])
-        );
-      } catch (err) {
-        console.log(err);
-      }
-    },
-    [props.path]
-  ).render();
+  return useEffect(() => {
+    try {
+      watchWebpackResults(
+        webpack({
+          entry: props.path,
+          target: "node",
+          mode: "development",
+          output: {
+            libraryTarget: "commonjs2",
+            path: __dirname
+          },
+          module: {
+            rules: [
+              {
+                test: /\.js$/,
+                loaders: ["babel-loader"]
+              }
+            ]
+          },
+          externals: [nodeExternals(), "./File", "./Directory"]
+        }),
+        files => props.onEvaluationResult(files["main.js"])
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }, [props.path]).render();
 }

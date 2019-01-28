@@ -1,3 +1,5 @@
+/// <reference types="node" />
+
 import { ESString, TESString } from "./string/String";
 import {
   WithProperties,
@@ -32,7 +34,7 @@ import { unsafeCast } from "@deaven/unsafe-cast";
 import { ESObject, createNewObjectFromConstructor } from "./Object";
 import { coerceToBoolean, ESBoolean } from "./boolean/ESBoolean";
 import { tuple } from "@deaven/tuple";
-import assert = require("assert");
+import * as assert from "assert";
 import { unimplemented } from "../../unimplemented";
 import { ESTree } from "cherow";
 

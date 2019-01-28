@@ -1,9 +1,10 @@
-////// <reference path="./external-types" />
-
+/// <reference types="jest" />
+/// <reference types="node" />
 import pluginTester from "babel-plugin-tester";
 import plugin from "babel-plugin-macros";
 
-function only(strings) {
+// @ts-ignore
+function only(strings: TemplateStringsArray) {
   return {
     only: true,
     code: strings[0]

@@ -1,17 +1,17 @@
-type AST = unknown;
-type StringChange = {
+export type AST = unknown;
+export type StringChange = {
   from: number;
   to: number;
   replacement?: string;
 };
 
-type ASTChange = {};
+export type ASTChange = {};
 
-type StringToASTTransformer = (
+export type StringToASTTransformer = (
   ast: AST,
   stringChanges: Array<StringChange>
 ) => AST;
-type ASTToStringTransformer = (
+export type ASTToStringTransformer = (
   str: string,
   astChanges: Array<ASTChange>
 ) => string;

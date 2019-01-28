@@ -12,7 +12,7 @@ import { moveSync } from "fs-extra";
 export const File = (props: { name: string; contents: string }) =>
   useContext(DirectoryContext)
     .compose(() => useState(false))
-    .compose((directoryName, mounted, setMounted) =>
+    .compose((directoryName, _mounted, setMounted) =>
       useEffect(() => {
         console.log("writing file", join(directoryName, props.name));
         writeFileSync(join(directoryName, props.name), props.contents);
@@ -26,39 +26,27 @@ export const File = (props: { name: string; contents: string }) =>
     )
     .compose(() => usePrevious(props.name))
     .compose(directoryName => usePrevious(directoryName))
-    .compose((directoryName, mounted, setMounted, prevRef, prevDir) =>
-      useEffect(
-        () => {
-          if (mounted) {
-            console.log(
-              "moving file",
-              join(prevDir.current, prevRef.current),
-              join(prevDir.current, props.name)
-            );
-            moveSync(
-              join(prevDir.current, prevRef.current),
-              join(prevDir.current, props.name)
-            );
-          }
-        },
-        [props.name]
-      )
+    .compose((_directoryName, mounted, _setMounted, prevRef, prevDir) =>
+      useEffect(() => {
+        if (mounted) {
+          console.log(
+            "moving file",
+            join(prevDir.current, prevRef.current),
+            join(prevDir.current, props.name)
+          );
+          moveSync(
+            join(prevDir.current, prevRef.current),
+            join(prevDir.current, props.name)
+          );
+        }
+      }, [props.name])
     )
-    .compose((directoryName, mounted, setMounted, prevRef, prevDir) =>
-      useEffect(
-        () => {
-          if (mounted) {
-            console.log(
-              "updating file",
-              join(prevDir.current, prevRef.current)
-            );
-            writeFileSync(
-              join(prevDir.current, prevRef.current),
-              props.contents
-            );
-          }
-        },
-        [props.contents]
-      )
+    .compose((_directoryName, mounted, _setMounted, prevRef, prevDir) =>
+      useEffect(() => {
+        if (mounted) {
+          console.log("updating file", join(prevDir.current, prevRef.current));
+          writeFileSync(join(prevDir.current, prevRef.current), props.contents);
+        }
+      }, [props.contents])
     )
     .render();
