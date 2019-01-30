@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "typecheck": "tsc --noEmit",
-    "test": "jest"
+    "build": "babel src --out-dir lib --extensions \".tsx,.ts\" --source-maps inline"
   },
   "dependencies": {
     "@deaven/bottomdash": "^1.0.0",
