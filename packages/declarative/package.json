@@ -16,6 +16,7 @@
     "@babel/core": "^7.2.2",
     "@babel/preset-react": "^7.0.0",
     "@deaven/ast-bundle.macro": "^1.0.0",
+    "@types/chokidar": "^1.7.5",
     "@types/memory-fs": "^0.3.2",
     "@types/webpack": "^4.4.24",
     "babel-plugin-macros": "^2.4.5"
@@ -23,9 +24,11 @@
   "dependencies": {
     "@types/webpack-node-externals": "^1.6.3",
     "babel-loader": "^8.0.5",
+    "chokidar": "^2.0.4",
     "memory-fs": "^0.4.1",
     "react": "^16.7.0",
     "source-map-support": "^0.5.10",
+    "ts-simple-ast": "^21.0.2",
     "typescript": "^3.2.4",
     "webpack": "^4.29.0",
     "webpack-node-externals": "^1.7.2"
