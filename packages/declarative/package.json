@@ -29,7 +29,7 @@
     "react": "^16.7.0",
     "source-map-support": "^0.5.10",
     "ts-simple-ast": "^21.0.2",
-    "typescript": "^3.2.4",
+    "typescript": "^3.3.1",
     "webpack": "^4.29.0",
     "webpack-node-externals": "^1.7.2"
   }
