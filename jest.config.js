@@ -16,6 +16,9 @@ module.exports = {
       ]
     },
     {
+      displayName: "test"
+    },
+    {
       displayName: "dummy",
       testMatch: ["dummy"],
       watchPathIgnorePatterns: ["(?:.+?)"]
