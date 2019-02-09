@@ -2,8 +2,8 @@ import { watch } from "chokidar";
 import { useEffect, useRef } from "@deaven/react-atoms.core";
 import { outputFileSync, readFileSync } from "fs-extra";
 import { resolve, join } from "path";
-import Project from "ts-simple-ast";
 import { ModuleKind, ScriptTarget } from "typescript";
+import Project from "ts-simple-ast";
 
 function createProject() {
   return new Project({
