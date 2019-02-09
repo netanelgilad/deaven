@@ -1,0 +1,7 @@
+{
+  "name": "@deaven/unsafe-cast.macro",
+  "version": "1.0.0",
+  "dependencies": {
+    "babel-plugin-macros": "^2.4.5"
+  }
+}

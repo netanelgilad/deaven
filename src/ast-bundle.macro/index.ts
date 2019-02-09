@@ -17,7 +17,7 @@ import {
   isIdentifier
 } from "@babel/types";
 import { NodePath, Scope, Binding } from "@babel/traverse";
-import { unsafeCast } from "@deaven/unsafe-cast";
+import { unsafeCast } from "@deaven/unsafe-cast.macro";
 import { Project, ScriptTarget } from "ts-simple-ast";
 import { ModuleKind } from "typescript";
 
