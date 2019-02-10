@@ -10,13 +10,18 @@ var _babelPluginMacros = require("babel-plugin-macros");
 const unsafeCastMacro = function myMacro({
   references
 }) {
-  if (!references["unsafeCast"]) {
-    return;
+  if (references["unsafeCast"]) {
+    for (const referencePath of references["unsafeCast"]) {
+      const targetPath = referencePath.parentPath.get("arguments.0");
+      referencePath.parentPath.replaceWith(targetPath.node);
+    }
   }
 
-  for (const referencePath of references["unsafeCast"]) {
-    const targetPath = referencePath.parentPath.get("arguments.0");
-    referencePath.parentPath.replaceWith(targetPath.node);
+  if (references["unsafeAssertExisting"]) {
+    for (const referencePath of references["unsafeAssertExisting"]) {
+      const targetPath = referencePath.parentPath.get("arguments.0");
+      referencePath.parentPath.replaceWith(targetPath.node);
+    }
   }
 };
 
