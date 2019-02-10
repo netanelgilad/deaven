@@ -5,7 +5,7 @@ import {
   ExpressionEvaluationResult
 } from "./types";
 import { ASTResolvers } from "./ASTResolvers";
-import * as assert from "assert";
+import assert from "assert";
 import {
   TExecutionContext,
   ExecutionContext

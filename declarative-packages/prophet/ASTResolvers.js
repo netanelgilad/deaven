@@ -25,11 +25,11 @@ var _ESBoolean = require("./boolean/ESBoolean");
 
 var _tuple = require("@deaven/tuple");
 
-var assert = _interopRequireWildcard(require("assert"));
+var _assert = _interopRequireDefault(require("assert"));
 
 var _unimplemented = require("@deaven/unimplemented");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /// <reference types="node" />
 const noExecutionContextResolver = fn => function* (ast, execContext) {
@@ -103,7 +103,7 @@ const BinaryExpressionResolver = function* (ast, execContext) {
 
   const binaryOperatorResolver = _operators.BinaryOperatorResolvers.get(ast.operator);
 
-  assert(binaryOperatorResolver, `Binary operator resolver for ${ast.operator} hasn't been implemented yet`);
+  (0, _assert.default)(binaryOperatorResolver, `Binary operator resolver for ${ast.operator} hasn't been implemented yet`);
   return (0, _tuple.tuple)(binaryOperatorResolver(leftType, rightType), rightExecContext);
 }; // export const FileResolver: ASTResolver<File, Any> = (ast, execContext) => {
 //   return ProgramResolver(ast.program, execContext);
@@ -266,7 +266,7 @@ exports.NewExpressionResolver = NewExpressionResolver;
 const LogicalExpressionResolver = function* (expression, execContext) {
   const logicalOperatorResolver = _operators.LogicalOperatorResolvers.get(expression.operator);
 
-  assert(logicalOperatorResolver, `Logical operator for ${expression.operator} has not been implemented yet`);
+  (0, _assert.default)(logicalOperatorResolver, `Logical operator for ${expression.operator} has not been implemented yet`);
   return yield* logicalOperatorResolver(expression.left, expression.right, execContext);
 };
 
@@ -317,7 +317,7 @@ const UnaryExpressionResolver = function* (expression, execContext) {
 
   const unaryOperatorResolver = _operators.UnaryOperatorResolvers.get(expression.operator);
 
-  assert(unaryOperatorResolver, `Unary operator resolver for ${expression.operator} hasn't been implemented yet`);
+  (0, _assert.default)(unaryOperatorResolver, `Unary operator resolver for ${expression.operator} hasn't been implemented yet`);
   return unaryOperatorResolver(argType, afterArgExecContext);
 };
 

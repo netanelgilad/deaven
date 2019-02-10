@@ -34,7 +34,7 @@ import { unsafeCast } from "@deaven/unsafe-cast.macro";
 import { ESObject, createNewObjectFromConstructor } from "./Object";
 import { coerceToBoolean, ESBoolean } from "./boolean/ESBoolean";
 import { tuple } from "@deaven/tuple";
-import * as assert from "assert";
+import assert from "assert";
 import { unimplemented } from "@deaven/unimplemented";
 import { ESTree } from "cherow";
 
