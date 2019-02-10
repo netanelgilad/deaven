@@ -53,6 +53,11 @@ export default function Project() {
             from: "./src/unimplemented",
             to: join(directoryName, "unimplemented"),
             packageOrganization: "deaven"
+          }),
+          DirectorySyncAndTransform({
+            from: "./src/prophet",
+            to: join(directoryName, "prophet"),
+            packageOrganization: "deaven"
           })
         ])
       )

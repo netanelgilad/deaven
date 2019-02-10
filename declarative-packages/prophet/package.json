@@ -1,4 +1,6 @@
 {
+  "name": "@deaven/prophet",
+  "version": "1.0.0",
   "dependencies": {
     "@deaven/bottomdash": "^1.0.0",
     "@deaven/tuple": "^1.0.0",
