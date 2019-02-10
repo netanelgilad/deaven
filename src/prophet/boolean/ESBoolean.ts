@@ -9,7 +9,7 @@ import {
   isESString,
   Undefined
 } from "../types";
-import { unimplemented } from "../../../unimplemented";
+import { unimplemented } from "@deaven/unimplemented";
 import { isESObject } from "../Object";
 import { ESFunction, isESFunction } from "../Function/Function";
 import { TExecutionContext } from "../execution-context/ExecutionContext";

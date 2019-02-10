@@ -1,7 +1,7 @@
 import { TExecutionContext } from "../execution-context/ExecutionContext";
 import { Any } from "../types";
 import { NodeBuiltinModules } from "../node-builtin-modules/NodeBuiltInModules";
-import { unsafeCast } from "@deaven/unsafe-cast";
+import { unsafeCast } from "@deaven/unsafe-cast.macro";
 import { TESString } from "../string/String";
 
 export const requireFunction = {

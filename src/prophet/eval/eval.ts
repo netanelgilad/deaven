@@ -3,7 +3,7 @@ import { TExecutionContext } from "../execution-context/ExecutionContext";
 import { Any, Undefined } from "../types";
 import { tuple } from "@deaven/tuple";
 import { TESString } from "../string/String";
-import { unsafeCast } from "@deaven/unsafe-cast";
+import { unsafeCast } from "@deaven/unsafe-cast.macro";
 import { evaluate } from "../evaluate";
 import { parseECMACompliant } from "../parseECMACompliant";
 

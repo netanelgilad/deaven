@@ -30,12 +30,12 @@ import {
 } from "./execution-context/ExecutionContext";
 import { createFunction } from "./Function/Function";
 import { isNull } from "util";
-import { unsafeCast } from "@deaven/unsafe-cast";
+import { unsafeCast } from "@deaven/unsafe-cast.macro";
 import { ESObject, createNewObjectFromConstructor } from "./Object";
 import { coerceToBoolean, ESBoolean } from "./boolean/ESBoolean";
 import { tuple } from "@deaven/tuple";
 import * as assert from "assert";
-import { unimplemented } from "../../packages/unimplemented";
+import { unimplemented } from "@deaven/unimplemented";
 import { ESTree } from "cherow";
 
 export type ASTResolver<TAST extends ESTree.Node, T extends Any> = (

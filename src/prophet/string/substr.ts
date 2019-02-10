@@ -2,7 +2,7 @@ import { Any, TESNumber } from "../types";
 import { first } from "lodash";
 import { TESString, ESString } from "./String";
 import { TExecutionContext } from "../execution-context/ExecutionContext";
-import { unsafeCast } from "@deaven/unsafe-cast";
+import { unsafeCast } from "@deaven/unsafe-cast.macro";
 
 export function* substr(
   self: TESString,

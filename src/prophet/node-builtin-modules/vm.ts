@@ -6,7 +6,7 @@ import { Any, ThrownValue } from "../types";
 import produce from "immer";
 import { evaluateCode } from "../evaluate";
 import { TESString, ESString } from "../string/String";
-import { unsafeCast } from "@deaven/unsafe-cast";
+import { unsafeCast } from "@deaven/unsafe-cast.macro";
 import { ESInitialGlobal } from "../execution-context/ESInitialGlobal";
 import { TESObject, ESObject, createNewObjectFromConstructor } from "../Object";
 import { tuple } from "@deaven/tuple";

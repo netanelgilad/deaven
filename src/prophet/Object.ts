@@ -10,7 +10,7 @@ import {
   TExecutionContext,
   setCurrentThisValue
 } from "./execution-context/ExecutionContext";
-import { unsafeCast } from "@deaven/unsafe-cast";
+import { unsafeCast } from "@deaven/unsafe-cast.macro";
 import { tuple } from "@deaven/tuple";
 
 export type TESObject = Type<"object"> &
