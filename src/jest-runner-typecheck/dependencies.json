@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "create-jest-runner": "^0.4.1"
+  }
+}

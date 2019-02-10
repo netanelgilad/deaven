@@ -1,7 +1,0 @@
-{
-  "name": "@deaven/unsafe-cast",
-  "version": "1.0.0",
-  "description": "Cast types but with the ability to find references in fix them",
-  "author": "Netanel Gilad <netanelgilad@gmail.com>",
-  "license": "MIT"
-}

@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@deaven/bottomdash": "^1.0.0",
+    "@deaven/tuple": "^1.0.0",
+    "@deaven/unimplemented": "^1.0.0",
+    "cherow": "1.5.4",
+    "immer": "^1.12.1",
+    "lodash": "^4.17.10"
+  }
+}
