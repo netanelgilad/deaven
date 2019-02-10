@@ -7,11 +7,13 @@ import { removeSync } from "fs-extra";
 
 removeSync("declarative-packages");
 
-render(useState(undefined).render((state, setState) => {
+render(useState(undefined).render((renderFn, setRenderFn) => {
   return Tuple(
-    state ? Renderer({ element: state() }) : ConsoleLog({ message: "No" }),
+    renderFn
+      ? Renderer({ element: renderFn() })
+      : ConsoleLog({ message: "No" }),
     FileEvaluationWatcher({
-      onEvaluationResult: result => setState(result.default),
+      onEvaluationResult: result => setRenderFn(result.default),
       path: join(__dirname, "./Project")
     })
   );
