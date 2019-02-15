@@ -34,7 +34,7 @@ export const Directory = (props: { name: string; children: JSX.Element }) =>
     .compose((_mounted, setMounted, _ref, parentDirectory) =>
       useEffect(() => {
         console.log("creating", join(parentDirectory, props.name));
-        mkdirSync(join(parentDirectory, props.name));
+        mkdirSync(join(parentDirectory, props.name), { recursive: true });
         setMounted(true);
         return () => {
           console.log("deleting", join(parentDirectory, props.name));

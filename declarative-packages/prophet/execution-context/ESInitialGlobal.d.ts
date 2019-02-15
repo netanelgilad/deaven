@@ -1,6 +1,12 @@
 export declare const ESInitialGlobal: {
     properties: {
-        Math: any;
+        Math: {
+            properties: {
+                round: {
+                    implementation: typeof import("../math/round").round;
+                };
+            };
+        };
         Function: {
             type: string;
             properties: {
