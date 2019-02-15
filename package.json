@@ -20,6 +20,7 @@
     "@babel/preset-typescript": "^7.1.0",
     "@deaven/tsconfig": "^0.1.0",
     "@types/babel-plugin-tester": "^1.0.0",
+    "@types/babel__code-frame": "^7.0.1",
     "@types/create-jest-runner": "^1.0.0",
     "@types/fs-extra": "^5.0.4",
     "@types/globby": "^8.0.0",
