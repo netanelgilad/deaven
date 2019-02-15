@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>jest-stare!</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/diff2html.min.css" rel="stylesheet" type="text/css">
+    <link href="css/jest-stare.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/holder.js"></script>
+    <script src="js/diff2html.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/view.js"></script>
+</head>
+
+<body>
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#">jest-stare</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="coverage-link" class="nav-link disabled" href="#">Coverage</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="onoff-switch mr-sm-2 ml-sm-2">
+                            <input type="checkbox" name="passoff-switch" class="passoff-switch-checkbox" id="lab-passoff-switch" checked>
+                            <label class="onoff-switch-label" for="lab-passoff-switch">
+                                <span class="passoff-switch-inner"></span>
+                                <span class="passoff-switch-switch"></span>
+                            </label>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="onoff-switch mr-sm-2 ml-sm-2">
+                            <input type="checkbox" name="failoff-switch" class="failoff-switch-checkbox" id="lab-failoff-switch" checked>
+                            <label class="onoff-switch-label" for="lab-failoff-switch">
+                                <span class="failoff-switch-inner"></span>
+                                <span class="failoff-switch-switch"></span>
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+                <!-- <form class="form-inline mt-2 mt-md-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" disabled>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" disabled>Search</button>
+                </form> -->
+            </div>
+        </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <main role="main" class="container">
+
+        <h1 class="mt-5"></h1>
+
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+            <div class="col-lg-4">
+                <canvas id="test-suites-canvas" width="100" height="100"></canvas>
+                <h2>Test Suites</h2>
+                <div class="list-group">
+                    <p id="test-suites-results" class="list-group-item list-group-item-action">14 passed, 18 total</p>
+                </div>
+            </div>
+            <!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <canvas id="tests-canvas" width="100" height="100"></canvas>
+                <h2>Tests</h2>
+                <div class="list-group">
+                    <p id="tests-results" class="list-group-item list-group-item-action">15 passed, 31 total</p>
+                </div>
+            </div>
+            <!-- /.col-lg-4 -->
+            <div class="col-lg-4" id="snapshots-group">
+                <canvas id="snapshots-canvas" width="100" height="100"></canvas>
+                <h2>Snapshots</h2>
+                <div class="list-group">
+                    <p id="snapshots-results" class="list-group-item list-group-item-action">0 passed, 5 total</p>
+                </div>
+            </div>
+            <!-- /.col-lg-4 -->
+        </div>
+
+        <div id="loading-info" class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                aria-valuemax="100" style="width: 100%"></div>
+        </div>
+
+        <div class="d-none" id="test-config">{
+  &quot;additionalResultsProcessors&quot;: [],
+  &quot;resultDir&quot;: &quot;test-results&#x2F;&quot;,
+  &quot;resultHtml&quot;: &quot;index.html&quot;,
+  &quot;resultJson&quot;: &quot;jest-results.json&quot;
+}</div>
+        <div class="d-none" id="test-results">{
+  &quot;numFailedTestSuites&quot;: 4,
+  &quot;numFailedTests&quot;: 16,
+  &quot;numPassedTestSuites&quot;: 14,
+  &quot;numPassedTests&quot;: 15,
+  &quot;numPendingTestSuites&quot;: 0,
+  &quot;numPendingTests&quot;: 0,
+  &quot;numRuntimeErrorTestSuites&quot;: 1,
+  &quot;numTodoTests&quot;: 0,
+  &quot;numTotalTestSuites&quot;: 18,
+  &quot;numTotalTests&quot;: 31,
+  &quot;openHandles&quot;: [],
+  &quot;snapshot&quot;: {
+    &quot;added&quot;: 0,
+    &quot;didUpdate&quot;: false,
+    &quot;failure&quot;: true,
+    &quot;filesAdded&quot;: 0,
+    &quot;filesRemoved&quot;: 0,
+    &quot;filesUnmatched&quot;: 2,
+    &quot;filesUpdated&quot;: 0,
+    &quot;matched&quot;: 0,
+    &quot;total&quot;: 5,
+    &quot;unchecked&quot;: 0,
+    &quot;uncheckedKeysByFile&quot;: [],
+    &quot;unmatched&quot;: 5,
+    &quot;updated&quot;: 0
+  },
+  &quot;startTime&quot;: 1550222970481,
+  &quot;success&quot;: false,
+  &quot;testResults&quot;: [
+    {
+      &quot;console&quot;: [],
+      &quot;failureMessage&quot;: &quot;\u001b[1m\u001b[31m  \u001b[1m● \u001b[1mMath.round › ()\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toBe(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) &#x2F;&#x2F; Object.is equality\u001b[22m\n\n    Expected: \u001b[32m{}\u001b[39m\n    Received: \u001b[31m{\&quot;type\&quot;: \&quot;undefined\&quot;}\u001b[39m\n\n    Difference:\n\n    \u001b[32m- Expected\u001b[39m\n    \u001b[31m+ Received\u001b[39m\n\n    \u001b[32m- Object {}\u001b[39m\n    \u001b[31m+ Object {\u001b[39m\n    \u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n    \u001b[31m+ }\u001b[39m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 11 | \u001b[39m    expect(\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 12 | \u001b[39m      evaluateCodeAsExpression(\u001b[32m\&quot;Math.round()\&quot;\u001b[39m\u001b[33m,\u001b[39m nodeInitialExecutionContext)[\u001b[35m0\u001b[39m]\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 13 | \u001b[39m    )\u001b[33m.\u001b[39mtoBe(\u001b[33mNotANumber\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m    | \u001b[39m      \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 14 | \u001b[39m  })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 15 | \u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 16 | \u001b[39m  test(\u001b[32m\&quot;(string)\&quot;\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m&#x3D;&gt;\u001b[39m {\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toBe (\u001b[2m\u001b[0m\u001b[36msrc&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts\u001b[39m\u001b[0m\u001b[2m:13:7)\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[1mMath.round › (string)\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toBe(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) &#x2F;&#x2F; Object.is equality\u001b[22m\n\n    Expected: \u001b[32m{}\u001b[39m\n    Received: \u001b[31m{\&quot;type\&quot;: \&quot;undefined\&quot;}\u001b[39m\n\n    Difference:\n\n    \u001b[32m- Expected\u001b[39m\n    \u001b[31m+ Received\u001b[39m\n\n    \u001b[32m- Object {}\u001b[39m\n    \u001b[31m+ Object {\u001b[39m\n    \u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n    \u001b[31m+ }\u001b[39m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 20 | \u001b[39m        nodeInitialExecutionContext\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 21 | \u001b[39m      )[\u001b[35m0\u001b[39m]\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 22 | \u001b[39m    )\u001b[33m.\u001b[39mtoBe(\u001b[33mNotANumber\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m    | \u001b[39m      \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 23 | \u001b[39m  })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 24 | \u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 25 | \u001b[39m  test(\u001b[32m\&quot;(number)\&quot;\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m&#x3D;&gt;\u001b[39m {\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toBe (\u001b[2m\u001b[0m\u001b[36msrc&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts\u001b[39m\u001b[0m\u001b[2m:22:7)\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[1mMath.round › (number)\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toEqual(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n    Difference:\n\n    \u001b[32m- Expected\u001b[39m\n    \u001b[31m+ Received\u001b[39m\n\n    \u001b[2m  Object {\u001b[22m\n    \u001b[32m-   \&quot;number\&quot;: 4,\u001b[39m\n    \u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n    \u001b[2m  }\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 29 | \u001b[39m        nodeInitialExecutionContext\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 30 | \u001b[39m      )[\u001b[35m0\u001b[39m]\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 31 | \u001b[39m    )\u001b[33m.\u001b[39mtoEqual({\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m    | \u001b[39m      \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 32 | \u001b[39m      number\u001b[33m:\u001b[39m \u001b[35m4\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 33 | \u001b[39m    })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 34 | \u001b[39m  })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toEqual (\u001b[2m\u001b[0m\u001b[36msrc&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts\u001b[39m\u001b[0m\u001b[2m:31:7)\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[1m4\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mvalue\u001b[39m\u001b[2m).toMatchSnapshot()\u001b[22m\n\n    \u001b[31mReceived value\u001b[39m does not match \u001b[32mstored snapshot \&quot;4 1\&quot;\u001b[39m.\n\n    \u001b[32m- Snapshot\u001b[39m\n    \u001b[31m+ Received\u001b[39m\n\n    \u001b[2m  Object {\u001b[22m\n    \u001b[32m-   \&quot;concrete\&quot;: undefined,\u001b[39m\n    \u001b[32m-   \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-     \&quot;join\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;gte\&quot;: 5,\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;reverse\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-   },\u001b[39m\n    \u001b[32m-   \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n    \u001b[32m-   \&quot;value\&quot;: Array [\u001b[39m\n    \u001b[32m-     Object {\u001b[39m\n    \u001b[32m-       \&quot;concrete\&quot;: undefined,\u001b[39m\n    \u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;join\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         \&quot;length\&quot;: Object {},\u001b[39m\n    \u001b[32m-         \&quot;reverse\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-       \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n    \u001b[32m-       \&quot;value\&quot;: undefined,\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     Object {\u001b[39m\n    \u001b[32m-       \&quot;concrete\&quot;: true,\u001b[39m\n    \u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;join\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;number\&quot;: 5,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         \&quot;reverse\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-       \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n    \u001b[32m-       \&quot;value\&quot;: Array [\u001b[39m\n    \u001b[32m-         Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-               },\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: \&quot;W\&quot;,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-               },\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: \&quot;o\&quot;,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-               },\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: \&quot;r\&quot;,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-               },\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: \&quot;l\&quot;,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-               },\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: \&quot;d\&quot;,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-       ],\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-   ],\u001b[39m\n    \u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n    \u001b[2m  }\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 41 | \u001b[39m      nodeInitialExecutionContext\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 42 | \u001b[39m    )[\u001b[35m0\u001b[39m]\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 43 | \u001b[39m  )\u001b[33m.\u001b[39mtoMatchInlineSnapshot(\u001b[32m&#x60;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m    | \u001b[39m    \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 44 | \u001b[39m\u001b[32mObject {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 45 | \u001b[39m\u001b[32m  \&quot;concrete\&quot;: undefined,\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 46 | \u001b[39m\u001b[32m  \&quot;properties\&quot;: Object {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toMatchInlineSnapshot (\u001b[2m\u001b[0m\u001b[36msrc&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts\u001b[39m\u001b[0m\u001b[2m:43:5)\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[1m5\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mvalue\u001b[39m\u001b[2m).toMatchSnapshot()\u001b[22m\n\n    \u001b[31mReceived value\u001b[39m does not match \u001b[32mstored snapshot \&quot;5 1\&quot;\u001b[39m.\n\n    \u001b[32m- Snapshot\u001b[39m\n    \u001b[31m+ Received\u001b[39m\n\n    \u001b[2m  Object {\u001b[22m\n    \u001b[32m-   \&quot;concrete\&quot;: undefined,\u001b[39m\n    \u001b[32m-   \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-     \&quot;join\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;gte\&quot;: 5,\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;reverse\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-   },\u001b[39m\n    \u001b[32m-   \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n    \u001b[32m-   \&quot;value\&quot;: Array [\u001b[39m\n    \u001b[32m-     Object {\u001b[39m\n    \u001b[32m-       \&quot;concrete\&quot;: true,\u001b[39m\n    \u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;join\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;number\&quot;: 5,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         \&quot;reverse\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-       \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n    \u001b[32m-       \&quot;value\&quot;: Array [\u001b[39m\n    \u001b[32m-         Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-               },\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: \&quot;d\&quot;,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-               },\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: \&quot;l\&quot;,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-               },\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: \&quot;r\&quot;,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-               },\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: \&quot;o\&quot;,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-               },\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: \&quot;W\&quot;,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-       ],\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     Object {\u001b[39m\n    \u001b[32m-       \&quot;concrete\&quot;: undefined,\u001b[39m\n    \u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;join\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         \&quot;length\&quot;: Object {},\u001b[39m\n    \u001b[32m-         \&quot;reverse\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-       \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n    \u001b[32m-       \&quot;value\&quot;: undefined,\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-   ],\u001b[39m\n    \u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n    \u001b[2m  }\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 199 | \u001b[39m      nodeInitialExecutionContext\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 200 | \u001b[39m    )[\u001b[35m0\u001b[39m]\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 201 | \u001b[39m  )\u001b[33m.\u001b[39mtoMatchInlineSnapshot(\u001b[32m&#x60;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m     | \u001b[39m    \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 202 | \u001b[39m\u001b[32mObject {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 203 | \u001b[39m\u001b[32m  \&quot;concrete\&quot;: undefined,\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 204 | \u001b[39m\u001b[32m  \&quot;properties\&quot;: Object {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toMatchInlineSnapshot (\u001b[2m\u001b[0m\u001b[36msrc&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts\u001b[39m\u001b[0m\u001b[2m:201:5)\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[1m6\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mvalue\u001b[39m\u001b[2m).toMatchSnapshot()\u001b[22m\n\n    \u001b[31mReceived value\u001b[39m does not match \u001b[32mstored snapshot \&quot;6 1\&quot;\u001b[39m.\n\n    \u001b[32m- Snapshot\u001b[39m\n    \u001b[31m+ Received\u001b[39m\n\n    \u001b[2m  Object {\u001b[22m\n    \u001b[32m-   \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-     \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;gte\&quot;: 5,\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-   },\u001b[39m\n    \u001b[32m-   \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-   \&quot;value\&quot;: Array [\u001b[39m\n    \u001b[32m-     Object {\u001b[39m\n    \u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;length\&quot;: Object {},\u001b[39m\n    \u001b[32m-         \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-       \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-       \&quot;value\&quot;: \&quot;dlroW\&quot;,\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     Object {\u001b[39m\n    \u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;length\&quot;: Object {},\u001b[39m\n    \u001b[32m-         \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-       \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-       \&quot;value\&quot;: undefined,\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-   ],\u001b[39m\n    \u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n    \u001b[2m  }\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 357 | \u001b[39m      nodeInitialExecutionContext\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 358 | \u001b[39m    )[\u001b[35m0\u001b[39m]\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 359 | \u001b[39m  )\u001b[33m.\u001b[39mtoMatchInlineSnapshot(\u001b[32m&#x60;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m     | \u001b[39m    \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 360 | \u001b[39m\u001b[32mObject {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 361 | \u001b[39m\u001b[32m  \&quot;properties\&quot;: Object {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 362 | \u001b[39m\u001b[32m    \&quot;length\&quot;: Object {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toMatchInlineSnapshot (\u001b[2m\u001b[0m\u001b[36msrc&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts\u001b[39m\u001b[0m\u001b[2m:359:5)\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[1m3\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mvalue\u001b[39m\u001b[2m).toMatchSnapshot()\u001b[22m\n\n    \u001b[31mReceived value\u001b[39m does not match \u001b[32mstored snapshot \&quot;3 1\&quot;\u001b[39m.\n\n    \u001b[32m- Snapshot\u001b[39m\n    \u001b[31m+ Received\u001b[39m\n\n    \u001b[2m  Object {\u001b[22m\n    \u001b[32m-   \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-     \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;number\&quot;: 2,\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-   },\u001b[39m\n    \u001b[32m-   \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-   \&quot;value\&quot;: \&quot;dl\&quot;,\u001b[39m\n    \u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n    \u001b[2m  }\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 424 | \u001b[39m      nodeInitialExecutionContext\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 425 | \u001b[39m    )[\u001b[35m0\u001b[39m]\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 426 | \u001b[39m  )\u001b[33m.\u001b[39mtoMatchInlineSnapshot(\u001b[32m&#x60;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m     | \u001b[39m    \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 427 | \u001b[39m\u001b[32mObject {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 428 | \u001b[39m\u001b[32m  \&quot;properties\&quot;: Object {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 429 | \u001b[39m\u001b[32m    \&quot;length\&quot;: Object {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toMatchInlineSnapshot (\u001b[2m\u001b[0m\u001b[36msrc&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts\u001b[39m\u001b[0m\u001b[2m:426:5)\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[1m.length › (prompt() + \&quot;World\&quot;).split(\&quot;\&quot;)\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toEqual(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n    Difference:\n\n    \u001b[32m- Expected\u001b[39m\n    \u001b[31m+ Received\u001b[39m\n\n    \u001b[2m  Object {\u001b[22m\n    \u001b[32m-   \&quot;gte\&quot;: 5,\u001b[39m\n    \u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n    \u001b[2m  }\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 455 | \u001b[39m        nodeInitialExecutionContext\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 456 | \u001b[39m      )[\u001b[35m0\u001b[39m]\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 457 | \u001b[39m    )\u001b[33m.\u001b[39mtoEqual({\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m     | \u001b[39m      \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 458 | \u001b[39m      gte\u001b[33m:\u001b[39m \u001b[35m5\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 459 | \u001b[39m    })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 460 | \u001b[39m  })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toEqual (\u001b[2m\u001b[0m\u001b[36msrc&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts\u001b[39m\u001b[0m\u001b[2m:457:7)\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[1m&gt; › (greaterThanEquals, number)\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toEqual(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n    Expected: \u001b[32mtrue\u001b[39m\n    Received: \u001b[31m{\&quot;type\&quot;: \&quot;undefined\&quot;}\u001b[39m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 468 | \u001b[39m        nodeInitialExecutionContext\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 469 | \u001b[39m      )[\u001b[35m0\u001b[39m]\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 470 | \u001b[39m    )\u001b[33m.\u001b[39mtoEqual(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m     | \u001b[39m      \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 471 | \u001b[39m  })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 472 | \u001b[39m})\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 473 | \u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toEqual (\u001b[2m\u001b[0m\u001b[36msrc&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts\u001b[39m\u001b[0m\u001b[2m:470:7)\u001b[2m\u001b[22m\n&quot;,
+      &quot;numFailingTests&quot;: 9,
+      &quot;numPassingTests&quot;: 0,
+      &quot;numPendingTests&quot;: 0,
+      &quot;numTodoTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1550222977402,
+        &quot;start&quot;: 1550222972148
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 4,
+        &quot;updated&quot;: 0,
+        &quot;uncheckedKeys&quot;: []
+      },
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;Math.round&quot;
+          ],
+          &quot;duration&quot;: 20,
+          &quot;failureMessages&quot;: [
+            &quot;Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toBe(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) &#x2F;&#x2F; Object.is equality\u001b[22m\n\nExpected: \u001b[32m{}\u001b[39m\nReceived: \u001b[31m{\&quot;type\&quot;: \&quot;undefined\&quot;}\u001b[39m\n\nDifference:\n\n\u001b[32m- Expected\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[32m- Object {}\u001b[39m\n\u001b[31m+ Object {\u001b[39m\n\u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n\u001b[31m+ }\u001b[39m\n    at Object.toBe (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts:13:7)\n    at Object.asyncJestTest (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;jasmineAsyncInstall.js:102:37)\n    at resolve (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:41:12)\n    at new Promise (&lt;anonymous&gt;)\n    at mapper (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:26:19)\n    at promise.then (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:71:41)\n    at processTicksAndRejections (internal&#x2F;process&#x2F;next_tick.js:81:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;Math.round ()&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;()&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;Math.round&quot;
+          ],
+          &quot;duration&quot;: 4,
+          &quot;failureMessages&quot;: [
+            &quot;Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toBe(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) &#x2F;&#x2F; Object.is equality\u001b[22m\n\nExpected: \u001b[32m{}\u001b[39m\nReceived: \u001b[31m{\&quot;type\&quot;: \&quot;undefined\&quot;}\u001b[39m\n\nDifference:\n\n\u001b[32m- Expected\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[32m- Object {}\u001b[39m\n\u001b[31m+ Object {\u001b[39m\n\u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n\u001b[31m+ }\u001b[39m\n    at Object.toBe (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts:22:7)\n    at Object.asyncJestTest (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;jasmineAsyncInstall.js:102:37)\n    at resolve (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:41:12)\n    at new Promise (&lt;anonymous&gt;)\n    at mapper (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:26:19)\n    at promise.then (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:71:41)\n    at processTicksAndRejections (internal&#x2F;process&#x2F;next_tick.js:81:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;Math.round (string)&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;(string)&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;Math.round&quot;
+          ],
+          &quot;duration&quot;: 7,
+          &quot;failureMessages&quot;: [
+            &quot;Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toEqual(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nDifference:\n\n\u001b[32m- Expected\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \&quot;number\&quot;: 4,\u001b[39m\n\u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n\u001b[2m  }\u001b[22m\n    at Object.toEqual (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts:31:7)\n    at Object.asyncJestTest (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;jasmineAsyncInstall.js:102:37)\n    at resolve (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:41:12)\n    at new Promise (&lt;anonymous&gt;)\n    at mapper (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:26:19)\n    at promise.then (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:71:41)\n    at processTicksAndRejections (internal&#x2F;process&#x2F;next_tick.js:81:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;Math.round (number)&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;(number)&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 5,
+          &quot;failureMessages&quot;: [
+            &quot;Error: \u001b[2mexpect(\u001b[22m\u001b[31mvalue\u001b[39m\u001b[2m).toMatchSnapshot()\u001b[22m\n\n\u001b[31mReceived value\u001b[39m does not match \u001b[32mstored snapshot \&quot;4 1\&quot;\u001b[39m.\n\n\u001b[32m- Snapshot\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \&quot;concrete\&quot;: undefined,\u001b[39m\n\u001b[32m-   \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-     \&quot;join\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;gte\&quot;: 5,\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;reverse\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-   },\u001b[39m\n\u001b[32m-   \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n\u001b[32m-   \&quot;value\&quot;: Array [\u001b[39m\n\u001b[32m-     Object {\u001b[39m\n\u001b[32m-       \&quot;concrete\&quot;: undefined,\u001b[39m\n\u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;join\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         \&quot;length\&quot;: Object {},\u001b[39m\n\u001b[32m-         \&quot;reverse\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-       \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n\u001b[32m-       \&quot;value\&quot;: undefined,\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     Object {\u001b[39m\n\u001b[32m-       \&quot;concrete\&quot;: true,\u001b[39m\n\u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;join\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;number\&quot;: 5,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         \&quot;reverse\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-       \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n\u001b[32m-       \&quot;value\&quot;: Array [\u001b[39m\n\u001b[32m-         Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-               },\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: \&quot;W\&quot;,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-               },\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: \&quot;o\&quot;,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-               },\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: \&quot;r\&quot;,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-               },\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: \&quot;l\&quot;,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-               },\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: \&quot;d\&quot;,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-       ],\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-   ],\u001b[39m\n\u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n\u001b[2m  }\u001b[22m\n    at Object.toMatchInlineSnapshot (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts:43:5)\n    at Object.asyncJestTest (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;jasmineAsyncInstall.js:102:37)\n    at resolve (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:41:12)\n    at new Promise (&lt;anonymous&gt;)\n    at mapper (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:26:19)\n    at promise.then (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:71:41)\n    at processTicksAndRejections (internal&#x2F;process&#x2F;next_tick.js:81:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;4&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;4&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 2,
+          &quot;failureMessages&quot;: [
+            &quot;Error: \u001b[2mexpect(\u001b[22m\u001b[31mvalue\u001b[39m\u001b[2m).toMatchSnapshot()\u001b[22m\n\n\u001b[31mReceived value\u001b[39m does not match \u001b[32mstored snapshot \&quot;5 1\&quot;\u001b[39m.\n\n\u001b[32m- Snapshot\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \&quot;concrete\&quot;: undefined,\u001b[39m\n\u001b[32m-   \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-     \&quot;join\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;gte\&quot;: 5,\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;reverse\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-   },\u001b[39m\n\u001b[32m-   \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n\u001b[32m-   \&quot;value\&quot;: Array [\u001b[39m\n\u001b[32m-     Object {\u001b[39m\n\u001b[32m-       \&quot;concrete\&quot;: true,\u001b[39m\n\u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;join\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;number\&quot;: 5,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         \&quot;reverse\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-       \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n\u001b[32m-       \&quot;value\&quot;: Array [\u001b[39m\n\u001b[32m-         Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-               },\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: \&quot;d\&quot;,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-               },\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: \&quot;l\&quot;,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-               },\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: \&quot;r\&quot;,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-               },\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: \&quot;o\&quot;,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-               },\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: \&quot;W\&quot;,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-       ],\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     Object {\u001b[39m\n\u001b[32m-       \&quot;concrete\&quot;: undefined,\u001b[39m\n\u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;join\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         \&quot;length\&quot;: Object {},\u001b[39m\n\u001b[32m-         \&quot;reverse\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-       \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n\u001b[32m-       \&quot;value\&quot;: undefined,\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-   ],\u001b[39m\n\u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n\u001b[2m  }\u001b[22m\n    at Object.toMatchInlineSnapshot (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts:201:5)\n    at Object.asyncJestTest (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;jasmineAsyncInstall.js:102:37)\n    at resolve (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:41:12)\n    at new Promise (&lt;anonymous&gt;)\n    at mapper (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:26:19)\n    at promise.then (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:71:41)\n    at processTicksAndRejections (internal&#x2F;process&#x2F;next_tick.js:81:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;5&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;5&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 2,
+          &quot;failureMessages&quot;: [
+            &quot;Error: \u001b[2mexpect(\u001b[22m\u001b[31mvalue\u001b[39m\u001b[2m).toMatchSnapshot()\u001b[22m\n\n\u001b[31mReceived value\u001b[39m does not match \u001b[32mstored snapshot \&quot;6 1\&quot;\u001b[39m.\n\n\u001b[32m- Snapshot\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-     \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;gte\&quot;: 5,\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-   },\u001b[39m\n\u001b[32m-   \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-   \&quot;value\&quot;: Array [\u001b[39m\n\u001b[32m-     Object {\u001b[39m\n\u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;length\&quot;: Object {},\u001b[39m\n\u001b[32m-         \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-       \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-       \&quot;value\&quot;: \&quot;dlroW\&quot;,\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     Object {\u001b[39m\n\u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;length\&quot;: Object {},\u001b[39m\n\u001b[32m-         \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-       \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-       \&quot;value\&quot;: undefined,\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-   ],\u001b[39m\n\u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n\u001b[2m  }\u001b[22m\n    at Object.toMatchInlineSnapshot (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts:359:5)\n    at Object.asyncJestTest (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;jasmineAsyncInstall.js:102:37)\n    at resolve (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:41:12)\n    at new Promise (&lt;anonymous&gt;)\n    at mapper (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:26:19)\n    at promise.then (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:71:41)\n    at processTicksAndRejections (internal&#x2F;process&#x2F;next_tick.js:81:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;6&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;6&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 1,
+          &quot;failureMessages&quot;: [
+            &quot;Error: \u001b[2mexpect(\u001b[22m\u001b[31mvalue\u001b[39m\u001b[2m).toMatchSnapshot()\u001b[22m\n\n\u001b[31mReceived value\u001b[39m does not match \u001b[32mstored snapshot \&quot;3 1\&quot;\u001b[39m.\n\n\u001b[32m- Snapshot\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-     \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;number\&quot;: 2,\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-   },\u001b[39m\n\u001b[32m-   \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-   \&quot;value\&quot;: \&quot;dl\&quot;,\u001b[39m\n\u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n\u001b[2m  }\u001b[22m\n    at Object.toMatchInlineSnapshot (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts:426:5)\n    at Object.asyncJestTest (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;jasmineAsyncInstall.js:102:37)\n    at resolve (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:41:12)\n    at new Promise (&lt;anonymous&gt;)\n    at mapper (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:26:19)\n    at promise.then (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:71:41)\n    at processTicksAndRejections (internal&#x2F;process&#x2F;next_tick.js:81:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;3&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;3&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;.length&quot;
+          ],
+          &quot;duration&quot;: 5,
+          &quot;failureMessages&quot;: [
+            &quot;Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toEqual(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nDifference:\n\n\u001b[32m- Expected\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \&quot;gte\&quot;: 5,\u001b[39m\n\u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n\u001b[2m  }\u001b[22m\n    at Object.toEqual (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts:457:7)\n    at Object.asyncJestTest (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;jasmineAsyncInstall.js:102:37)\n    at resolve (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:41:12)\n    at new Promise (&lt;anonymous&gt;)\n    at mapper (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:26:19)\n    at promise.then (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:71:41)\n    at processTicksAndRejections (internal&#x2F;process&#x2F;next_tick.js:81:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;.length (prompt() + \&quot;World\&quot;).split(\&quot;\&quot;)&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;(prompt() + \&quot;World\&quot;).split(\&quot;\&quot;)&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;&gt;&quot;
+          ],
+          &quot;duration&quot;: 1,
+          &quot;failureMessages&quot;: [
+            &quot;Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toEqual(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31m{\&quot;type\&quot;: \&quot;undefined\&quot;}\u001b[39m\n    at Object.toEqual (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts:470:7)\n    at Object.asyncJestTest (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;jasmineAsyncInstall.js:102:37)\n    at resolve (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:41:12)\n    at new Promise (&lt;anonymous&gt;)\n    at mapper (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:26:19)\n    at promise.then (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:71:41)\n    at processTicksAndRejections (internal&#x2F;process&#x2F;next_tick.js:81:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;&gt; (greaterThanEquals, number)&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;(greaterThanEquals, number)&quot;
+        }
+      ],
+      &quot;sourceMaps&quot;: {},
+      &quot;skipped&quot;: false,
+      &quot;displayName&quot;: &quot;test&quot;,
+      &quot;leaks&quot;: false
+    },
+    {
+      &quot;console&quot;: [],
+      &quot;failureMessage&quot;: &quot;\u001b[1m\u001b[31m  \u001b[1m● \u001b[1mnew operator › should return the this object with the prototype in place\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mvalue\u001b[39m\u001b[2m).toMatchSnapshot()\u001b[22m\n\n    \u001b[31mReceived value\u001b[39m does not match \u001b[32mstored snapshot \&quot;new operator should return the this object with the prototype in place 1\&quot;\u001b[39m.\n\n    \u001b[32m- Snapshot\u001b[39m\n    \u001b[31m+ Received\u001b[39m\n\n    \u001b[2m  Object {\u001b[22m\n    \u001b[32m-   \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-     \&quot;a\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;foo\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;prototype\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {},\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;object\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: undefined,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-   },\u001b[39m\n    \u001b[32m-   \&quot;type\&quot;: \&quot;object\&quot;,\u001b[39m\n    \u001b[32m-   \&quot;value\&quot;: Object {\u001b[39m\n    \u001b[32m-     \&quot;a\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;foo\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;prototype\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {},\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;object\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: undefined,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-   },\u001b[39m\n    \u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n    \u001b[2m  }\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 25 | \u001b[39m        nodeInitialExecutionContext\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 26 | \u001b[39m      )[\u001b[35m0\u001b[39m]\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 27 | \u001b[39m    )\u001b[33m.\u001b[39mtoMatchInlineSnapshot(\u001b[32m&#x60;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m    | \u001b[39m      \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 28 | \u001b[39m\u001b[32mObject {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 29 | \u001b[39m\u001b[32m  \&quot;properties\&quot;: Object {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 30 | \u001b[39m\u001b[32m    \&quot;a\&quot;: Object {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toMatchInlineSnapshot (\u001b[2m\u001b[0m\u001b[36msrc&#x2F;prophet-tests&#x2F;new.spec.ts\u001b[39m\u001b[0m\u001b[2m:27:7)\u001b[2m\u001b[22m\n&quot;,
+      &quot;numFailingTests&quot;: 1,
+      &quot;numPassingTests&quot;: 0,
+      &quot;numPendingTests&quot;: 0,
+      &quot;numTodoTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1550222978356,
+        &quot;start&quot;: 1550222977494
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 1,
+        &quot;updated&quot;: 0,
+        &quot;uncheckedKeys&quot;: []
+      },
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;new.spec.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;new operator&quot;
+          ],
+          &quot;duration&quot;: 5,
+          &quot;failureMessages&quot;: [
+            &quot;Error: \u001b[2mexpect(\u001b[22m\u001b[31mvalue\u001b[39m\u001b[2m).toMatchSnapshot()\u001b[22m\n\n\u001b[31mReceived value\u001b[39m does not match \u001b[32mstored snapshot \&quot;new operator should return the this object with the prototype in place 1\&quot;\u001b[39m.\n\n\u001b[32m- Snapshot\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-     \&quot;a\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;foo\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;prototype\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {},\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;object\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: undefined,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-   },\u001b[39m\n\u001b[32m-   \&quot;type\&quot;: \&quot;object\&quot;,\u001b[39m\n\u001b[32m-   \&quot;value\&quot;: Object {\u001b[39m\n\u001b[32m-     \&quot;a\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;foo\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;prototype\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {},\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;object\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: undefined,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-   },\u001b[39m\n\u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n\u001b[2m  }\u001b[22m\n    at Object.toMatchInlineSnapshot (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;new.spec.ts:27:7)\n    at Object.asyncJestTest (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;jasmineAsyncInstall.js:102:37)\n    at resolve (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:41:12)\n    at new Promise (&lt;anonymous&gt;)\n    at mapper (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:26:19)\n    at promise.then (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:71:41)\n    at processTicksAndRejections (internal&#x2F;process&#x2F;next_tick.js:81:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;new operator should return the this object with the prototype in place&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;should return the this object with the prototype in place&quot;
+        }
+      ],
+      &quot;sourceMaps&quot;: {},
+      &quot;skipped&quot;: false,
+      &quot;displayName&quot;: &quot;test&quot;,
+      &quot;leaks&quot;: false
+    },
+    {
+      &quot;console&quot;: [],
+      &quot;failureMessage&quot;: &quot;\u001b[1m\u001b[31m  \u001b[1m● \u001b[1mmacros › 1. macros\u001b[39m\u001b[22m\n\n    Cannot find module &#39;..&#x2F;ast-bundle.macro&#39; from &#39;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;ast-bundle.macro-tests&#39;\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Function.Object.&lt;anonymous&gt;.module.exports [as sync] (\u001b[2mnode_modules&#x2F;resolve&#x2F;lib&#x2F;sync.js\u001b[2m:58:15)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat applyMacros (\u001b[2mnode_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js\u001b[2m:182:29)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat ImportDeclaration (\u001b[2mnode_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js\u001b[2m:95:26)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath._call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:53:20)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:40:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:88:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitQueue (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:118:16)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitMultiple (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:85:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:144:19)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Function.Object.&lt;anonymous&gt;.traverse.node (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:94:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat traverse (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:76:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.traverse (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;index.js\u001b[2m:161:24)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat PluginPass.Program (\u001b[2mnode_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js\u001b[2m:74:18)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat newFn (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;visitors.js\u001b[2m:193:21)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath._call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:53:20)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:40:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:88:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitQueue (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:118:16)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitSingle (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:90:19)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:146:19)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Function.Object.&lt;anonymous&gt;.traverse.node (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:94:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat traverse (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:76:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat transformFile (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js\u001b[2m:88:29)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat runSync (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js\u001b[2m:45:3)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat transformSync (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js\u001b[2m:43:38)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.transform (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js\u001b[2m:22:38)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat tester (\u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:176:39)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.&lt;anonymous&gt; (\u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:108:13)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat step (\u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:37:191)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat \u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:37:361\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[1mmacros › 2. macros\u001b[39m\u001b[22m\n\n    @deaven&#x2F;ast-bundle.macro: [BABEL] unknown: Configuration contains string&#x2F;RegExp pattern, but no filename was passed to Babel Learn more: https:&#x2F;&#x2F;www.npmjs.com&#x2F;package&#x2F;@deaven&#x2F;ast-bundle.macro\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 79 | \u001b[39m    \u001b[36mconst\u001b[39m {\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 80 | \u001b[39m      code\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 81 | \u001b[39m    } \u001b[33m&#x3D;\u001b[39m babel\u001b[33m.\u001b[39mtransformFromAstSync(ast)\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m    | \u001b[39m              \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 82 | \u001b[39m    \u001b[36mconst\u001b[39m project \u001b[33m&#x3D;\u001b[39m \u001b[36mnew\u001b[39m _tsSimpleAst\u001b[33m.\u001b[39m\u001b[33mProject\u001b[39m({\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 83 | \u001b[39m      compilerOptions\u001b[33m:\u001b[39m {\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 84 | \u001b[39m        module\u001b[33m:\u001b[39m _typescript\u001b[33m.\u001b[39m\u001b[33mModuleKind\u001b[39m\u001b[33m.\u001b[39m\u001b[33mCommonJS\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat matchPattern (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;config-chain.js\u001b[2m:431:11)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat patterns.some.pattern (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;config-chain.js\u001b[2m:418:35)\u001b[2m\u001b[22m\n\u001b[2m          at Array.some (&lt;anonymous&gt;)\u001b[22m\n\u001b[2m      \u001b[2mat matchesPatterns (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;config-chain.js\u001b[2m:418:19)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat configFieldIsApplicable (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;config-chain.js\u001b[2m:400:10)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat configIsApplicable (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;config-chain.js\u001b[2m:395:41)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat forEach (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;config-chain.js\u001b[2m:256:13)\u001b[2m\u001b[22m\n\u001b[2m          at Array.forEach (&lt;anonymous&gt;)\u001b[22m\n\u001b[2m      \u001b[2mat \u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;config-chain.js\u001b[2m:253:42\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat buildPresetChain (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;config-chain.js\u001b[2m:45:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat loadPresetDescriptor (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;full.js\u001b[2m:235:44)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat config.presets.reduce (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;full.js\u001b[2m:77:21)\u001b[2m\u001b[22m\n\u001b[2m          at Array.reduce (&lt;anonymous&gt;)\u001b[22m\n\u001b[2m      \u001b[2mat recurseDescriptors (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;full.js\u001b[2m:74:38)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat loadFullConfig (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;full.js\u001b[2m:108:6)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.transformFromAstSync (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform-ast.js\u001b[2m:42:38)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat transformFromAstSync (\u001b[2mmacros-packages&#x2F;ast-bundle.macro&#x2F;index.js\u001b[2m:81:15)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat macroWrapper (\u001b[2mnode_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js\u001b[2m:55:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat applyMacros (\u001b[2mnode_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js\u001b[2m:208:14)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat ImportDeclaration (\u001b[2mnode_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js\u001b[2m:95:26)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath._call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:53:20)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:40:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:88:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitQueue (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:118:16)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitMultiple (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:85:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:144:19)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Function.Object.&lt;anonymous&gt;.traverse.node (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:94:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat traverse (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:76:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.traverse (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;index.js\u001b[2m:161:24)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat PluginPass.Program (\u001b[2mnode_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js\u001b[2m:74:18)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat newFn (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;visitors.js\u001b[2m:193:21)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath._call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:53:20)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:40:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:88:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitQueue (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:118:16)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitSingle (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:90:19)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:146:19)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Function.Object.&lt;anonymous&gt;.traverse.node (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:94:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat traverse (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:76:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat transformFile (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js\u001b[2m:88:29)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat runSync (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js\u001b[2m:45:3)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat transformSync (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js\u001b[2m:43:38)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.transform (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js\u001b[2m:22:38)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat tester (\u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:176:39)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.&lt;anonymous&gt; (\u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:108:13)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat step (\u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:37:191)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat \u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:37:361\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[1mmacros › 3. macros\u001b[39m\u001b[22m\n\n    Cannot find module &#39;..&#x2F;ast-bundle.macro&#39; from &#39;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;ast-bundle.macro-tests&#39;\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Function.Object.&lt;anonymous&gt;.module.exports [as sync] (\u001b[2mnode_modules&#x2F;resolve&#x2F;lib&#x2F;sync.js\u001b[2m:58:15)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat applyMacros (\u001b[2mnode_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js\u001b[2m:182:29)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat ImportDeclaration (\u001b[2mnode_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js\u001b[2m:95:26)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath._call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:53:20)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:40:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:88:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitQueue (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:118:16)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitMultiple (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:85:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:144:19)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Function.Object.&lt;anonymous&gt;.traverse.node (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:94:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat traverse (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:76:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.traverse (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;index.js\u001b[2m:161:24)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat PluginPass.Program (\u001b[2mnode_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js\u001b[2m:74:18)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat newFn (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;visitors.js\u001b[2m:193:21)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath._call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:53:20)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:40:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:88:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitQueue (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:118:16)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitSingle (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:90:19)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:146:19)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Function.Object.&lt;anonymous&gt;.traverse.node (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:94:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat traverse (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:76:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat transformFile (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js\u001b[2m:88:29)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat runSync (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js\u001b[2m:45:3)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat transformSync (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js\u001b[2m:43:38)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.transform (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js\u001b[2m:22:38)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat tester (\u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:176:39)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.&lt;anonymous&gt; (\u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:108:13)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat step (\u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:37:191)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat \u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:37:361\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[1mmacros › 4. macros\u001b[39m\u001b[22m\n\n    Cannot find module &#39;..&#x2F;ast-bundle.macro&#39; from &#39;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;ast-bundle.macro-tests&#39;\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Function.Object.&lt;anonymous&gt;.module.exports [as sync] (\u001b[2mnode_modules&#x2F;resolve&#x2F;lib&#x2F;sync.js\u001b[2m:58:15)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat applyMacros (\u001b[2mnode_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js\u001b[2m:182:29)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat ImportDeclaration (\u001b[2mnode_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js\u001b[2m:95:26)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath._call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:53:20)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:40:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:88:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitQueue (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:118:16)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitMultiple (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:85:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:144:19)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Function.Object.&lt;anonymous&gt;.traverse.node (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:94:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat traverse (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:76:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.traverse (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;index.js\u001b[2m:161:24)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat PluginPass.Program (\u001b[2mnode_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js\u001b[2m:74:18)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat newFn (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;visitors.js\u001b[2m:193:21)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath._call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:53:20)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:40:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:88:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitQueue (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:118:16)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitSingle (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:90:19)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:146:19)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Function.Object.&lt;anonymous&gt;.traverse.node (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:94:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat traverse (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:76:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat transformFile (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js\u001b[2m:88:29)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat runSync (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js\u001b[2m:45:3)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat transformSync (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js\u001b[2m:43:38)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.transform (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js\u001b[2m:22:38)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat tester (\u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:176:39)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.&lt;anonymous&gt; (\u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:108:13)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat step (\u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:37:191)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat \u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:37:361\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[1mmacros › 5. macros\u001b[39m\u001b[22m\n\n    Cannot find module &#39;..&#x2F;ast-bundle.macro&#39; from &#39;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;ast-bundle.macro-tests&#39;\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Function.Object.&lt;anonymous&gt;.module.exports [as sync] (\u001b[2mnode_modules&#x2F;resolve&#x2F;lib&#x2F;sync.js\u001b[2m:58:15)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat applyMacros (\u001b[2mnode_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js\u001b[2m:182:29)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat ImportDeclaration (\u001b[2mnode_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js\u001b[2m:95:26)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath._call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:53:20)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:40:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:88:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitQueue (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:118:16)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitMultiple (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:85:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:144:19)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Function.Object.&lt;anonymous&gt;.traverse.node (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:94:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat traverse (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:76:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.traverse (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;index.js\u001b[2m:161:24)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat PluginPass.Program (\u001b[2mnode_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js\u001b[2m:74:18)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat newFn (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;visitors.js\u001b[2m:193:21)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath._call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:53:20)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:40:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:88:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitQueue (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:118:16)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitSingle (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:90:19)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:146:19)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Function.Object.&lt;anonymous&gt;.traverse.node (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:94:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat traverse (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:76:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat transformFile (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js\u001b[2m:88:29)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat runSync (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js\u001b[2m:45:3)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat transformSync (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js\u001b[2m:43:38)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.transform (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js\u001b[2m:22:38)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat tester (\u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:176:39)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.&lt;anonymous&gt; (\u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:108:13)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat step (\u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:37:191)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat \u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:37:361\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[1mmacros › 6. macros\u001b[39m\u001b[22m\n\n    Cannot find module &#39;..&#x2F;ast-bundle.macro&#39; from &#39;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;ast-bundle.macro-tests&#39;\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Function.Object.&lt;anonymous&gt;.module.exports [as sync] (\u001b[2mnode_modules&#x2F;resolve&#x2F;lib&#x2F;sync.js\u001b[2m:58:15)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat applyMacros (\u001b[2mnode_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js\u001b[2m:182:29)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat ImportDeclaration (\u001b[2mnode_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js\u001b[2m:95:26)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath._call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:53:20)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:40:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:88:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitQueue (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:118:16)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitMultiple (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:85:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:144:19)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Function.Object.&lt;anonymous&gt;.traverse.node (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:94:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat traverse (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:76:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.traverse (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;index.js\u001b[2m:161:24)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat PluginPass.Program (\u001b[2mnode_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js\u001b[2m:74:18)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat newFn (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;visitors.js\u001b[2m:193:21)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath._call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:53:20)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.call (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:40:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat NodePath.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js\u001b[2m:88:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitQueue (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:118:16)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visitSingle (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:90:19)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat TraversalContext.visit (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js\u001b[2m:146:19)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Function.Object.&lt;anonymous&gt;.traverse.node (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:94:17)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat traverse (\u001b[2mnode_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js\u001b[2m:76:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat transformFile (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js\u001b[2m:88:29)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat runSync (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js\u001b[2m:45:3)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat transformSync (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js\u001b[2m:43:38)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.transform (\u001b[2mnode_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js\u001b[2m:22:38)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat tester (\u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:176:39)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.&lt;anonymous&gt; (\u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:108:13)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat step (\u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:37:191)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat \u001b[2mnode_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js\u001b[2m:37:361\u001b[2m\u001b[22m\n&quot;,
+      &quot;numFailingTests&quot;: 6,
+      &quot;numPassingTests&quot;: 0,
+      &quot;numPendingTests&quot;: 0,
+      &quot;numTodoTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1550222978816,
+        &quot;start&quot;: 1550222972150
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0,
+        &quot;uncheckedKeys&quot;: []
+      },
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;ast-bundle.macro-tests&#x2F;index.spec.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;macros&quot;
+          ],
+          &quot;duration&quot;: 824,
+          &quot;failureMessages&quot;: [
+            &quot;Error: Cannot find module &#39;..&#x2F;ast-bundle.macro&#39; from &#39;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;ast-bundle.macro-tests&#39;\n    at Function.Object.&lt;anonymous&gt;.module.exports [as sync] (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;resolve&#x2F;lib&#x2F;sync.js:58:15)\n    at applyMacros (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js:182:29)\n    at ImportDeclaration (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js:95:26)\n    at NodePath._call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:53:20)\n    at NodePath.call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:40:17)\n    at NodePath.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:88:12)\n    at TraversalContext.visitQueue (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:118:16)\n    at TraversalContext.visitMultiple (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:85:17)\n    at TraversalContext.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:144:19)\n    at Function.Object.&lt;anonymous&gt;.traverse.node (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:94:17)\n    at traverse (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:76:12)\n    at NodePath.traverse (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;index.js:161:24)\n    at PluginPass.Program (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js:74:18)\n    at newFn (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;visitors.js:193:21)\n    at NodePath._call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:53:20)\n    at NodePath.call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:40:17)\n    at NodePath.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:88:12)\n    at TraversalContext.visitQueue (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:118:16)\n    at TraversalContext.visitSingle (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:90:19)\n    at TraversalContext.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:146:19)\n    at Function.Object.&lt;anonymous&gt;.traverse.node (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:94:17)\n    at traverse (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:76:12)\n    at transformFile (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js:88:29)\n    at runSync (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js:45:3)\n    at transformSync (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js:43:38)\n    at Object.transform (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js:22:38)\n    at tester (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:176:39)\n    at Object.&lt;anonymous&gt; (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:108:13)\n    at Generator.next (&lt;anonymous&gt;)\n    at step (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:37:191)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:37:361\n    at processTicksAndRejections (internal&#x2F;process&#x2F;next_tick.js:81:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;macros 1. macros&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;1. macros&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;macros&quot;
+          ],
+          &quot;duration&quot;: 3195,
+          &quot;failureMessages&quot;: [
+            &quot;Error: @deaven&#x2F;ast-bundle.macro: [BABEL] unknown: Configuration contains string&#x2F;RegExp pattern, but no filename was passed to Babel Learn more: https:&#x2F;&#x2F;www.npmjs.com&#x2F;package&#x2F;@deaven&#x2F;ast-bundle.macro\n    at matchPattern (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;config-chain.js:431:11)\n    at patterns.some.pattern (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;config-chain.js:418:35)\n    at Array.some (&lt;anonymous&gt;)\n    at matchesPatterns (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;config-chain.js:418:19)\n    at configFieldIsApplicable (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;config-chain.js:400:10)\n    at configIsApplicable (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;config-chain.js:395:41)\n    at forEach (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;config-chain.js:256:13)\n    at Array.forEach (&lt;anonymous&gt;)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;config-chain.js:253:42\n    at buildPresetChain (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;config-chain.js:45:17)\n    at loadPresetDescriptor (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;full.js:235:44)\n    at config.presets.reduce (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;full.js:77:21)\n    at Array.reduce (&lt;anonymous&gt;)\n    at recurseDescriptors (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;full.js:74:38)\n    at loadFullConfig (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;config&#x2F;full.js:108:6)\n    at Object.transformFromAstSync (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform-ast.js:42:38)\n    at transformFromAstSync (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;macros-packages&#x2F;ast-bundle.macro&#x2F;index.js:81:15)\n    at macroWrapper (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js:55:12)\n    at applyMacros (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js:208:14)\n    at ImportDeclaration (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js:95:26)\n    at NodePath._call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:53:20)\n    at NodePath.call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:40:17)\n    at NodePath.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:88:12)\n    at TraversalContext.visitQueue (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:118:16)\n    at TraversalContext.visitMultiple (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:85:17)\n    at TraversalContext.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:144:19)\n    at Function.Object.&lt;anonymous&gt;.traverse.node (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:94:17)\n    at traverse (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:76:12)\n    at NodePath.traverse (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;index.js:161:24)\n    at PluginPass.Program (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js:74:18)\n    at newFn (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;visitors.js:193:21)\n    at NodePath._call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:53:20)\n    at NodePath.call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:40:17)\n    at NodePath.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:88:12)\n    at TraversalContext.visitQueue (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:118:16)\n    at TraversalContext.visitSingle (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:90:19)\n    at TraversalContext.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:146:19)\n    at Function.Object.&lt;anonymous&gt;.traverse.node (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:94:17)\n    at traverse (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:76:12)\n    at transformFile (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js:88:29)\n    at runSync (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js:45:3)\n    at transformSync (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js:43:38)\n    at Object.transform (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js:22:38)\n    at tester (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:176:39)\n    at Object.&lt;anonymous&gt; (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:108:13)\n    at Generator.next (&lt;anonymous&gt;)\n    at step (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:37:191)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:37:361\n    at processTicksAndRejections (internal&#x2F;process&#x2F;next_tick.js:81:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;macros 2. macros&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;2. macros&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;macros&quot;
+          ],
+          &quot;duration&quot;: 11,
+          &quot;failureMessages&quot;: [
+            &quot;Error: Cannot find module &#39;..&#x2F;ast-bundle.macro&#39; from &#39;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;ast-bundle.macro-tests&#39;\n    at Function.Object.&lt;anonymous&gt;.module.exports [as sync] (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;resolve&#x2F;lib&#x2F;sync.js:58:15)\n    at applyMacros (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js:182:29)\n    at ImportDeclaration (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js:95:26)\n    at NodePath._call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:53:20)\n    at NodePath.call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:40:17)\n    at NodePath.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:88:12)\n    at TraversalContext.visitQueue (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:118:16)\n    at TraversalContext.visitMultiple (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:85:17)\n    at TraversalContext.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:144:19)\n    at Function.Object.&lt;anonymous&gt;.traverse.node (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:94:17)\n    at traverse (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:76:12)\n    at NodePath.traverse (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;index.js:161:24)\n    at PluginPass.Program (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js:74:18)\n    at newFn (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;visitors.js:193:21)\n    at NodePath._call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:53:20)\n    at NodePath.call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:40:17)\n    at NodePath.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:88:12)\n    at TraversalContext.visitQueue (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:118:16)\n    at TraversalContext.visitSingle (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:90:19)\n    at TraversalContext.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:146:19)\n    at Function.Object.&lt;anonymous&gt;.traverse.node (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:94:17)\n    at traverse (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:76:12)\n    at transformFile (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js:88:29)\n    at runSync (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js:45:3)\n    at transformSync (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js:43:38)\n    at Object.transform (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js:22:38)\n    at tester (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:176:39)\n    at Object.&lt;anonymous&gt; (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:108:13)\n    at Generator.next (&lt;anonymous&gt;)\n    at step (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:37:191)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:37:361\n    at processTicksAndRejections (internal&#x2F;process&#x2F;next_tick.js:81:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;macros 3. macros&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;3. macros&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;macros&quot;
+          ],
+          &quot;duration&quot;: 12,
+          &quot;failureMessages&quot;: [
+            &quot;Error: Cannot find module &#39;..&#x2F;ast-bundle.macro&#39; from &#39;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;ast-bundle.macro-tests&#39;\n    at Function.Object.&lt;anonymous&gt;.module.exports [as sync] (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;resolve&#x2F;lib&#x2F;sync.js:58:15)\n    at applyMacros (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js:182:29)\n    at ImportDeclaration (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js:95:26)\n    at NodePath._call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:53:20)\n    at NodePath.call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:40:17)\n    at NodePath.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:88:12)\n    at TraversalContext.visitQueue (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:118:16)\n    at TraversalContext.visitMultiple (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:85:17)\n    at TraversalContext.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:144:19)\n    at Function.Object.&lt;anonymous&gt;.traverse.node (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:94:17)\n    at traverse (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:76:12)\n    at NodePath.traverse (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;index.js:161:24)\n    at PluginPass.Program (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js:74:18)\n    at newFn (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;visitors.js:193:21)\n    at NodePath._call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:53:20)\n    at NodePath.call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:40:17)\n    at NodePath.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:88:12)\n    at TraversalContext.visitQueue (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:118:16)\n    at TraversalContext.visitSingle (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:90:19)\n    at TraversalContext.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:146:19)\n    at Function.Object.&lt;anonymous&gt;.traverse.node (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:94:17)\n    at traverse (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:76:12)\n    at transformFile (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js:88:29)\n    at runSync (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js:45:3)\n    at transformSync (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js:43:38)\n    at Object.transform (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js:22:38)\n    at tester (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:176:39)\n    at Object.&lt;anonymous&gt; (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:108:13)\n    at Generator.next (&lt;anonymous&gt;)\n    at step (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:37:191)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:37:361\n    at processTicksAndRejections (internal&#x2F;process&#x2F;next_tick.js:81:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;macros 4. macros&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;4. macros&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;macros&quot;
+          ],
+          &quot;duration&quot;: 11,
+          &quot;failureMessages&quot;: [
+            &quot;Error: Cannot find module &#39;..&#x2F;ast-bundle.macro&#39; from &#39;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;ast-bundle.macro-tests&#39;\n    at Function.Object.&lt;anonymous&gt;.module.exports [as sync] (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;resolve&#x2F;lib&#x2F;sync.js:58:15)\n    at applyMacros (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js:182:29)\n    at ImportDeclaration (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js:95:26)\n    at NodePath._call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:53:20)\n    at NodePath.call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:40:17)\n    at NodePath.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:88:12)\n    at TraversalContext.visitQueue (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:118:16)\n    at TraversalContext.visitMultiple (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:85:17)\n    at TraversalContext.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:144:19)\n    at Function.Object.&lt;anonymous&gt;.traverse.node (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:94:17)\n    at traverse (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:76:12)\n    at NodePath.traverse (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;index.js:161:24)\n    at PluginPass.Program (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js:74:18)\n    at newFn (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;visitors.js:193:21)\n    at NodePath._call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:53:20)\n    at NodePath.call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:40:17)\n    at NodePath.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:88:12)\n    at TraversalContext.visitQueue (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:118:16)\n    at TraversalContext.visitSingle (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:90:19)\n    at TraversalContext.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:146:19)\n    at Function.Object.&lt;anonymous&gt;.traverse.node (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:94:17)\n    at traverse (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:76:12)\n    at transformFile (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js:88:29)\n    at runSync (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js:45:3)\n    at transformSync (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js:43:38)\n    at Object.transform (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js:22:38)\n    at tester (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:176:39)\n    at Object.&lt;anonymous&gt; (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:108:13)\n    at Generator.next (&lt;anonymous&gt;)\n    at step (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:37:191)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:37:361\n    at processTicksAndRejections (internal&#x2F;process&#x2F;next_tick.js:81:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;macros 5. macros&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;5. macros&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;macros&quot;
+          ],
+          &quot;duration&quot;: 6,
+          &quot;failureMessages&quot;: [
+            &quot;Error: Cannot find module &#39;..&#x2F;ast-bundle.macro&#39; from &#39;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;ast-bundle.macro-tests&#39;\n    at Function.Object.&lt;anonymous&gt;.module.exports [as sync] (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;resolve&#x2F;lib&#x2F;sync.js:58:15)\n    at applyMacros (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js:182:29)\n    at ImportDeclaration (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js:95:26)\n    at NodePath._call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:53:20)\n    at NodePath.call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:40:17)\n    at NodePath.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:88:12)\n    at TraversalContext.visitQueue (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:118:16)\n    at TraversalContext.visitMultiple (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:85:17)\n    at TraversalContext.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:144:19)\n    at Function.Object.&lt;anonymous&gt;.traverse.node (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:94:17)\n    at traverse (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:76:12)\n    at NodePath.traverse (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;index.js:161:24)\n    at PluginPass.Program (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-macros&#x2F;dist&#x2F;index.js:74:18)\n    at newFn (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;visitors.js:193:21)\n    at NodePath._call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:53:20)\n    at NodePath.call (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:40:17)\n    at NodePath.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;path&#x2F;context.js:88:12)\n    at TraversalContext.visitQueue (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:118:16)\n    at TraversalContext.visitSingle (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:90:19)\n    at TraversalContext.visit (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;context.js:146:19)\n    at Function.Object.&lt;anonymous&gt;.traverse.node (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:94:17)\n    at traverse (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;traverse&#x2F;lib&#x2F;index.js:76:12)\n    at transformFile (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js:88:29)\n    at runSync (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transformation&#x2F;index.js:45:3)\n    at transformSync (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js:43:38)\n    at Object.transform (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;@babel&#x2F;core&#x2F;lib&#x2F;transform.js:22:38)\n    at tester (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:176:39)\n    at Object.&lt;anonymous&gt; (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:108:13)\n    at Generator.next (&lt;anonymous&gt;)\n    at step (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:37:191)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;babel-plugin-tester&#x2F;dist&#x2F;index.js:37:361\n    at processTicksAndRejections (internal&#x2F;process&#x2F;next_tick.js:81:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;macros 6. macros&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;6. macros&quot;
+        }
+      ],
+      &quot;sourceMaps&quot;: {},
+      &quot;skipped&quot;: false,
+      &quot;displayName&quot;: &quot;test&quot;,
+      &quot;leaks&quot;: false
+    },
+    {
+      &quot;console&quot;: [],
+      &quot;failureMessage&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 2,
+      &quot;numPendingTests&quot;: 0,
+      &quot;numTodoTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1550222979284,
+        &quot;start&quot;: 1550222978415
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0,
+        &quot;uncheckedKeys&quot;: []
+      },
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;errors.spec.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;errors&quot;,
+            &quot;should return an execContext with an stderr with an error message&quot;
+          ],
+          &quot;duration&quot;: 2,
+          &quot;failureMessages&quot;: [],
+          &quot;fullName&quot;: &quot;errors should return an execContext with an stderr with an error message when throw is a top level statement&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;when throw is a top level statement&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;errors&quot;,
+            &quot;should return an execContext with an stderr with an error message&quot;
+          ],
+          &quot;duration&quot;: 1,
+          &quot;failureMessages&quot;: [],
+          &quot;fullName&quot;: &quot;errors should return an execContext with an stderr with an error message when throw is a statement inside a called function&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;when throw is a statement inside a called function&quot;
+        }
+      ],
+      &quot;sourceMaps&quot;: {},
+      &quot;skipped&quot;: false,
+      &quot;displayName&quot;: &quot;test&quot;,
+      &quot;leaks&quot;: false
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;displayName&quot;: &quot;&quot;,
+      &quot;failureMessage&quot;: &quot;  \u001b[1m● \u001b[22mTest suite failed to run\n\n    Cannot find module &#39;test262&#x2F;package.json&#39; from &#39;test262.spec.ts&#39;\n\n    \u001b[0m \u001b[90m 13 | \u001b[39m  \u001b[32m\&quot;language&#x2F;statements&#x2F;if&#x2F;let-*-with-newline.js\&quot;\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n    \u001b[0m \u001b[90m 14 | \u001b[39m  \u001b[32m\&quot;language&#x2F;types&#x2F;boolean&#x2F;S8.3_A{3,1_T{1,2}}.js\&quot;\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[22m\u001b[39m\u001b[90m 15 | \u001b[39m  \u001b[32m\&quot;built-ins&#x2F;Boolean&#x2F;S15.6.1.1_A1_T*.js\&quot;\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n    \u001b[0m \u001b[90m    | \u001b[39m                                                            \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n    \u001b[0m \u001b[90m 16 | \u001b[39m  \u001b[32m\&quot;built-ins&#x2F;Boolean&#x2F;S15.6.1.1_A2.js\&quot;\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n    \u001b[0m \u001b[90m 17 | \u001b[39m  \u001b[32m\&quot;built-ins&#x2F;Boolean&#x2F;S15.6.2.1_A1.js\&quot;\u001b[39m\u001b[0m\n    \u001b[0m \u001b[90m 18 | \u001b[39m]\u001b[33m;\u001b[39m\u001b[0m\n\n      \u001b[2mat Resolver.resolveModule (\u001b[22mnode_modules&#x2F;jest-resolve&#x2F;build&#x2F;index.js\u001b[2m:203:17)\u001b[22m\n      \u001b[2mat Object.&lt;anonymous&gt; (\u001b[22m\u001b[0m\u001b[36msrc&#x2F;prophet-tests&#x2F;test262.spec.ts\u001b[39m\u001b[0m\u001b[2m:15:61)\u001b[22m\n&quot;,
+      &quot;leaks&quot;: false,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 0,
+      &quot;numPendingTests&quot;: 0,
+      &quot;numTodoTests&quot;: 0,
+      &quot;openHandles&quot;: [],
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 0,
+        &quot;start&quot;: 0
+      },
+      &quot;skipped&quot;: false,
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;uncheckedKeys&quot;: [],
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: &quot;Cannot find module &#39;test262&#x2F;package.json&#39; from &#39;test262.spec.ts&#39;&quot;,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;test262.spec.ts&quot;,
+      &quot;testResults&quot;: []
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1550222982670,
+        &quot;start&quot;: 1550222979897
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;packages&#x2F;declarative&#x2F;src&#x2F;DirectorySyncAndTransform.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 2773,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1550222982969,
+        &quot;start&quot;: 1550222982707
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;packages&#x2F;declarative&#x2F;src&#x2F;ConsoleLog.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 262,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1550222983264,
+        &quot;start&quot;: 1550222983004
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;packages&#x2F;react-atoms&#x2F;core&#x2F;src&#x2F;render.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 260,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1550222983664,
+        &quot;start&quot;: 1550222983290
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;packages&#x2F;declarative&#x2F;src&#x2F;FileEvaluationWatcher.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 374,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1550222983911,
+        &quot;start&quot;: 1550222983692
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;packages&#x2F;react-atoms&#x2F;core&#x2F;index.d.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 219,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1550222984159,
+        &quot;start&quot;: 1550222983937
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;packages&#x2F;react-atoms&#x2F;core&#x2F;src&#x2F;usePrevious.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 222,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1550222984547,
+        &quot;start&quot;: 1550222984188
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;packages&#x2F;declarative&#x2F;src&#x2F;File.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 359,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1550222985127,
+        &quot;start&quot;: 1550222984678
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;packages&#x2F;declarative&#x2F;src&#x2F;Project.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 449,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1550222985471,
+        &quot;start&quot;: 1550222985159
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;packages&#x2F;react-atoms&#x2F;core&#x2F;src&#x2F;HookComponent.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 312,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1550222985865,
+        &quot;start&quot;: 1550222985503
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;packages&#x2F;react-atoms&#x2F;core&#x2F;src&#x2F;index.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 362,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1550222986252,
+        &quot;start&quot;: 1550222985891
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;packages&#x2F;declarative&#x2F;src&#x2F;DeavenPackage.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 361,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1550222986629,
+        &quot;start&quot;: 1550222986290
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;packages&#x2F;react-atoms&#x2F;core&#x2F;src&#x2F;NullRenderer.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 339,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1550222986975,
+        &quot;start&quot;: 1550222986659
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;packages&#x2F;declarative&#x2F;src&#x2F;Directory.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 316,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    }
+  ],
+  &quot;wasInterrupted&quot;: false
+}</div>
+        <div class="d-none" id="test-global-config">{
+  &quot;bail&quot;: 0,
+  &quot;changedFilesWithAncestor&quot;: false,
+  &quot;collectCoverage&quot;: false,
+  &quot;collectCoverageFrom&quot;: null,
+  &quot;coverageDirectory&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;coverage&quot;,
+  &quot;coverageReporters&quot;: [
+    &quot;json&quot;,
+    &quot;text&quot;,
+    &quot;lcov&quot;,
+    &quot;clover&quot;
+  ],
+  &quot;coverageThreshold&quot;: null,
+  &quot;detectLeaks&quot;: false,
+  &quot;detectOpenHandles&quot;: false,
+  &quot;errorOnDeprecated&quot;: false,
+  &quot;expand&quot;: false,
+  &quot;filter&quot;: null,
+  &quot;globalSetup&quot;: null,
+  &quot;globalTeardown&quot;: null,
+  &quot;listTests&quot;: false,
+  &quot;maxConcurrency&quot;: 5,
+  &quot;maxWorkers&quot;: 2,
+  &quot;noStackTrace&quot;: false,
+  &quot;nonFlagArgs&quot;: [],
+  &quot;notify&quot;: false,
+  &quot;notifyMode&quot;: &quot;failure-change&quot;,
+  &quot;onlyChanged&quot;: false,
+  &quot;passWithNoTests&quot;: true,
+  &quot;projects&quot;: [
+    {
+      &quot;runner&quot;: &quot;jest-runner-typecheck&quot;,
+      &quot;displayName&quot;: &quot;typecheck&quot;,
+      &quot;moduleFileExtensions&quot;: [
+        &quot;js&quot;,
+        &quot;jsx&quot;,
+        &quot;ts&quot;,
+        &quot;tsx&quot;
+      ],
+      &quot;testMatch&quot;: [
+        &quot;&lt;rootDir&gt;&#x2F;**&#x2F;*.ts&quot;
+      ],
+      &quot;roots&quot;: [
+        &quot;&lt;rootDir&gt;&#x2F;packages&quot;
+      ],
+      &quot;testPathIgnorePatterns&quot;: [
+        &quot;&#x2F;node_modules&#x2F;&quot;,
+        &quot;&lt;rootDir&gt;&#x2F;(?:.+?)&#x2F;lib&#x2F;(?:.+?)&quot;
+      ],
+      &quot;watchPathIgnorePatterns&quot;: [
+        &quot;&lt;rootDir&gt;&#x2F;(?:.+?)\\.js&quot;,
+        &quot;&lt;rootDir&gt;&#x2F;(?:.+?)&#x2F;lib&#x2F;(?:.+?)&quot;
+      ],
+      &quot;rootDir&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&quot;
+    },
+    {
+      &quot;displayName&quot;: &quot;test&quot;,
+      &quot;watchPathIgnorePatterns&quot;: [
+        &quot;&lt;rootDir&gt;&#x2F;(?:.+?)\\.js&quot;,
+        &quot;&lt;rootDir&gt;&#x2F;(?:.+?)&#x2F;lib&#x2F;(?:.+?)&quot;
+      ],
+      &quot;rootDir&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&quot;
+    },
+    {
+      &quot;displayName&quot;: &quot;dummy&quot;,
+      &quot;testMatch&quot;: [
+        &quot;dummy&quot;
+      ],
+      &quot;watchPathIgnorePatterns&quot;: [
+        &quot;(?:.+?)&quot;
+      ],
+      &quot;rootDir&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&quot;
+    }
+  ],
+  &quot;reporters&quot;: [
+    [
+      &quot;default&quot;,
+      {}
+    ],
+    [
+      &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-stare&#x2F;lib&#x2F;index.js&quot;,
+      {
+        &quot;resultDir&quot;: &quot;results&quot;
+      }
+    ]
+  ],
+  &quot;rootDir&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&quot;,
+  &quot;runTestsByPath&quot;: false,
+  &quot;skipFilter&quot;: false,
+  &quot;testFailureExitCode&quot;: 1,
+  &quot;testNamePattern&quot;: &quot;&quot;,
+  &quot;testPathPattern&quot;: &quot;&quot;,
+  &quot;testResultsProcessor&quot;: null,
+  &quot;updateSnapshot&quot;: &quot;new&quot;,
+  &quot;useStderr&quot;: false,
+  &quot;verbose&quot;: null,
+  &quot;watch&quot;: false,
+  &quot;watchAll&quot;: true,
+  &quot;watchman&quot;: true
+}</div>
+
+    </main>
+    <hr>
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">&copy; jest-stare 2019</span>
+        </div>
+    </footer>
+</body>
+
+</html>

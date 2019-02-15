@@ -35,6 +35,7 @@
     "fs-extra": "^7.0.1",
     "jest": "^24.1.0",
     "jest-runner-typecheck": "^1.0.0",
+    "jest-stare": "^1.11.1",
     "lerna": "^3.11.0",
     "pkg": "^4.3.7",
     "prettier": "^1.16.4",
@@ -44,5 +45,8 @@
   "resolutions": {
     "**/@types/react-reconciler/@types/react": "16.7.21",
     "**/@babel/types": "7.3.0"
+  },
+  "jest-stare": {
+    "resultDir": "test-results"
   }
 }

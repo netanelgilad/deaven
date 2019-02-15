@@ -1,4 +1,5 @@
 module.exports = {
+  reporters: ["default", ["jest-stare", { resultDir: "results" }]],
   projects: [
     {
       runner: "jest-runner-typecheck",
@@ -16,7 +17,11 @@ module.exports = {
       ]
     },
     {
-      displayName: "test"
+      displayName: "test",
+      watchPathIgnorePatterns: [
+        "<rootDir>/(?:.+?)\\.js",
+        "<rootDir>/(?:.+?)/lib/(?:.+?)"
+      ]
     },
     {
       displayName: "dummy",
