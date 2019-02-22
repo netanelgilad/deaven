@@ -7,6 +7,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Declarative",
+      "program": "${workspaceFolder}/packages/declarative/lib/index.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Jest Watch File",
       "program": "${workspaceFolder}/node_modules/jest-cli/bin/jest.js",
       "args": [
