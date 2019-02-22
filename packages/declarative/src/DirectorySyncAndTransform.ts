@@ -35,6 +35,10 @@ export function DirectorySyncAndTransform(props: {
         watch([resolve(props.from)]).on("all", (event, path: string) => {
           if (["add", "change"].includes(event)) {
             const relativeFilePath = path.replace(resolve(props.from), "");
+            const absoluteTargetPath = join(
+              resolve(props.to),
+              relativeFilePath
+            );
 
             if (path.endsWith("dependencies.json")) {
               const packageJsonContents = {
@@ -54,11 +58,9 @@ export function DirectorySyncAndTransform(props: {
                 ),
                 JSON.stringify(packageJsonContents, null, 2)
               );
-            } else if (path.endsWith(".ts") && !path.endsWith(".d.ts")) {
-              const absoluteTargetPath = join(
-                resolve(props.to),
-                relativeFilePath
-              );
+            } else if (path.endsWith(".d.ts")) {
+              outputFileSync(absoluteTargetPath, readFileSync(path));
+            } else if (path.endsWith(".ts")) {
               const contents = readFileSync(path).toString();
 
               const complied = unsafeCast<BabelFileResult>(
@@ -90,12 +92,7 @@ export function DirectorySyncAndTransform(props: {
                 complied
               );
 
-              if (existsSync(replaceExtension(path, "d.ts"))) {
-                outputFileSync(
-                  replaceExtension(absoluteTargetPath, "d.ts"),
-                  readFileSync(replaceExtension(path, "d.ts"))
-                );
-              } else {
+              if (!existsSync(replaceExtension(path, "d.ts"))) {
                 let sourceFile = projectRef.current.getSourceFile(
                   relativeFilePath
                 );
