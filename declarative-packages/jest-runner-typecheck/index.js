@@ -1,16 +1,12 @@
-"use strict";
+'use strict';
 
-var ts = _interopRequireWildcard(require("typescript"));
-
-var fs = _interopRequireWildcard(require("fs"));
-
-var _codeFrame = require("@babel/code-frame");
-
-var _createJestRunner = require("create-jest-runner");
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+var ts = require('typescript');
+var fs = require('fs');
+var codeFrame = require('@babel/code-frame');
+var createJestRunner = require('create-jest-runner');
 
 /// <reference types="node" />
+
 class CancelRun extends Error {
   constructor(message) {
     super(message);
@@ -29,7 +25,7 @@ const appendCodeFrame = ({
   }
 
   const rawLines = fs.readFileSync(filePath, "utf8");
-  return `${errorMessage}\n${(0, _codeFrame.codeFrameColumns)(rawLines, location, {
+  return `${errorMessage}\n${codeFrame.codeFrameColumns(rawLines, location, {
     highlightCode: true
   })}`;
 };
@@ -154,12 +150,12 @@ module.exports = class TypecheckRunner {
     const end = Date.now();
 
     if (errors.length === 0) {
-      return this.returnResult(testPath, (0, _createJestRunner.pass)({ ...baseObj,
+      return this.returnResult(testPath, createJestRunner.pass({ ...baseObj,
         end
       }));
     }
 
-    return this.returnResult(testPath, (0, _createJestRunner.fail)({ ...baseObj,
+    return this.returnResult(testPath, createJestRunner.fail({ ...baseObj,
       errorMessage: errors.join("\n\n"),
       end
     }));

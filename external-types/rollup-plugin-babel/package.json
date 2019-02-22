@@ -1,0 +1,8 @@
+{
+  "name": "@types/rollup-plugin-babel",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "rollup": "^1.0.0"
+  }
+}

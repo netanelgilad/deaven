@@ -12,7 +12,10 @@ function kebabCase(str: string) {
 
 export function DeavenPackage(
   props: {
-    description: string;
+    description?: string;
+    dependencies?: {
+      [packageName: string]: string;
+    };
   } & (
     | {
         bundle: NamedBundle;
@@ -26,23 +29,32 @@ export function DeavenPackage(
     "name" in props ? props.name : kebabCase(props.bundle.name);
   return Directory({
     name: packageName,
-    children: Tuple([
-      File({
-        name: "index.js",
-        contents: props.bundle.compiled
-      }),
-      File({
-        name: "index.d.ts",
-        contents: props.bundle.declaration
-      }),
-      File({
-        name: "index.ts",
-        contents: props.bundle.source
-      }),
-      File({
-        name: "index.d.ts.map",
-        contents: props.bundle.declarationMap
-      }),
+    children: Tuple(
+      props.bundle.compiled &&
+        File({
+          name: "index.js",
+          contents: props.bundle.compiled
+        }),
+      props.bundle.sourceMap &&
+        File({
+          name: "index.js.map",
+          contents: props.bundle.sourceMap
+        }),
+      props.bundle.declaration &&
+        File({
+          name: "index.d.ts",
+          contents: props.bundle.declaration
+        }),
+      props.bundle.source &&
+        File({
+          name: "index.ts",
+          contents: props.bundle.source
+        }),
+      props.bundle.declarationMap &&
+        File({
+          name: "index.d.ts.map",
+          contents: props.bundle.declarationMap
+        }),
       File({
         name: "package.json",
         contents: JSON.stringify(
@@ -51,12 +63,13 @@ export function DeavenPackage(
             version: "1.0.0",
             description: props.description,
             author: "Netanel Gilad <netanelgilad@gmail.com>",
-            license: "MIT"
+            license: "MIT",
+            dependencies: props.dependencies
           },
           null,
           2
         )
       })
-    ])
+    )
   });
 }

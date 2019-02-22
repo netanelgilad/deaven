@@ -2,11 +2,11 @@ module.exports = {
   reporters: ["default", ["jest-stare", { resultDir: "results" }]],
   projects: [
     {
-      runner: "jest-runner-typecheck",
+      runner: "@deaven/jest-runner-typecheck",
       displayName: "typecheck",
       moduleFileExtensions: ["js", "jsx", "ts", "tsx"],
       testMatch: ["<rootDir>/**/*.ts"],
-      roots: ["<rootDir>/packages"],
+      roots: ["<rootDir>/src"],
       testPathIgnorePatterns: [
         "/node_modules/",
         "<rootDir>/(?:.+?)/lib/(?:.+?)"

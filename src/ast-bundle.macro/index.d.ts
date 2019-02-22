@@ -1,10 +1,11 @@
 import { Assign } from "utility-types";
 
 export type Bundle = {
-  source: string;
-  compiled: string;
-  declarationMap: string;
-  declaration: string;
+  source?: string;
+  sourceMap?: string;
+  compiled?: string;
+  declarationMap?: string;
+  declaration?: string;
 };
 export type NamedBundle = Assign<Bundle, { name: string }>;
 

@@ -4,6 +4,7 @@ import { Tuple, useContext } from "@deaven/react-atoms.core";
 import { DeavenPackage } from "./DeavenPackage";
 import { DirectorySyncAndTransform } from "./DirectorySyncAndTransform";
 import { join } from "path";
+import { PackagesCompiler } from "./PackagesCompiler";
 
 async function sleep(timeout: number) {
   await new Promise(resolve => setTimeout(resolve, timeout));
@@ -15,11 +16,11 @@ const _ = <T>(arg: T) => arg;
 const __ = _;
 
 export default function Project() {
-  return Tuple([
+  return Tuple(
     Directory({
       name: "macros-packages",
       children: useContext(DirectoryContext).render(directoryName =>
-        Tuple([
+        Tuple(
           DirectorySyncAndTransform({
             from: "./src/ast-bundle.macro",
             to: join(directoryName, "ast-bundle.macro"),
@@ -32,12 +33,12 @@ export default function Project() {
             packageOrganization: "deaven",
             excludeSource: true
           })
-        ])
+        )
       )
     }),
     Directory({
       name: "declarative-packages",
-      children: Tuple([
+      children: Tuple(
         DeavenPackage({
           bundle: astBundle(sleep, { export: true }) as NamedBundle,
           description: "Promise based sleep"
@@ -51,25 +52,40 @@ export default function Project() {
           bundle: astBundle([_, __], { export: true }) as Bundle,
           description: "Declare type using an expression"
         }),
-        useContext(DirectoryContext).render(directoryName =>
-          Tuple([
-            DirectorySyncAndTransform({
-              from: "./src/jest-runner-typecheck",
-              to: join(directoryName, "jest-runner-typecheck")
-            }),
-            DirectorySyncAndTransform({
-              from: "./src/unimplemented",
-              to: join(directoryName, "unimplemented"),
-              packageOrganization: "deaven"
-            }),
-            DirectorySyncAndTransform({
-              from: "./src/prophet",
-              to: join(directoryName, "prophet"),
-              packageOrganization: "deaven"
-            })
-          ])
-        )
-      ])
+        PackagesCompiler({
+          packages: [
+            {
+              name: "unimplemented",
+              version: "1.0.0",
+              main: "./src/unimplemented/index",
+              dependencies: {
+                "stacktrace-js": "^2.0.0"
+              }
+            },
+            {
+              name: "prophet",
+              version: "1.0.0",
+              main: "./src/prophet/index",
+              dependencies: {
+                "@deaven/bottomdash": "^1.0.0",
+                "@deaven/tuple": "^1.0.0",
+                "@deaven/unimplemented": "^1.0.0",
+                cherow: "1.5.4",
+                immer: "^1.12.1",
+                lodash: "^4.17.10"
+              }
+            },
+            {
+              name: "jest-runner-typecheck",
+              version: "1.0.0",
+              main: "./src/jest-runner-typecheck/index",
+              dependencies: {
+                "create-jest-runner": "^0.4.1"
+              }
+            }
+          ]
+        })
+      )
     })
-  ]);
+  );
 }

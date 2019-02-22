@@ -35,8 +35,8 @@ import { ESObject, createNewObjectFromConstructor } from "./Object";
 import { coerceToBoolean, ESBoolean } from "./boolean/ESBoolean";
 import { tuple } from "@deaven/tuple";
 import assert from "assert";
-import { unimplemented } from "@deaven/unimplemented";
 import { ESTree } from "cherow";
+import { unimplemented } from "../unimplemented";
 
 export type ASTResolver<TAST extends ESTree.Node, T extends Any> = (
   ast: TAST,

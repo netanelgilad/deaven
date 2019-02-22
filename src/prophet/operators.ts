@@ -18,9 +18,9 @@ import { ESBoolean, coerceToBoolean } from "./boolean/ESBoolean";
 import { TExecutionContext } from "./execution-context/ExecutionContext";
 import { _ } from "@deaven/bottomdash";
 import { evaluate } from "./evaluate";
-import { unimplemented } from "@deaven/unimplemented";
 import { tuple } from "@deaven/tuple";
 import { ESTree } from "cherow";
+import { unimplemented } from "../unimplemented";
 
 export type BinaryOperatorResolver = (left: Any, right: Any) => Any;
 export type UnaryOperatorResolver = (

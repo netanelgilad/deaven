@@ -34,7 +34,7 @@
     "babel-plugin-tester": "^5.5.2",
     "fs-extra": "^7.0.1",
     "jest": "^24.1.0",
-    "jest-runner-typecheck": "^1.0.0",
+    "@deaven/jest-runner-typecheck": "^1.0.0",
     "jest-stare": "^1.11.1",
     "lerna": "^3.11.0",
     "pkg": "^4.3.7",
@@ -44,7 +44,8 @@
   },
   "resolutions": {
     "**/@types/react-reconciler/@types/react": "16.7.21",
-    "**/@babel/types": "7.3.0"
+    "**/@babel/types": "7.3.0",
+    "**/@types/rollup-plugin-node-resolve/rollup": "^1.0.0"
   },
   "jest-stare": {
     "resultDir": "test-results"

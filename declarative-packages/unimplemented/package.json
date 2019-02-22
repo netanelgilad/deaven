@@ -1,6 +1,8 @@
 {
   "name": "@deaven/unimplemented",
   "version": "1.0.0",
+  "author": "Netanel Gilad <netanelgilad@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "stacktrace-js": "^2.0.0"
   }

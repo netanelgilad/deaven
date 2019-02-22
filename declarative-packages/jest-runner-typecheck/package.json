@@ -1,6 +1,8 @@
 {
-  "name": "jest-runner-typecheck",
+  "name": "@deaven/jest-runner-typecheck",
   "version": "1.0.0",
+  "author": "Netanel Gilad <netanelgilad@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "create-jest-runner": "^0.4.1"
   }
