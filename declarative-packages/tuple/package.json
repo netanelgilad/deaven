@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "description": "Easily infer tuple types in TypeScript",
   "author": "Netanel Gilad <netanelgilad@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
 }
