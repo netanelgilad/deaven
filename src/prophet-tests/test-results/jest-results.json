@@ -1,0 +1,104 @@
+{
+  "numFailedTestSuites": 2,
+  "numFailedTests": 1,
+  "numPassedTestSuites": 0,
+  "numPassedTests": 0,
+  "numPendingTestSuites": 0,
+  "numPendingTests": 0,
+  "numRuntimeErrorTestSuites": 1,
+  "numTodoTests": 0,
+  "numTotalTestSuites": 2,
+  "numTotalTests": 1,
+  "openHandles": [],
+  "snapshot": {
+    "added": 0,
+    "didUpdate": false,
+    "failure": false,
+    "filesAdded": 0,
+    "filesRemoved": 0,
+    "filesUnmatched": 0,
+    "filesUpdated": 0,
+    "matched": 0,
+    "total": 0,
+    "unchecked": 0,
+    "uncheckedKeysByFile": [],
+    "unmatched": 0,
+    "updated": 0
+  },
+  "startTime": 1552769392653,
+  "success": false,
+  "testResults": [
+    {
+      "console": null,
+      "failureMessage": "Cannot find name 'test'. Do you need to install type definitions for a test runner? Try `npm i @types/jest` or `npm i @types/mocha`  and then add `jest` or `mocha` to the types field in your tsconfig.\n\u001b[0m \u001b[90m 1 | \u001b[39m\u001b[90m// /// <reference types=\"jest\" />\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 2 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 3 | \u001b[39mtest(\u001b[32m\"m/in\"\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m   | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 4 | \u001b[39m  \u001b[36mfunction\u001b[39m min(arr\u001b[33m:\u001b[39m any[]) {\u001b[0m\n\u001b[0m \u001b[90m 5 | \u001b[39m    \u001b[36mreturn\u001b[39m arr\u001b[33m.\u001b[39mlength \u001b[33m===\u001b[39m \u001b[35m0\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 6 | \u001b[39m      \u001b[33m?\u001b[39m undefined\u001b[0m\n\n'min' implicitly has return type 'any' because it does not have a return type annotation and is referenced directly or indirectly in one of its return expressions.\n\u001b[0m \u001b[90m 2 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 3 | \u001b[39mtest(\u001b[32m\"m/in\"\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 4 | \u001b[39m  \u001b[36mfunction\u001b[39m min(arr\u001b[33m:\u001b[39m any[]) {\u001b[0m\n\u001b[0m \u001b[90m   | \u001b[39m           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 5 | \u001b[39m    \u001b[36mreturn\u001b[39m arr\u001b[33m.\u001b[39mlength \u001b[33m===\u001b[39m \u001b[35m0\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 6 | \u001b[39m      \u001b[33m?\u001b[39m undefined\u001b[0m\n\u001b[0m \u001b[90m 7 | \u001b[39m      \u001b[33m:\u001b[39m arr\u001b[33m.\u001b[39mlength \u001b[33m===\u001b[39m \u001b[35m1\u001b[39m\u001b[0m\n\nCannot find name 'expect'.\n\u001b[0m \u001b[90m 21 | \u001b[39m  \u001b[36mconst\u001b[39m a \u001b[33m=\u001b[39m arr[\u001b[35m1\u001b[39m] \u001b[33m<\u001b[39m min(arr)\u001b[33m;\u001b[39m \u001b[90m// a = false\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 22 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 | \u001b[39m  expect(a)\u001b[33m.\u001b[39mtoBe(\u001b[36mfalse\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 24 | \u001b[39m})\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 25 | \u001b[39m\u001b[0m\n\nCannot compile namespaces when the '--isolatedModules' flag is provided.\n\u001b[0m \u001b[90m 1 | \u001b[39m\u001b[90m// /// <reference types=\"jest\" />\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 2 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 3 | \u001b[39mtest(\u001b[32m\"m/in\"\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m   | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 4 | \u001b[39m  \u001b[36mfunction\u001b[39m min(arr\u001b[33m:\u001b[39m any[]) {\u001b[0m\n\u001b[0m \u001b[90m 5 | \u001b[39m    \u001b[36mreturn\u001b[39m arr\u001b[33m.\u001b[39mlength \u001b[33m===\u001b[39m \u001b[35m0\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 6 | \u001b[39m      \u001b[33m?\u001b[39m undefined\u001b[0m",
+      "numFailingTests": 1,
+      "numPassingTests": 0,
+      "numPendingTests": 0,
+      "perfStats": {
+        "end": 1552769392740,
+        "start": 1552769392693
+      },
+      "snapshot": {
+        "added": 0,
+        "fileDeleted": false,
+        "matched": 0,
+        "unchecked": 0,
+        "unmatched": 0,
+        "updated": 0
+      },
+      "sourceMaps": {},
+      "testExecError": null,
+      "testFilePath": "/Users/netanelgilad/Development/deaven/src/prophet-tests/logic.spec.ts",
+      "testResults": [
+        {
+          "ancestorTitles": [],
+          "duration": 47,
+          "failureMessages": [
+            null
+          ],
+          "numPassingAsserts": 0,
+          "status": "passed",
+          "title": ""
+        }
+      ],
+      "numTodoTests": 0
+    },
+    {
+      "console": null,
+      "displayName": "",
+      "failureMessage": "  \u001b[1m● \u001b[22mTest suite failed to run\n\n    SyntaxError: /Users/netanelgilad/Development/deaven/src/prophet-tests/logic.spec.ts: Unexpected token, expected \",\" (4:18)\n\n    \u001b[0m \u001b[90m 2 | \u001b[39m\u001b[0m\n    \u001b[0m \u001b[90m 3 | \u001b[39mtest(\u001b[32m\"m/in\"\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\n    \u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 4 | \u001b[39m  \u001b[36mfunction\u001b[39m min(arr\u001b[33m:\u001b[39m any[]) {\u001b[0m\n    \u001b[0m \u001b[90m   | \u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n    \u001b[0m \u001b[90m 5 | \u001b[39m    \u001b[36mreturn\u001b[39m arr\u001b[33m.\u001b[39mlength \u001b[33m===\u001b[39m \u001b[35m0\u001b[39m\u001b[0m\n    \u001b[0m \u001b[90m 6 | \u001b[39m      \u001b[33m?\u001b[39m undefined\u001b[0m\n    \u001b[0m \u001b[90m 7 | \u001b[39m      \u001b[33m:\u001b[39m arr\u001b[33m.\u001b[39mlength \u001b[33m===\u001b[39m \u001b[35m1\u001b[39m\u001b[0m\n\n      \u001b[2mat Parser.raise (\u001b[22mnode_modules/@babel/core/node_modules/@babel/parser/lib/index.js\u001b[2m:3831:17)\u001b[22m\n      \u001b[2mat Parser.unexpected (\u001b[22mnode_modules/@babel/core/node_modules/@babel/parser/lib/index.js\u001b[2m:5143:16)\u001b[22m\n      \u001b[2mat Parser.expect (\u001b[22mnode_modules/@babel/core/node_modules/@babel/parser/lib/index.js\u001b[2m:5135:28)\u001b[22m\n      \u001b[2mat Parser.parseBindingList (\u001b[22mnode_modules/@babel/core/node_modules/@babel/parser/lib/index.js\u001b[2m:5417:14)\u001b[22m\n      \u001b[2mat Parser.parseFunctionParams (\u001b[22mnode_modules/@babel/core/node_modules/@babel/parser/lib/index.js\u001b[2m:7961:24)\u001b[22m\n      \u001b[2mat Parser.parseFunction (\u001b[22mnode_modules/@babel/core/node_modules/@babel/parser/lib/index.js\u001b[2m:7943:10)\u001b[22m\n      \u001b[2mat Parser.parseFunctionStatement (\u001b[22mnode_modules/@babel/core/node_modules/@babel/parser/lib/index.js\u001b[2m:7596:17)\u001b[22m\n      \u001b[2mat Parser.parseStatementContent (\u001b[22mnode_modules/@babel/core/node_modules/@babel/parser/lib/index.js\u001b[2m:7278:31)\u001b[22m\n      \u001b[2mat Parser.parseStatement (\u001b[22mnode_modules/@babel/core/node_modules/@babel/parser/lib/index.js\u001b[2m:7243:17)\u001b[22m\n      \u001b[2mat Parser.parseBlockOrModuleBlockBody (\u001b[22mnode_modules/@babel/core/node_modules/@babel/parser/lib/index.js\u001b[2m:7810:25)\u001b[22m\n",
+      "leaks": false,
+      "numFailingTests": 0,
+      "numPassingTests": 0,
+      "numPendingTests": 0,
+      "numTodoTests": 0,
+      "openHandles": [],
+      "perfStats": {
+        "end": 0,
+        "start": 0
+      },
+      "skipped": false,
+      "snapshot": {
+        "added": 0,
+        "fileDeleted": false,
+        "matched": 0,
+        "unchecked": 0,
+        "uncheckedKeys": [],
+        "unmatched": 0,
+        "updated": 0
+      },
+      "sourceMaps": {},
+      "testExecError": {
+        "pos": 74,
+        "loc": {
+          "line": 4,
+          "column": 18
+        },
+        "code": "BABEL_PARSE_ERROR"
+      },
+      "testFilePath": "/Users/netanelgilad/Development/deaven/src/prophet-tests/logic.spec.ts",
+      "testResults": []
+    }
+  ],
+  "wasInterrupted": false
+}

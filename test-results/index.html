@@ -71,7 +71,7 @@
                 <canvas id="test-suites-canvas" width="100" height="100"></canvas>
                 <h2>Test Suites</h2>
                 <div class="list-group">
-                    <p id="test-suites-results" class="list-group-item list-group-item-action">1 passed, 1 total</p>
+                    <p id="test-suites-results" class="list-group-item list-group-item-action">33 passed, 37 total</p>
                 </div>
             </div>
             <!-- /.col-lg-4 -->
@@ -79,7 +79,7 @@
                 <canvas id="tests-canvas" width="100" height="100"></canvas>
                 <h2>Tests</h2>
                 <div class="list-group">
-                    <p id="tests-results" class="list-group-item list-group-item-action">1 passed, 1 total</p>
+                    <p id="tests-results" class="list-group-item list-group-item-action">34 passed, 46 total</p>
                 </div>
             </div>
             <!-- /.col-lg-4 -->
@@ -87,7 +87,7 @@
                 <canvas id="snapshots-canvas" width="100" height="100"></canvas>
                 <h2>Snapshots</h2>
                 <div class="list-group">
-                    <p id="snapshots-results" class="list-group-item list-group-item-action">0 passed, 0 total</p>
+                    <p id="snapshots-results" class="list-group-item list-group-item-action">0 passed, 5 total</p>
                 </div>
             </div>
             <!-- /.col-lg-4 -->
@@ -105,33 +105,33 @@
   &quot;resultJson&quot;: &quot;jest-results.json&quot;
 }</div>
         <div class="d-none" id="test-results">{
-  &quot;numFailedTestSuites&quot;: 0,
-  &quot;numFailedTests&quot;: 0,
-  &quot;numPassedTestSuites&quot;: 1,
-  &quot;numPassedTests&quot;: 1,
+  &quot;numFailedTestSuites&quot;: 4,
+  &quot;numFailedTests&quot;: 12,
+  &quot;numPassedTestSuites&quot;: 33,
+  &quot;numPassedTests&quot;: 34,
   &quot;numPendingTestSuites&quot;: 0,
   &quot;numPendingTests&quot;: 0,
   &quot;numRuntimeErrorTestSuites&quot;: 0,
   &quot;numTodoTests&quot;: 0,
-  &quot;numTotalTestSuites&quot;: 1,
-  &quot;numTotalTests&quot;: 1,
+  &quot;numTotalTestSuites&quot;: 37,
+  &quot;numTotalTests&quot;: 46,
   &quot;openHandles&quot;: [],
   &quot;snapshot&quot;: {
     &quot;added&quot;: 0,
     &quot;didUpdate&quot;: false,
-    &quot;failure&quot;: false,
+    &quot;failure&quot;: true,
     &quot;filesAdded&quot;: 0,
     &quot;filesRemoved&quot;: 0,
-    &quot;filesUnmatched&quot;: 0,
+    &quot;filesUnmatched&quot;: 2,
     &quot;filesUpdated&quot;: 0,
     &quot;matched&quot;: 0,
-    &quot;total&quot;: 0,
+    &quot;total&quot;: 5,
     &quot;unchecked&quot;: 0,
     &quot;uncheckedKeysByFile&quot;: [],
-    &quot;unmatched&quot;: 0,
+    &quot;unmatched&quot;: 5,
     &quot;updated&quot;: 0
   },
-  &quot;startTime&quot;: 1550819354228,
+  &quot;startTime&quot;: 1564143830262,
   &quot;success&quot;: false,
   &quot;testResults&quot;: [
     {
@@ -140,8 +140,995 @@
       &quot;numPassingTests&quot;: 1,
       &quot;numPendingTests&quot;: 0,
       &quot;perfStats&quot;: {
-        &quot;end&quot;: 1550819356210,
-        &quot;start&quot;: 1550819354571
+        &quot;end&quot;: 1564143832962,
+        &quot;start&quot;: 1564143830646
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;ASTResolvers.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 2316,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143833392,
+        &quot;start&quot;: 1564143833003
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 389,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143833731,
+        &quot;start&quot;: 1564143833427
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;operators.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 304,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143833958,
+        &quot;start&quot;: 1564143833763
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;types.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 195,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143834271,
+        &quot;start&quot;: 1564143833988
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;Function&#x2F;Function.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 283,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143834784,
+        &quot;start&quot;: 1564143834334
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;evaluate.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 450,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143835135,
+        &quot;start&quot;: 1564143834813
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;node-builtin-modules&#x2F;vm.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 322,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143835413,
+        &quot;start&quot;: 1564143835169
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;string&#x2F;String.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 244,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143835632,
+        &quot;start&quot;: 1564143835436
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;array&#x2F;Array.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 196,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143835893,
+        &quot;start&quot;: 1564143835660
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;boolean&#x2F;ESBoolean.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 233,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143836200,
+        &quot;start&quot;: 1564143835926
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;new.spec.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 274,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143836462,
+        &quot;start&quot;: 1564143836231
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;Object.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 231,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143836731,
+        &quot;start&quot;: 1564143836521
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;array&#x2F;join.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 210,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143837010,
+        &quot;start&quot;: 1564143836755
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;eval&#x2F;eval.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 255,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143837258,
+        &quot;start&quot;: 1564143837056
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;execution-context&#x2F;ExecutionContext.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 202,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143837551,
+        &quot;start&quot;: 1564143837310
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;error&#x2F;SyntaxError.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 241,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143837906,
+        &quot;start&quot;: 1564143837591
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;errors.spec.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 315,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143838167,
+        &quot;start&quot;: 1564143837948
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;string&#x2F;split.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 219,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143838419,
+        &quot;start&quot;: 1564143838210
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;require&#x2F;require.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 209,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143838672,
+        &quot;start&quot;: 1564143838476
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;string&#x2F;substr.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 196,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143838927,
+        &quot;start&quot;: 1564143838734
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;ternary.spec.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 193,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143839171,
+        &quot;start&quot;: 1564143838990
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;execution-context&#x2F;ESInitialGlobal.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 181,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143839413,
+        &quot;start&quot;: 1564143839209
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;array&#x2F;reverse.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 204,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143839644,
+        &quot;start&quot;: 1564143839456
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;math&#x2F;round.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 188,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143839913,
+        &quot;start&quot;: 1564143839678
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;execution-context&#x2F;nodeInitialExecutionContext.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 235,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;failureMessage&quot;: &quot;&#39;min&#39; implicitly has return type &#39;any&#39; because it does not have a return type annotation and is referenced directly or indirectly in one of its return expressions.\n\u001b[0m \u001b[90m 2 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 3 | \u001b[39mtest(\u001b[32m\&quot;m&#x2F;in\&quot;\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m&#x3D;&gt;\u001b[39m {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m&gt;\u001b[22m\u001b[39m\u001b[90m 4 | \u001b[39m  \u001b[36mfunction\u001b[39m min(arr\u001b[33m:\u001b[39m any[]) {\u001b[0m\n\u001b[0m \u001b[90m   | \u001b[39m           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 5 | \u001b[39m    \u001b[36mreturn\u001b[39m arr\u001b[33m.\u001b[39mlength \u001b[33m&#x3D;&#x3D;&#x3D;\u001b[39m \u001b[35m0\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 6 | \u001b[39m      \u001b[33m?\u001b[39m undefined\u001b[0m\n\u001b[0m \u001b[90m 7 | \u001b[39m      \u001b[33m:\u001b[39m arr\u001b[33m.\u001b[39mlength \u001b[33m&#x3D;&#x3D;&#x3D;\u001b[39m \u001b[35m1\u001b[39m\u001b[0m\n\nCannot compile namespaces when the &#39;--isolatedModules&#39; flag is provided.\n\u001b[0m \u001b[90m 1 | \u001b[39m\u001b[90m&#x2F;&#x2F; &#x2F;&#x2F;&#x2F; &lt;reference types&#x3D;\&quot;jest\&quot; &#x2F;&gt;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 2 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m&gt;\u001b[22m\u001b[39m\u001b[90m 3 | \u001b[39mtest(\u001b[32m\&quot;m&#x2F;in\&quot;\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m&#x3D;&gt;\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m   | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 4 | \u001b[39m  \u001b[36mfunction\u001b[39m min(arr\u001b[33m:\u001b[39m any[]) {\u001b[0m\n\u001b[0m \u001b[90m 5 | \u001b[39m    \u001b[36mreturn\u001b[39m arr\u001b[33m.\u001b[39mlength \u001b[33m&#x3D;&#x3D;&#x3D;\u001b[39m \u001b[35m0\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 6 | \u001b[39m      \u001b[33m?\u001b[39m undefined\u001b[0m&quot;,
+      &quot;numFailingTests&quot;: 1,
+      &quot;numPassingTests&quot;: 0,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143840191,
+        &quot;start&quot;: 1564143839974
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;logic.spec.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 217,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143840452,
+        &quot;start&quot;: 1564143840235
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;number&#x2F;Number.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 217,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143840705,
+        &quot;start&quot;: 1564143840519
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;window&#x2F;prompt.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 186,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143840978,
+        &quot;start&quot;: 1564143840779
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;Object&#x2F;ObjectConstructor.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 199,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143841314,
+        &quot;start&quot;: 1564143841045
       },
       &quot;snapshot&quot;: {
         &quot;added&quot;: 0,
@@ -157,7 +1144,7 @@
       &quot;testResults&quot;: [
         {
           &quot;ancestorTitles&quot;: [],
-          &quot;duration&quot;: 1639,
+          &quot;duration&quot;: 269,
           &quot;failureMessages&quot;: [
             null
           ],
@@ -167,6 +1154,394 @@
         }
       ],
       &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143841575,
+        &quot;start&quot;: 1564143841392
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;math&#x2F;Math.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 183,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143841813,
+        &quot;start&quot;: 1564143841611
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;node-builtin-modules&#x2F;NodeBuiltInModules.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 202,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: [],
+      &quot;failureMessage&quot;: &quot;\u001b[1m\u001b[31m  \u001b[1m● \u001b[1mnew operator › should return the this object with the prototype in place\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mvalue\u001b[39m\u001b[2m).toMatchSnapshot()\u001b[22m\n\n    \u001b[31mReceived value\u001b[39m does not match \u001b[32mstored snapshot \&quot;new operator should return the this object with the prototype in place 1\&quot;\u001b[39m.\n\n    \u001b[32m- Snapshot\u001b[39m\n    \u001b[31m+ Received\u001b[39m\n\n    \u001b[2m  Object {\u001b[22m\n    \u001b[32m-   \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-     \&quot;a\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;foo\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;prototype\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {},\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;object\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: undefined,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-   },\u001b[39m\n    \u001b[32m-   \&quot;type\&quot;: \&quot;object\&quot;,\u001b[39m\n    \u001b[32m-   \&quot;value\&quot;: Object {\u001b[39m\n    \u001b[32m-     \&quot;a\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;foo\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;prototype\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {},\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;object\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: undefined,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-   },\u001b[39m\n    \u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n    \u001b[2m  }\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 25 | \u001b[39m        nodeInitialExecutionContext\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 26 | \u001b[39m      )[\u001b[35m0\u001b[39m]\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 27 | \u001b[39m    )\u001b[33m.\u001b[39mtoMatchInlineSnapshot(\u001b[32m&#x60;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m    | \u001b[39m      \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 28 | \u001b[39m\u001b[32mObject {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 29 | \u001b[39m\u001b[32m  \&quot;properties\&quot;: Object {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 30 | \u001b[39m\u001b[32m    \&quot;a\&quot;: Object {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toMatchInlineSnapshot (\u001b[2m\u001b[0m\u001b[36msrc&#x2F;prophet-tests&#x2F;new.spec.ts\u001b[39m\u001b[0m\u001b[2m:27:7)\u001b[2m\u001b[22m\n&quot;,
+      &quot;numFailingTests&quot;: 1,
+      &quot;numPassingTests&quot;: 0,
+      &quot;numPendingTests&quot;: 0,
+      &quot;numTodoTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143849145,
+        &quot;start&quot;: 1564143843586
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 1,
+        &quot;updated&quot;: 0,
+        &quot;uncheckedKeys&quot;: []
+      },
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;new.spec.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;new operator&quot;
+          ],
+          &quot;duration&quot;: 22,
+          &quot;failureMessages&quot;: [
+            &quot;Error: \u001b[2mexpect(\u001b[22m\u001b[31mvalue\u001b[39m\u001b[2m).toMatchSnapshot()\u001b[22m\n\n\u001b[31mReceived value\u001b[39m does not match \u001b[32mstored snapshot \&quot;new operator should return the this object with the prototype in place 1\&quot;\u001b[39m.\n\n\u001b[32m- Snapshot\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-     \&quot;a\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;foo\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;prototype\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {},\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;object\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: undefined,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-   },\u001b[39m\n\u001b[32m-   \&quot;type\&quot;: \&quot;object\&quot;,\u001b[39m\n\u001b[32m-   \&quot;value\&quot;: Object {\u001b[39m\n\u001b[32m-     \&quot;a\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;foo\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;prototype\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {},\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;object\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: undefined,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-   },\u001b[39m\n\u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n\u001b[2m  }\u001b[22m\n    at Object.toMatchInlineSnapshot (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;new.spec.ts:27:7)\n    at Object.asyncJestTest (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;jasmineAsyncInstall.js:102:37)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:41:12\n    at new Promise (&lt;anonymous&gt;)\n    at mapper (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:26:19)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:71:41\n    at processTicksAndRejections (internal&#x2F;process&#x2F;task_queues.js:89:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;new operator should return the this object with the prototype in place&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;should return the this object with the prototype in place&quot;
+        }
+      ],
+      &quot;sourceMaps&quot;: {},
+      &quot;skipped&quot;: false,
+      &quot;displayName&quot;: &quot;test&quot;,
+      &quot;leaks&quot;: false
+    },
+    {
+      &quot;console&quot;: [],
+      &quot;failureMessage&quot;: &quot;\u001b[1m\u001b[31m  \u001b[1m● \u001b[1mMath.round › ()\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toBe(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) &#x2F;&#x2F; Object.is equality\u001b[22m\n\n    Expected: \u001b[32m{}\u001b[39m\n    Received: \u001b[31m{\&quot;type\&quot;: \&quot;undefined\&quot;}\u001b[39m\n\n    Difference:\n\n    \u001b[32m- Expected\u001b[39m\n    \u001b[31m+ Received\u001b[39m\n\n    \u001b[32m- Object {}\u001b[39m\n    \u001b[31m+ Object {\u001b[39m\n    \u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n    \u001b[31m+ }\u001b[39m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 11 | \u001b[39m    expect(\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 12 | \u001b[39m      evaluateCodeAsExpression(\u001b[32m\&quot;Math.round()\&quot;\u001b[39m\u001b[33m,\u001b[39m nodeInitialExecutionContext)[\u001b[35m0\u001b[39m]\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 13 | \u001b[39m    )\u001b[33m.\u001b[39mtoBe(\u001b[33mNotANumber\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m    | \u001b[39m      \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 14 | \u001b[39m  })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 15 | \u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 16 | \u001b[39m  test(\u001b[32m\&quot;(string)\&quot;\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m&#x3D;&gt;\u001b[39m {\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toBe (\u001b[2m\u001b[0m\u001b[36msrc&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts\u001b[39m\u001b[0m\u001b[2m:13:7)\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[1mMath.round › (string)\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toBe(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) &#x2F;&#x2F; Object.is equality\u001b[22m\n\n    Expected: \u001b[32m{}\u001b[39m\n    Received: \u001b[31m{\&quot;type\&quot;: \&quot;undefined\&quot;}\u001b[39m\n\n    Difference:\n\n    \u001b[32m- Expected\u001b[39m\n    \u001b[31m+ Received\u001b[39m\n\n    \u001b[32m- Object {}\u001b[39m\n    \u001b[31m+ Object {\u001b[39m\n    \u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n    \u001b[31m+ }\u001b[39m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 20 | \u001b[39m        nodeInitialExecutionContext\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 21 | \u001b[39m      )[\u001b[35m0\u001b[39m]\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 22 | \u001b[39m    )\u001b[33m.\u001b[39mtoBe(\u001b[33mNotANumber\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m    | \u001b[39m      \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 23 | \u001b[39m  })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 24 | \u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 25 | \u001b[39m  test(\u001b[32m\&quot;(number)\&quot;\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m&#x3D;&gt;\u001b[39m {\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toBe (\u001b[2m\u001b[0m\u001b[36msrc&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts\u001b[39m\u001b[0m\u001b[2m:22:7)\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[1mMath.round › (number)\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toEqual(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n    Difference:\n\n    \u001b[32m- Expected\u001b[39m\n    \u001b[31m+ Received\u001b[39m\n\n    \u001b[2m  Object {\u001b[22m\n    \u001b[32m-   \&quot;number\&quot;: 4,\u001b[39m\n    \u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n    \u001b[2m  }\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 29 | \u001b[39m        nodeInitialExecutionContext\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 30 | \u001b[39m      )[\u001b[35m0\u001b[39m]\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 31 | \u001b[39m    )\u001b[33m.\u001b[39mtoEqual({\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m    | \u001b[39m      \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 32 | \u001b[39m      number\u001b[33m:\u001b[39m \u001b[35m4\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 33 | \u001b[39m    })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 34 | \u001b[39m  })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toEqual (\u001b[2m\u001b[0m\u001b[36msrc&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts\u001b[39m\u001b[0m\u001b[2m:31:7)\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[1m4\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mvalue\u001b[39m\u001b[2m).toMatchSnapshot()\u001b[22m\n\n    \u001b[31mReceived value\u001b[39m does not match \u001b[32mstored snapshot \&quot;4 1\&quot;\u001b[39m.\n\n    \u001b[32m- Snapshot\u001b[39m\n    \u001b[31m+ Received\u001b[39m\n\n    \u001b[2m  Object {\u001b[22m\n    \u001b[32m-   \&quot;concrete\&quot;: undefined,\u001b[39m\n    \u001b[32m-   \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-     \&quot;join\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;gte\&quot;: 5,\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;reverse\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-   },\u001b[39m\n    \u001b[32m-   \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n    \u001b[32m-   \&quot;value\&quot;: Array [\u001b[39m\n    \u001b[32m-     Object {\u001b[39m\n    \u001b[32m-       \&quot;concrete\&quot;: undefined,\u001b[39m\n    \u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;join\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         \&quot;length\&quot;: Object {},\u001b[39m\n    \u001b[32m-         \&quot;reverse\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-       \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n    \u001b[32m-       \&quot;value\&quot;: undefined,\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     Object {\u001b[39m\n    \u001b[32m-       \&quot;concrete\&quot;: true,\u001b[39m\n    \u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;join\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;number\&quot;: 5,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         \&quot;reverse\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-       \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n    \u001b[32m-       \&quot;value\&quot;: Array [\u001b[39m\n    \u001b[32m-         Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-               },\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: \&quot;W\&quot;,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-               },\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: \&quot;o\&quot;,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-               },\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: \&quot;r\&quot;,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-               },\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: \&quot;l\&quot;,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-               },\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: \&quot;d\&quot;,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-       ],\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-   ],\u001b[39m\n    \u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n    \u001b[2m  }\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 41 | \u001b[39m      nodeInitialExecutionContext\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 42 | \u001b[39m    )[\u001b[35m0\u001b[39m]\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 43 | \u001b[39m  )\u001b[33m.\u001b[39mtoMatchInlineSnapshot(\u001b[32m&#x60;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m    | \u001b[39m    \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 44 | \u001b[39m\u001b[32mObject {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 45 | \u001b[39m\u001b[32m  \&quot;concrete\&quot;: undefined,\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 46 | \u001b[39m\u001b[32m  \&quot;properties\&quot;: Object {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toMatchInlineSnapshot (\u001b[2m\u001b[0m\u001b[36msrc&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts\u001b[39m\u001b[0m\u001b[2m:43:5)\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[1m5\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mvalue\u001b[39m\u001b[2m).toMatchSnapshot()\u001b[22m\n\n    \u001b[31mReceived value\u001b[39m does not match \u001b[32mstored snapshot \&quot;5 1\&quot;\u001b[39m.\n\n    \u001b[32m- Snapshot\u001b[39m\n    \u001b[31m+ Received\u001b[39m\n\n    \u001b[2m  Object {\u001b[22m\n    \u001b[32m-   \&quot;concrete\&quot;: undefined,\u001b[39m\n    \u001b[32m-   \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-     \&quot;join\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;gte\&quot;: 5,\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;reverse\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-   },\u001b[39m\n    \u001b[32m-   \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n    \u001b[32m-   \&quot;value\&quot;: Array [\u001b[39m\n    \u001b[32m-     Object {\u001b[39m\n    \u001b[32m-       \&quot;concrete\&quot;: true,\u001b[39m\n    \u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;join\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;number\&quot;: 5,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         \&quot;reverse\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-       \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n    \u001b[32m-       \&quot;value\&quot;: Array [\u001b[39m\n    \u001b[32m-         Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-               },\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: \&quot;d\&quot;,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-               },\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: \&quot;l\&quot;,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-               },\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: \&quot;r\&quot;,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-               },\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: \&quot;o\&quot;,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         Object {\u001b[39m\n    \u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-               },\u001b[39m\n    \u001b[32m-             },\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-           \&quot;value\&quot;: \&quot;W\&quot;,\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-       ],\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     Object {\u001b[39m\n    \u001b[32m-       \&quot;concrete\&quot;: undefined,\u001b[39m\n    \u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;join\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         \&quot;length\&quot;: Object {},\u001b[39m\n    \u001b[32m-         \&quot;reverse\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-       \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n    \u001b[32m-       \&quot;value\&quot;: undefined,\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-   ],\u001b[39m\n    \u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n    \u001b[2m  }\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 199 | \u001b[39m      nodeInitialExecutionContext\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 200 | \u001b[39m    )[\u001b[35m0\u001b[39m]\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 201 | \u001b[39m  )\u001b[33m.\u001b[39mtoMatchInlineSnapshot(\u001b[32m&#x60;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m     | \u001b[39m    \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 202 | \u001b[39m\u001b[32mObject {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 203 | \u001b[39m\u001b[32m  \&quot;concrete\&quot;: undefined,\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 204 | \u001b[39m\u001b[32m  \&quot;properties\&quot;: Object {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toMatchInlineSnapshot (\u001b[2m\u001b[0m\u001b[36msrc&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts\u001b[39m\u001b[0m\u001b[2m:201:5)\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[1m6\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mvalue\u001b[39m\u001b[2m).toMatchSnapshot()\u001b[22m\n\n    \u001b[31mReceived value\u001b[39m does not match \u001b[32mstored snapshot \&quot;6 1\&quot;\u001b[39m.\n\n    \u001b[32m- Snapshot\u001b[39m\n    \u001b[31m+ Received\u001b[39m\n\n    \u001b[2m  Object {\u001b[22m\n    \u001b[32m-   \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-     \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;gte\&quot;: 5,\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-   },\u001b[39m\n    \u001b[32m-   \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-   \&quot;value\&quot;: Array [\u001b[39m\n    \u001b[32m-     Object {\u001b[39m\n    \u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;length\&quot;: Object {},\u001b[39m\n    \u001b[32m-         \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-       \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-       \&quot;value\&quot;: \&quot;dlroW\&quot;,\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     Object {\u001b[39m\n    \u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;length\&quot;: Object {},\u001b[39m\n    \u001b[32m-         \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-         \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-           \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-             \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-           },\u001b[39m\n    \u001b[32m-         },\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-       \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-       \&quot;value\&quot;: undefined,\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-   ],\u001b[39m\n    \u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n    \u001b[2m  }\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 357 | \u001b[39m      nodeInitialExecutionContext\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 358 | \u001b[39m    )[\u001b[35m0\u001b[39m]\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 359 | \u001b[39m  )\u001b[33m.\u001b[39mtoMatchInlineSnapshot(\u001b[32m&#x60;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m     | \u001b[39m    \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 360 | \u001b[39m\u001b[32mObject {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 361 | \u001b[39m\u001b[32m  \&quot;properties\&quot;: Object {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 362 | \u001b[39m\u001b[32m    \&quot;length\&quot;: Object {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toMatchInlineSnapshot (\u001b[2m\u001b[0m\u001b[36msrc&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts\u001b[39m\u001b[0m\u001b[2m:359:5)\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[1m3\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mvalue\u001b[39m\u001b[2m).toMatchSnapshot()\u001b[22m\n\n    \u001b[31mReceived value\u001b[39m does not match \u001b[32mstored snapshot \&quot;3 1\&quot;\u001b[39m.\n\n    \u001b[32m- Snapshot\u001b[39m\n    \u001b[31m+ Received\u001b[39m\n\n    \u001b[2m  Object {\u001b[22m\n    \u001b[32m-   \&quot;properties\&quot;: Object {\u001b[39m\n    \u001b[32m-     \&quot;length\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;number\&quot;: 2,\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;split\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;substr\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-     \&quot;toString\&quot;: Object {\u001b[39m\n    \u001b[32m-       \&quot;function\&quot;: Object {\u001b[39m\n    \u001b[32m-         \&quot;implementation\&quot;: [Function],\u001b[39m\n    \u001b[32m-       },\u001b[39m\n    \u001b[32m-     },\u001b[39m\n    \u001b[32m-   },\u001b[39m\n    \u001b[32m-   \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n    \u001b[32m-   \&quot;value\&quot;: \&quot;dl\&quot;,\u001b[39m\n    \u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n    \u001b[2m  }\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 424 | \u001b[39m      nodeInitialExecutionContext\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 425 | \u001b[39m    )[\u001b[35m0\u001b[39m]\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 426 | \u001b[39m  )\u001b[33m.\u001b[39mtoMatchInlineSnapshot(\u001b[32m&#x60;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m     | \u001b[39m    \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 427 | \u001b[39m\u001b[32mObject {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 428 | \u001b[39m\u001b[32m  \&quot;properties\&quot;: Object {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 429 | \u001b[39m\u001b[32m    \&quot;length\&quot;: Object {\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toMatchInlineSnapshot (\u001b[2m\u001b[0m\u001b[36msrc&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts\u001b[39m\u001b[0m\u001b[2m:426:5)\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[1m.length › (prompt() + \&quot;World\&quot;).split(\&quot;\&quot;)\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toEqual(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n    Difference:\n\n    \u001b[32m- Expected\u001b[39m\n    \u001b[31m+ Received\u001b[39m\n\n    \u001b[2m  Object {\u001b[22m\n    \u001b[32m-   \&quot;gte\&quot;: 5,\u001b[39m\n    \u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n    \u001b[2m  }\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 455 | \u001b[39m        nodeInitialExecutionContext\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 456 | \u001b[39m      )[\u001b[35m0\u001b[39m]\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 457 | \u001b[39m    )\u001b[33m.\u001b[39mtoEqual({\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m     | \u001b[39m      \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 458 | \u001b[39m      gte\u001b[33m:\u001b[39m \u001b[35m5\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 459 | \u001b[39m    })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 460 | \u001b[39m  })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toEqual (\u001b[2m\u001b[0m\u001b[36msrc&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts\u001b[39m\u001b[0m\u001b[2m:457:7)\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[1m&gt; › (greaterThanEquals, number)\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toEqual(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n    Expected: \u001b[32mtrue\u001b[39m\n    Received: \u001b[31m{\&quot;type\&quot;: \&quot;undefined\&quot;}\u001b[39m\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 468 | \u001b[39m        nodeInitialExecutionContext\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 469 | \u001b[39m      )[\u001b[35m0\u001b[39m]\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 470 | \u001b[39m    )\u001b[33m.\u001b[39mtoEqual(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m     | \u001b[39m      \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 471 | \u001b[39m  })\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 472 | \u001b[39m})\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 473 | \u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.toEqual (\u001b[2m\u001b[0m\u001b[36msrc&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts\u001b[39m\u001b[0m\u001b[2m:470:7)\u001b[2m\u001b[22m\n&quot;,
+      &quot;numFailingTests&quot;: 9,
+      &quot;numPassingTests&quot;: 0,
+      &quot;numPendingTests&quot;: 0,
+      &quot;numTodoTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143849242,
+        &quot;start&quot;: 1564143843587
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 4,
+        &quot;updated&quot;: 0,
+        &quot;uncheckedKeys&quot;: []
+      },
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;Math.round&quot;
+          ],
+          &quot;duration&quot;: 13,
+          &quot;failureMessages&quot;: [
+            &quot;Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toBe(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) &#x2F;&#x2F; Object.is equality\u001b[22m\n\nExpected: \u001b[32m{}\u001b[39m\nReceived: \u001b[31m{\&quot;type\&quot;: \&quot;undefined\&quot;}\u001b[39m\n\nDifference:\n\n\u001b[32m- Expected\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[32m- Object {}\u001b[39m\n\u001b[31m+ Object {\u001b[39m\n\u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n\u001b[31m+ }\u001b[39m\n    at Object.toBe (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts:13:7)\n    at Object.asyncJestTest (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;jasmineAsyncInstall.js:102:37)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:41:12\n    at new Promise (&lt;anonymous&gt;)\n    at mapper (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:26:19)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:71:41\n    at processTicksAndRejections (internal&#x2F;process&#x2F;task_queues.js:89:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;Math.round ()&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;()&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;Math.round&quot;
+          ],
+          &quot;duration&quot;: 2,
+          &quot;failureMessages&quot;: [
+            &quot;Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toBe(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) &#x2F;&#x2F; Object.is equality\u001b[22m\n\nExpected: \u001b[32m{}\u001b[39m\nReceived: \u001b[31m{\&quot;type\&quot;: \&quot;undefined\&quot;}\u001b[39m\n\nDifference:\n\n\u001b[32m- Expected\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[32m- Object {}\u001b[39m\n\u001b[31m+ Object {\u001b[39m\n\u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n\u001b[31m+ }\u001b[39m\n    at Object.toBe (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts:22:7)\n    at Object.asyncJestTest (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;jasmineAsyncInstall.js:102:37)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:41:12\n    at new Promise (&lt;anonymous&gt;)\n    at mapper (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:26:19)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:71:41\n    at processTicksAndRejections (internal&#x2F;process&#x2F;task_queues.js:89:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;Math.round (string)&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;(string)&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;Math.round&quot;
+          ],
+          &quot;duration&quot;: 2,
+          &quot;failureMessages&quot;: [
+            &quot;Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toEqual(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nDifference:\n\n\u001b[32m- Expected\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \&quot;number\&quot;: 4,\u001b[39m\n\u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n\u001b[2m  }\u001b[22m\n    at Object.toEqual (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts:31:7)\n    at Object.asyncJestTest (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;jasmineAsyncInstall.js:102:37)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:41:12\n    at new Promise (&lt;anonymous&gt;)\n    at mapper (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:26:19)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:71:41\n    at processTicksAndRejections (internal&#x2F;process&#x2F;task_queues.js:89:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;Math.round (number)&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;(number)&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 5,
+          &quot;failureMessages&quot;: [
+            &quot;Error: \u001b[2mexpect(\u001b[22m\u001b[31mvalue\u001b[39m\u001b[2m).toMatchSnapshot()\u001b[22m\n\n\u001b[31mReceived value\u001b[39m does not match \u001b[32mstored snapshot \&quot;4 1\&quot;\u001b[39m.\n\n\u001b[32m- Snapshot\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \&quot;concrete\&quot;: undefined,\u001b[39m\n\u001b[32m-   \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-     \&quot;join\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;gte\&quot;: 5,\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;reverse\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-   },\u001b[39m\n\u001b[32m-   \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n\u001b[32m-   \&quot;value\&quot;: Array [\u001b[39m\n\u001b[32m-     Object {\u001b[39m\n\u001b[32m-       \&quot;concrete\&quot;: undefined,\u001b[39m\n\u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;join\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         \&quot;length\&quot;: Object {},\u001b[39m\n\u001b[32m-         \&quot;reverse\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-       \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n\u001b[32m-       \&quot;value\&quot;: undefined,\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     Object {\u001b[39m\n\u001b[32m-       \&quot;concrete\&quot;: true,\u001b[39m\n\u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;join\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;number\&quot;: 5,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         \&quot;reverse\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-       \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n\u001b[32m-       \&quot;value\&quot;: Array [\u001b[39m\n\u001b[32m-         Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-               },\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: \&quot;W\&quot;,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-               },\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: \&quot;o\&quot;,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-               },\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: \&quot;r\&quot;,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-               },\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: \&quot;l\&quot;,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-               },\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: \&quot;d\&quot;,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-       ],\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-   ],\u001b[39m\n\u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n\u001b[2m  }\u001b[22m\n    at Object.toMatchInlineSnapshot (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts:43:5)\n    at Object.asyncJestTest (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;jasmineAsyncInstall.js:102:37)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:41:12\n    at new Promise (&lt;anonymous&gt;)\n    at mapper (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:26:19)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:71:41\n    at processTicksAndRejections (internal&#x2F;process&#x2F;task_queues.js:89:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;4&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;4&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 4,
+          &quot;failureMessages&quot;: [
+            &quot;Error: \u001b[2mexpect(\u001b[22m\u001b[31mvalue\u001b[39m\u001b[2m).toMatchSnapshot()\u001b[22m\n\n\u001b[31mReceived value\u001b[39m does not match \u001b[32mstored snapshot \&quot;5 1\&quot;\u001b[39m.\n\n\u001b[32m- Snapshot\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \&quot;concrete\&quot;: undefined,\u001b[39m\n\u001b[32m-   \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-     \&quot;join\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;gte\&quot;: 5,\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;reverse\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-   },\u001b[39m\n\u001b[32m-   \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n\u001b[32m-   \&quot;value\&quot;: Array [\u001b[39m\n\u001b[32m-     Object {\u001b[39m\n\u001b[32m-       \&quot;concrete\&quot;: true,\u001b[39m\n\u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;join\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;number\&quot;: 5,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         \&quot;reverse\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-       \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n\u001b[32m-       \&quot;value\&quot;: Array [\u001b[39m\n\u001b[32m-         Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-               },\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: \&quot;d\&quot;,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-               },\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: \&quot;l\&quot;,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-               },\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: \&quot;r\&quot;,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-               },\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: \&quot;o\&quot;,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         Object {\u001b[39m\n\u001b[32m-           \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;number\&quot;: 1,\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-             \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-               \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-                 \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-               },\u001b[39m\n\u001b[32m-             },\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-           \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-           \&quot;value\&quot;: \&quot;W\&quot;,\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-       ],\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     Object {\u001b[39m\n\u001b[32m-       \&quot;concrete\&quot;: undefined,\u001b[39m\n\u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;join\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         \&quot;length\&quot;: Object {},\u001b[39m\n\u001b[32m-         \&quot;reverse\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-       \&quot;type\&quot;: \&quot;array\&quot;,\u001b[39m\n\u001b[32m-       \&quot;value\&quot;: undefined,\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-   ],\u001b[39m\n\u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n\u001b[2m  }\u001b[22m\n    at Object.toMatchInlineSnapshot (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts:201:5)\n    at Object.asyncJestTest (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;jasmineAsyncInstall.js:102:37)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:41:12\n    at new Promise (&lt;anonymous&gt;)\n    at mapper (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:26:19)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:71:41\n    at processTicksAndRejections (internal&#x2F;process&#x2F;task_queues.js:89:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;5&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;5&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 2,
+          &quot;failureMessages&quot;: [
+            &quot;Error: \u001b[2mexpect(\u001b[22m\u001b[31mvalue\u001b[39m\u001b[2m).toMatchSnapshot()\u001b[22m\n\n\u001b[31mReceived value\u001b[39m does not match \u001b[32mstored snapshot \&quot;6 1\&quot;\u001b[39m.\n\n\u001b[32m- Snapshot\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-     \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;gte\&quot;: 5,\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-   },\u001b[39m\n\u001b[32m-   \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-   \&quot;value\&quot;: Array [\u001b[39m\n\u001b[32m-     Object {\u001b[39m\n\u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;length\&quot;: Object {},\u001b[39m\n\u001b[32m-         \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-       \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-       \&quot;value\&quot;: \&quot;dlroW\&quot;,\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     Object {\u001b[39m\n\u001b[32m-       \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;length\&quot;: Object {},\u001b[39m\n\u001b[32m-         \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-         \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-           \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-             \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-           },\u001b[39m\n\u001b[32m-         },\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-       \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-       \&quot;value\&quot;: undefined,\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-   ],\u001b[39m\n\u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n\u001b[2m  }\u001b[22m\n    at Object.toMatchInlineSnapshot (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts:359:5)\n    at Object.asyncJestTest (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;jasmineAsyncInstall.js:102:37)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:41:12\n    at new Promise (&lt;anonymous&gt;)\n    at mapper (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:26:19)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:71:41\n    at processTicksAndRejections (internal&#x2F;process&#x2F;task_queues.js:89:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;6&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;6&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 1,
+          &quot;failureMessages&quot;: [
+            &quot;Error: \u001b[2mexpect(\u001b[22m\u001b[31mvalue\u001b[39m\u001b[2m).toMatchSnapshot()\u001b[22m\n\n\u001b[31mReceived value\u001b[39m does not match \u001b[32mstored snapshot \&quot;3 1\&quot;\u001b[39m.\n\n\u001b[32m- Snapshot\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \&quot;properties\&quot;: Object {\u001b[39m\n\u001b[32m-     \&quot;length\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;number\&quot;: 2,\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;split\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;substr\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-     \&quot;toString\&quot;: Object {\u001b[39m\n\u001b[32m-       \&quot;function\&quot;: Object {\u001b[39m\n\u001b[32m-         \&quot;implementation\&quot;: [Function],\u001b[39m\n\u001b[32m-       },\u001b[39m\n\u001b[32m-     },\u001b[39m\n\u001b[32m-   },\u001b[39m\n\u001b[32m-   \&quot;type\&quot;: \&quot;string\&quot;,\u001b[39m\n\u001b[32m-   \&quot;value\&quot;: \&quot;dl\&quot;,\u001b[39m\n\u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n\u001b[2m  }\u001b[22m\n    at Object.toMatchInlineSnapshot (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts:426:5)\n    at Object.asyncJestTest (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;jasmineAsyncInstall.js:102:37)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:41:12\n    at new Promise (&lt;anonymous&gt;)\n    at mapper (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:26:19)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:71:41\n    at processTicksAndRejections (internal&#x2F;process&#x2F;task_queues.js:89:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;3&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;3&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;.length&quot;
+          ],
+          &quot;duration&quot;: 2,
+          &quot;failureMessages&quot;: [
+            &quot;Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toEqual(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nDifference:\n\n\u001b[32m- Expected\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[32m-   \&quot;gte\&quot;: 5,\u001b[39m\n\u001b[31m+   \&quot;type\&quot;: \&quot;undefined\&quot;,\u001b[39m\n\u001b[2m  }\u001b[22m\n    at Object.toEqual (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts:457:7)\n    at Object.asyncJestTest (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;jasmineAsyncInstall.js:102:37)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:41:12\n    at new Promise (&lt;anonymous&gt;)\n    at mapper (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:26:19)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:71:41\n    at processTicksAndRejections (internal&#x2F;process&#x2F;task_queues.js:89:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;.length (prompt() + \&quot;World\&quot;).split(\&quot;\&quot;)&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;(prompt() + \&quot;World\&quot;).split(\&quot;\&quot;)&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;&gt;&quot;
+          ],
+          &quot;duration&quot;: 1,
+          &quot;failureMessages&quot;: [
+            &quot;Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toEqual(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31m{\&quot;type\&quot;: \&quot;undefined\&quot;}\u001b[39m\n    at Object.toEqual (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;evaluateCode.spec.ts:470:7)\n    at Object.asyncJestTest (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;jasmineAsyncInstall.js:102:37)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:41:12\n    at new Promise (&lt;anonymous&gt;)\n    at mapper (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:26:19)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-jasmine2&#x2F;build&#x2F;queueRunner.js:71:41\n    at processTicksAndRejections (internal&#x2F;process&#x2F;task_queues.js:89:5)&quot;
+          ],
+          &quot;fullName&quot;: &quot;&gt; (greaterThanEquals, number)&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;(greaterThanEquals, number)&quot;
+        }
+      ],
+      &quot;sourceMaps&quot;: {},
+      &quot;skipped&quot;: false,
+      &quot;displayName&quot;: &quot;test&quot;,
+      &quot;leaks&quot;: false
+    },
+    {
+      &quot;console&quot;: [],
+      &quot;failureMessage&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 2,
+      &quot;numPendingTests&quot;: 0,
+      &quot;numTodoTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143850518,
+        &quot;start&quot;: 1564143849210
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0,
+        &quot;uncheckedKeys&quot;: []
+      },
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;errors.spec.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;errors&quot;,
+            &quot;should return an execContext with an stderr with an error message&quot;
+          ],
+          &quot;duration&quot;: 6,
+          &quot;failureMessages&quot;: [],
+          &quot;fullName&quot;: &quot;errors should return an execContext with an stderr with an error message when throw is a top level statement&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;when throw is a top level statement&quot;
+        },
+        {
+          &quot;ancestorTitles&quot;: [
+            &quot;errors&quot;,
+            &quot;should return an execContext with an stderr with an error message&quot;
+          ],
+          &quot;duration&quot;: 2,
+          &quot;failureMessages&quot;: [],
+          &quot;fullName&quot;: &quot;errors should return an execContext with an stderr with an error message when throw is a statement inside a called function&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;when throw is a statement inside a called function&quot;
+        }
+      ],
+      &quot;sourceMaps&quot;: {},
+      &quot;skipped&quot;: false,
+      &quot;displayName&quot;: &quot;test&quot;,
+      &quot;leaks&quot;: false
+    },
+    {
+      &quot;console&quot;: [],
+      &quot;failureMessage&quot;: &quot;\u001b[1m\u001b[31m  \u001b[1m● \u001b[1mboth branches evaluate to the same type\u001b[39m\u001b[22m\n\n    AssertionError [ERR_ASSERTION] [ERR_ASSERTION]: Can&#39;t resolve type of ast type ConditionalExpression\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 50 | \u001b[39m    \u001b[36mif\u001b[39m (\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 51 | \u001b[39m      err \u001b[36minstanceof\u001b[39m \u001b[33mASTEvaluationError\u001b[39m \u001b[33m||\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[2m\u001b[39m\u001b[90m 52 | \u001b[39m      err \u001b[36minstanceof\u001b[39m \u001b[33mCodeEvaluationError\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m    | \u001b[39m                        \u001b[31m\u001b[1m^\u001b[2m\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 53 | \u001b[39m    ) {\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 54 | \u001b[39m      \u001b[36mthrow\u001b[39m err\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 55 | \u001b[39m    }\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat evaluate (\u001b[2msrc&#x2F;prophet&#x2F;evaluate.ts\u001b[2m:52:25)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat \u001b[2msrc&#x2F;prophet&#x2F;ASTResolvers.ts\u001b[2m:203:47\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat evaluateThrowableIterator (\u001b[2msrc&#x2F;prophet&#x2F;evaluate.ts\u001b[2m:83:37)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat \u001b[2msrc&#x2F;prophet&#x2F;ASTResolvers.ts\u001b[2m:43:50\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat evaluateThrowableIterator (\u001b[2msrc&#x2F;prophet&#x2F;evaluate.ts\u001b[2m:83:37)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat evaluate (\u001b[2msrc&#x2F;prophet&#x2F;evaluate.ts\u001b[2m:54:12)\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat Object.implementation (\u001b[2msrc&#x2F;prophet&#x2F;Function&#x2F;Function.ts\u001b[2m:57:60)\u001b[2m\u001b[22m\n\u001b[2m          at implementation.next (&lt;anonymous&gt;)\u001b[22m\n&quot;,
+      &quot;numFailingTests&quot;: 1,
+      &quot;numPassingTests&quot;: 0,
+      &quot;numPendingTests&quot;: 0,
+      &quot;numTodoTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143850651,
+        &quot;start&quot;: 1564143849601
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0,
+        &quot;uncheckedKeys&quot;: []
+      },
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;ternary.spec.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 4,
+          &quot;failureMessages&quot;: [
+            &quot;AssertionError [ERR_ASSERTION] [ERR_ASSERTION]: Can&#39;t resolve type of ast type ConditionalExpression\n    at evaluate (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;evaluate.ts:52:25)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;ASTResolvers.ts:203:47\n    at Generator.next (&lt;anonymous&gt;)\n    at evaluateThrowableIterator (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;evaluate.ts:83:37)\n    at &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;ASTResolvers.ts:43:50\n    at Generator.next (&lt;anonymous&gt;)\n    at evaluateThrowableIterator (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;evaluate.ts:83:37)\n    at evaluate (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;evaluate.ts:54:12)\n    at Object.implementation (&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet&#x2F;Function&#x2F;Function.ts:57:60)\n    at implementation.next (&lt;anonymous&gt;)&quot;
+          ],
+          &quot;fullName&quot;: &quot;both branches evaluate to the same type&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;failed&quot;,
+          &quot;title&quot;: &quot;both branches evaluate to the same type&quot;
+        }
+      ],
+      &quot;sourceMaps&quot;: {},
+      &quot;skipped&quot;: false,
+      &quot;displayName&quot;: &quot;test&quot;,
+      &quot;leaks&quot;: false
+    },
+    {
+      &quot;console&quot;: [],
+      &quot;failureMessage&quot;: null,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 1,
+      &quot;numPendingTests&quot;: 0,
+      &quot;numTodoTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1564143851645,
+        &quot;start&quot;: 1564143850591
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0,
+        &quot;uncheckedKeys&quot;: []
+      },
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;logic.spec.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 1,
+          &quot;failureMessages&quot;: [],
+          &quot;fullName&quot;: &quot;m&#x2F;in&quot;,
+          &quot;location&quot;: null,
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;m&#x2F;in&quot;
+        }
+      ],
+      &quot;sourceMaps&quot;: {},
+      &quot;skipped&quot;: false,
+      &quot;displayName&quot;: &quot;test&quot;,
+      &quot;leaks&quot;: false
     }
   ],
   &quot;wasInterrupted&quot;: false
@@ -193,15 +1568,13 @@
   &quot;globalTeardown&quot;: null,
   &quot;listTests&quot;: false,
   &quot;maxConcurrency&quot;: 5,
-  &quot;maxWorkers&quot;: 3,
+  &quot;maxWorkers&quot;: 2,
   &quot;noStackTrace&quot;: false,
-  &quot;nonFlagArgs&quot;: [
-    &quot;prophet&#x2F;index.ts&quot;
-  ],
+  &quot;nonFlagArgs&quot;: [],
   &quot;notify&quot;: false,
   &quot;notifyMode&quot;: &quot;failure-change&quot;,
-  &quot;onlyChanged&quot;: false,
-  &quot;passWithNoTests&quot;: false,
+  &quot;onlyChanged&quot;: true,
+  &quot;passWithNoTests&quot;: true,
   &quot;projects&quot;: [
     {
       &quot;runner&quot;: &quot;@deaven&#x2F;jest-runner-typecheck&quot;,
@@ -263,12 +1636,13 @@
   &quot;runTestsByPath&quot;: false,
   &quot;skipFilter&quot;: false,
   &quot;testFailureExitCode&quot;: 1,
-  &quot;testPathPattern&quot;: &quot;prophet&#x2F;index.ts&quot;,
+  &quot;testPathPattern&quot;: &quot;&quot;,
   &quot;testResultsProcessor&quot;: null,
   &quot;updateSnapshot&quot;: &quot;new&quot;,
   &quot;useStderr&quot;: false,
-  &quot;verbose&quot;: true,
-  &quot;watch&quot;: false,
+  &quot;verbose&quot;: null,
+  &quot;watch&quot;: true,
+  &quot;watchAll&quot;: false,
   &quot;watchman&quot;: true
 }</div>
 

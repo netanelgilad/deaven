@@ -36,3 +36,16 @@ export function setVariableInScope(
     scope: { ...execContext.value.scope, [name]: val }
   });
 }
+
+export function setVariablesInScope(
+  execContext: TExecutionContext,
+  variables: { [name: string]: Any }
+) {
+  let result = execContext;
+
+  for (const [name, type] of Object.entries(variables)) {
+    result = setVariableInScope(result, name, type);
+  }
+
+  return result;
+}

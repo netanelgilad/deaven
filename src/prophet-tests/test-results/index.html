@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>jest-stare!</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/diff2html.min.css" rel="stylesheet" type="text/css">
+    <link href="css/jest-stare.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/holder.js"></script>
+    <script src="js/diff2html.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/view.js"></script>
+</head>
+
+<body>
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#">jest-stare</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="coverage-link" class="nav-link disabled" href="#">Coverage</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="onoff-switch mr-sm-2 ml-sm-2">
+                            <input type="checkbox" name="passoff-switch" class="passoff-switch-checkbox" id="lab-passoff-switch" checked>
+                            <label class="onoff-switch-label" for="lab-passoff-switch">
+                                <span class="passoff-switch-inner"></span>
+                                <span class="passoff-switch-switch"></span>
+                            </label>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="onoff-switch mr-sm-2 ml-sm-2">
+                            <input type="checkbox" name="failoff-switch" class="failoff-switch-checkbox" id="lab-failoff-switch" checked>
+                            <label class="onoff-switch-label" for="lab-failoff-switch">
+                                <span class="failoff-switch-inner"></span>
+                                <span class="failoff-switch-switch"></span>
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+                <!-- <form class="form-inline mt-2 mt-md-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" disabled>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" disabled>Search</button>
+                </form> -->
+            </div>
+        </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <main role="main" class="container">
+
+        <h1 class="mt-5"></h1>
+
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+            <div class="col-lg-4">
+                <canvas id="test-suites-canvas" width="100" height="100"></canvas>
+                <h2>Test Suites</h2>
+                <div class="list-group">
+                    <p id="test-suites-results" class="list-group-item list-group-item-action">0 passed, 2 total</p>
+                </div>
+            </div>
+            <!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <canvas id="tests-canvas" width="100" height="100"></canvas>
+                <h2>Tests</h2>
+                <div class="list-group">
+                    <p id="tests-results" class="list-group-item list-group-item-action">0 passed, 1 total</p>
+                </div>
+            </div>
+            <!-- /.col-lg-4 -->
+            <div class="col-lg-4" id="snapshots-group">
+                <canvas id="snapshots-canvas" width="100" height="100"></canvas>
+                <h2>Snapshots</h2>
+                <div class="list-group">
+                    <p id="snapshots-results" class="list-group-item list-group-item-action">0 passed, 0 total</p>
+                </div>
+            </div>
+            <!-- /.col-lg-4 -->
+        </div>
+
+        <div id="loading-info" class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                aria-valuemax="100" style="width: 100%"></div>
+        </div>
+
+        <div class="d-none" id="test-config">{
+  &quot;additionalResultsProcessors&quot;: [],
+  &quot;resultDir&quot;: &quot;test-results&#x2F;&quot;,
+  &quot;resultHtml&quot;: &quot;index.html&quot;,
+  &quot;resultJson&quot;: &quot;jest-results.json&quot;
+}</div>
+        <div class="d-none" id="test-results">{
+  &quot;numFailedTestSuites&quot;: 2,
+  &quot;numFailedTests&quot;: 1,
+  &quot;numPassedTestSuites&quot;: 0,
+  &quot;numPassedTests&quot;: 0,
+  &quot;numPendingTestSuites&quot;: 0,
+  &quot;numPendingTests&quot;: 0,
+  &quot;numRuntimeErrorTestSuites&quot;: 1,
+  &quot;numTodoTests&quot;: 0,
+  &quot;numTotalTestSuites&quot;: 2,
+  &quot;numTotalTests&quot;: 1,
+  &quot;openHandles&quot;: [],
+  &quot;snapshot&quot;: {
+    &quot;added&quot;: 0,
+    &quot;didUpdate&quot;: false,
+    &quot;failure&quot;: false,
+    &quot;filesAdded&quot;: 0,
+    &quot;filesRemoved&quot;: 0,
+    &quot;filesUnmatched&quot;: 0,
+    &quot;filesUpdated&quot;: 0,
+    &quot;matched&quot;: 0,
+    &quot;total&quot;: 0,
+    &quot;unchecked&quot;: 0,
+    &quot;uncheckedKeysByFile&quot;: [],
+    &quot;unmatched&quot;: 0,
+    &quot;updated&quot;: 0
+  },
+  &quot;startTime&quot;: 1552769392653,
+  &quot;success&quot;: false,
+  &quot;testResults&quot;: [
+    {
+      &quot;console&quot;: null,
+      &quot;failureMessage&quot;: &quot;Cannot find name &#39;test&#39;. Do you need to install type definitions for a test runner? Try &#x60;npm i @types&#x2F;jest&#x60; or &#x60;npm i @types&#x2F;mocha&#x60;  and then add &#x60;jest&#x60; or &#x60;mocha&#x60; to the types field in your tsconfig.\n\u001b[0m \u001b[90m 1 | \u001b[39m\u001b[90m&#x2F;&#x2F; &#x2F;&#x2F;&#x2F; &lt;reference types&#x3D;\&quot;jest\&quot; &#x2F;&gt;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 2 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m&gt;\u001b[22m\u001b[39m\u001b[90m 3 | \u001b[39mtest(\u001b[32m\&quot;m&#x2F;in\&quot;\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m&#x3D;&gt;\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m   | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 4 | \u001b[39m  \u001b[36mfunction\u001b[39m min(arr\u001b[33m:\u001b[39m any[]) {\u001b[0m\n\u001b[0m \u001b[90m 5 | \u001b[39m    \u001b[36mreturn\u001b[39m arr\u001b[33m.\u001b[39mlength \u001b[33m&#x3D;&#x3D;&#x3D;\u001b[39m \u001b[35m0\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 6 | \u001b[39m      \u001b[33m?\u001b[39m undefined\u001b[0m\n\n&#39;min&#39; implicitly has return type &#39;any&#39; because it does not have a return type annotation and is referenced directly or indirectly in one of its return expressions.\n\u001b[0m \u001b[90m 2 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 3 | \u001b[39mtest(\u001b[32m\&quot;m&#x2F;in\&quot;\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m&#x3D;&gt;\u001b[39m {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m&gt;\u001b[22m\u001b[39m\u001b[90m 4 | \u001b[39m  \u001b[36mfunction\u001b[39m min(arr\u001b[33m:\u001b[39m any[]) {\u001b[0m\n\u001b[0m \u001b[90m   | \u001b[39m           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 5 | \u001b[39m    \u001b[36mreturn\u001b[39m arr\u001b[33m.\u001b[39mlength \u001b[33m&#x3D;&#x3D;&#x3D;\u001b[39m \u001b[35m0\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 6 | \u001b[39m      \u001b[33m?\u001b[39m undefined\u001b[0m\n\u001b[0m \u001b[90m 7 | \u001b[39m      \u001b[33m:\u001b[39m arr\u001b[33m.\u001b[39mlength \u001b[33m&#x3D;&#x3D;&#x3D;\u001b[39m \u001b[35m1\u001b[39m\u001b[0m\n\nCannot find name &#39;expect&#39;.\n\u001b[0m \u001b[90m 21 | \u001b[39m  \u001b[36mconst\u001b[39m a \u001b[33m&#x3D;\u001b[39m arr[\u001b[35m1\u001b[39m] \u001b[33m&lt;\u001b[39m min(arr)\u001b[33m;\u001b[39m \u001b[90m&#x2F;&#x2F; a &#x3D; false\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 22 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m&gt;\u001b[22m\u001b[39m\u001b[90m 23 | \u001b[39m  expect(a)\u001b[33m.\u001b[39mtoBe(\u001b[36mfalse\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 24 | \u001b[39m})\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 25 | \u001b[39m\u001b[0m\n\nCannot compile namespaces when the &#39;--isolatedModules&#39; flag is provided.\n\u001b[0m \u001b[90m 1 | \u001b[39m\u001b[90m&#x2F;&#x2F; &#x2F;&#x2F;&#x2F; &lt;reference types&#x3D;\&quot;jest\&quot; &#x2F;&gt;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 2 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m&gt;\u001b[22m\u001b[39m\u001b[90m 3 | \u001b[39mtest(\u001b[32m\&quot;m&#x2F;in\&quot;\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m&#x3D;&gt;\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m   | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 4 | \u001b[39m  \u001b[36mfunction\u001b[39m min(arr\u001b[33m:\u001b[39m any[]) {\u001b[0m\n\u001b[0m \u001b[90m 5 | \u001b[39m    \u001b[36mreturn\u001b[39m arr\u001b[33m.\u001b[39mlength \u001b[33m&#x3D;&#x3D;&#x3D;\u001b[39m \u001b[35m0\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 6 | \u001b[39m      \u001b[33m?\u001b[39m undefined\u001b[0m&quot;,
+      &quot;numFailingTests&quot;: 1,
+      &quot;numPassingTests&quot;: 0,
+      &quot;numPendingTests&quot;: 0,
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 1552769392740,
+        &quot;start&quot;: 1552769392693
+      },
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: null,
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;logic.spec.ts&quot;,
+      &quot;testResults&quot;: [
+        {
+          &quot;ancestorTitles&quot;: [],
+          &quot;duration&quot;: 47,
+          &quot;failureMessages&quot;: [
+            null
+          ],
+          &quot;numPassingAsserts&quot;: 0,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;title&quot;: &quot;&quot;
+        }
+      ],
+      &quot;numTodoTests&quot;: 0
+    },
+    {
+      &quot;console&quot;: null,
+      &quot;displayName&quot;: &quot;&quot;,
+      &quot;failureMessage&quot;: &quot;  \u001b[1m● \u001b[22mTest suite failed to run\n\n    SyntaxError: &#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;logic.spec.ts: Unexpected token, expected \&quot;,\&quot; (4:18)\n\n    \u001b[0m \u001b[90m 2 | \u001b[39m\u001b[0m\n    \u001b[0m \u001b[90m 3 | \u001b[39mtest(\u001b[32m\&quot;m&#x2F;in\&quot;\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m&#x3D;&gt;\u001b[39m {\u001b[0m\n    \u001b[0m\u001b[31m\u001b[1m&gt;\u001b[22m\u001b[39m\u001b[90m 4 | \u001b[39m  \u001b[36mfunction\u001b[39m min(arr\u001b[33m:\u001b[39m any[]) {\u001b[0m\n    \u001b[0m \u001b[90m   | \u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n    \u001b[0m \u001b[90m 5 | \u001b[39m    \u001b[36mreturn\u001b[39m arr\u001b[33m.\u001b[39mlength \u001b[33m&#x3D;&#x3D;&#x3D;\u001b[39m \u001b[35m0\u001b[39m\u001b[0m\n    \u001b[0m \u001b[90m 6 | \u001b[39m      \u001b[33m?\u001b[39m undefined\u001b[0m\n    \u001b[0m \u001b[90m 7 | \u001b[39m      \u001b[33m:\u001b[39m arr\u001b[33m.\u001b[39mlength \u001b[33m&#x3D;&#x3D;&#x3D;\u001b[39m \u001b[35m1\u001b[39m\u001b[0m\n\n      \u001b[2mat Parser.raise (\u001b[22mnode_modules&#x2F;@babel&#x2F;core&#x2F;node_modules&#x2F;@babel&#x2F;parser&#x2F;lib&#x2F;index.js\u001b[2m:3831:17)\u001b[22m\n      \u001b[2mat Parser.unexpected (\u001b[22mnode_modules&#x2F;@babel&#x2F;core&#x2F;node_modules&#x2F;@babel&#x2F;parser&#x2F;lib&#x2F;index.js\u001b[2m:5143:16)\u001b[22m\n      \u001b[2mat Parser.expect (\u001b[22mnode_modules&#x2F;@babel&#x2F;core&#x2F;node_modules&#x2F;@babel&#x2F;parser&#x2F;lib&#x2F;index.js\u001b[2m:5135:28)\u001b[22m\n      \u001b[2mat Parser.parseBindingList (\u001b[22mnode_modules&#x2F;@babel&#x2F;core&#x2F;node_modules&#x2F;@babel&#x2F;parser&#x2F;lib&#x2F;index.js\u001b[2m:5417:14)\u001b[22m\n      \u001b[2mat Parser.parseFunctionParams (\u001b[22mnode_modules&#x2F;@babel&#x2F;core&#x2F;node_modules&#x2F;@babel&#x2F;parser&#x2F;lib&#x2F;index.js\u001b[2m:7961:24)\u001b[22m\n      \u001b[2mat Parser.parseFunction (\u001b[22mnode_modules&#x2F;@babel&#x2F;core&#x2F;node_modules&#x2F;@babel&#x2F;parser&#x2F;lib&#x2F;index.js\u001b[2m:7943:10)\u001b[22m\n      \u001b[2mat Parser.parseFunctionStatement (\u001b[22mnode_modules&#x2F;@babel&#x2F;core&#x2F;node_modules&#x2F;@babel&#x2F;parser&#x2F;lib&#x2F;index.js\u001b[2m:7596:17)\u001b[22m\n      \u001b[2mat Parser.parseStatementContent (\u001b[22mnode_modules&#x2F;@babel&#x2F;core&#x2F;node_modules&#x2F;@babel&#x2F;parser&#x2F;lib&#x2F;index.js\u001b[2m:7278:31)\u001b[22m\n      \u001b[2mat Parser.parseStatement (\u001b[22mnode_modules&#x2F;@babel&#x2F;core&#x2F;node_modules&#x2F;@babel&#x2F;parser&#x2F;lib&#x2F;index.js\u001b[2m:7243:17)\u001b[22m\n      \u001b[2mat Parser.parseBlockOrModuleBlockBody (\u001b[22mnode_modules&#x2F;@babel&#x2F;core&#x2F;node_modules&#x2F;@babel&#x2F;parser&#x2F;lib&#x2F;index.js\u001b[2m:7810:25)\u001b[22m\n&quot;,
+      &quot;leaks&quot;: false,
+      &quot;numFailingTests&quot;: 0,
+      &quot;numPassingTests&quot;: 0,
+      &quot;numPendingTests&quot;: 0,
+      &quot;numTodoTests&quot;: 0,
+      &quot;openHandles&quot;: [],
+      &quot;perfStats&quot;: {
+        &quot;end&quot;: 0,
+        &quot;start&quot;: 0
+      },
+      &quot;skipped&quot;: false,
+      &quot;snapshot&quot;: {
+        &quot;added&quot;: 0,
+        &quot;fileDeleted&quot;: false,
+        &quot;matched&quot;: 0,
+        &quot;unchecked&quot;: 0,
+        &quot;uncheckedKeys&quot;: [],
+        &quot;unmatched&quot;: 0,
+        &quot;updated&quot;: 0
+      },
+      &quot;sourceMaps&quot;: {},
+      &quot;testExecError&quot;: {
+        &quot;pos&quot;: 74,
+        &quot;loc&quot;: {
+          &quot;line&quot;: 4,
+          &quot;column&quot;: 18
+        },
+        &quot;code&quot;: &quot;BABEL_PARSE_ERROR&quot;
+      },
+      &quot;testFilePath&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;src&#x2F;prophet-tests&#x2F;logic.spec.ts&quot;,
+      &quot;testResults&quot;: []
+    }
+  ],
+  &quot;wasInterrupted&quot;: false
+}</div>
+        <div class="d-none" id="test-global-config">{
+  &quot;bail&quot;: 0,
+  &quot;changedFilesWithAncestor&quot;: false,
+  &quot;collectCoverage&quot;: false,
+  &quot;collectCoverageFrom&quot;: null,
+  &quot;coverageDirectory&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;coverage&quot;,
+  &quot;coverageReporters&quot;: [
+    &quot;json&quot;,
+    &quot;text&quot;,
+    &quot;lcov&quot;,
+    &quot;clover&quot;
+  ],
+  &quot;coverageThreshold&quot;: null,
+  &quot;detectLeaks&quot;: false,
+  &quot;detectOpenHandles&quot;: false,
+  &quot;errorOnDeprecated&quot;: false,
+  &quot;expand&quot;: false,
+  &quot;filter&quot;: null,
+  &quot;globalSetup&quot;: null,
+  &quot;globalTeardown&quot;: null,
+  &quot;listTests&quot;: false,
+  &quot;maxConcurrency&quot;: 5,
+  &quot;maxWorkers&quot;: 1,
+  &quot;noStackTrace&quot;: false,
+  &quot;nonFlagArgs&quot;: [
+    &quot;logic.spec.ts&quot;
+  ],
+  &quot;notify&quot;: false,
+  &quot;notifyMode&quot;: &quot;failure-change&quot;,
+  &quot;onlyChanged&quot;: false,
+  &quot;passWithNoTests&quot;: true,
+  &quot;projects&quot;: [
+    {
+      &quot;runner&quot;: &quot;@deaven&#x2F;jest-runner-typecheck&quot;,
+      &quot;displayName&quot;: &quot;typecheck&quot;,
+      &quot;moduleFileExtensions&quot;: [
+        &quot;js&quot;,
+        &quot;jsx&quot;,
+        &quot;ts&quot;,
+        &quot;tsx&quot;
+      ],
+      &quot;testMatch&quot;: [
+        &quot;&lt;rootDir&gt;&#x2F;**&#x2F;*.ts&quot;
+      ],
+      &quot;roots&quot;: [
+        &quot;&lt;rootDir&gt;&#x2F;src&quot;
+      ],
+      &quot;testPathIgnorePatterns&quot;: [
+        &quot;&#x2F;node_modules&#x2F;&quot;,
+        &quot;&lt;rootDir&gt;&#x2F;(?:.+?)&#x2F;lib&#x2F;(?:.+?)&quot;
+      ],
+      &quot;watchPathIgnorePatterns&quot;: [
+        &quot;&lt;rootDir&gt;&#x2F;(?:.+?)\\.js&quot;,
+        &quot;&lt;rootDir&gt;&#x2F;(?:.+?)&#x2F;lib&#x2F;(?:.+?)&quot;
+      ],
+      &quot;rootDir&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&quot;
+    },
+    {
+      &quot;displayName&quot;: &quot;test&quot;,
+      &quot;watchPathIgnorePatterns&quot;: [
+        &quot;&lt;rootDir&gt;&#x2F;(?:.+?)\\.js&quot;,
+        &quot;&lt;rootDir&gt;&#x2F;(?:.+?)&#x2F;lib&#x2F;(?:.+?)&quot;
+      ],
+      &quot;rootDir&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&quot;
+    },
+    {
+      &quot;displayName&quot;: &quot;dummy&quot;,
+      &quot;testMatch&quot;: [
+        &quot;dummy&quot;
+      ],
+      &quot;watchPathIgnorePatterns&quot;: [
+        &quot;(?:.+?)&quot;
+      ],
+      &quot;rootDir&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&quot;
+    }
+  ],
+  &quot;reporters&quot;: [
+    [
+      &quot;default&quot;,
+      {}
+    ],
+    [
+      &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&#x2F;node_modules&#x2F;jest-stare&#x2F;lib&#x2F;index.js&quot;,
+      {
+        &quot;resultDir&quot;: &quot;results&quot;
+      }
+    ]
+  ],
+  &quot;rootDir&quot;: &quot;&#x2F;Users&#x2F;netanelgilad&#x2F;Development&#x2F;deaven&quot;,
+  &quot;runTestsByPath&quot;: false,
+  &quot;skipFilter&quot;: false,
+  &quot;testFailureExitCode&quot;: 1,
+  &quot;testPathPattern&quot;: &quot;logic.spec.ts&quot;,
+  &quot;testResultsProcessor&quot;: null,
+  &quot;updateSnapshot&quot;: &quot;new&quot;,
+  &quot;useStderr&quot;: false,
+  &quot;verbose&quot;: false,
+  &quot;watch&quot;: true,
+  &quot;watchAll&quot;: false,
+  &quot;watchman&quot;: true
+}</div>
+
+    </main>
+    <hr>
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">&copy; jest-stare 2019</span>
+        </div>
+    </footer>
+</body>
+
+</html>
