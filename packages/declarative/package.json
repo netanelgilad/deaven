@@ -19,8 +19,8 @@
     "@deaven/unsafe-cast.macro": "^1.0.0",
     "@types/chokidar": "^1.7.5",
     "@types/memory-fs": "^0.3.2",
-    "@types/rollup-plugin-node-resolve": "^4.0.0",
     "@types/rollup-plugin-babel": "^1.0.0",
+    "@types/rollup-plugin-node-resolve": "^4.0.0",
     "@types/watchpack": "^1.1.3",
     "@types/webpack": "^4.4.24",
     "babel-plugin-macros": "^2.4.5"
